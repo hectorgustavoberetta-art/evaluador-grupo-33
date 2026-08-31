@@ -1,1 +1,8 @@
 # evaluador-grupo-33
+
+## Integrantes
+
+- HECTOR GUSTAVO BERETTA
+- ELIANA ANDROSZCZUK
+- DIEGO GONZALEZ
+- AGUSTIN POSELSKI
