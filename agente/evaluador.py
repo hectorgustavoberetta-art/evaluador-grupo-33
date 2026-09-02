@@ -1,4 +1,6 @@
 import os
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from openai import OpenAI
 
@@ -38,6 +40,7 @@ formato_salida = leer_archivo(REPO_DIR / "formato_salida.md")
 def evaluar_trabajo(ruta_trabajo):
 
     trabajo = leer_archivo(ruta_trabajo)
+    fecha_evaluacion = datetime.now(ZoneInfo("America/Santiago")).strftime("%d/%m/%Y")
 
     instrucciones = f"""
 {system_prompt}
@@ -52,6 +55,9 @@ FORMATO DE SALIDA:
     entrada = f"""
 Evaluá el siguiente trabajo aplicando estrictamente
 la rúbrica y el formato de salida indicados.
+
+La fecha de evaluación es: {fecha_evaluacion}.
+Debes utilizar exactamente esta fecha en la respuesta.
 
 TRABAJO A EVALUAR:
 
