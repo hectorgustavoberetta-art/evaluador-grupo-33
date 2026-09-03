@@ -1,4 +1,5 @@
 import os
+import re
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -99,6 +100,10 @@ TRABAJO A EVALUAR:
 if __name__ == "__main__":
 
     casos = ["deficiente", "intermedio", "excelente"]
+    repeticiones = 3
+
+    resultados_dir = REPO_DIR / "resultados"
+    resultados_dir.mkdir(exist_ok=True)
 
     for caso in casos:
 
@@ -108,6 +113,45 @@ if __name__ == "__main__":
 
         ruta_caso = REPO_DIR / "casos" / caso
 
-        resultado = evaluar_trabajo(ruta_caso)
+        resultados = []
+        puntajes = []
 
-        print(resultado)
+        for numero in range(1, repeticiones + 1):
+
+            print(f"\n--- Ejecución {numero} de {repeticiones} ---\n")
+
+            resultado = evaluar_trabajo(ruta_caso)
+            resultados.append(resultado)
+
+            coincidencia = re.search(
+                r"Puntaje total.*?(\d+)\s*/\s*100",
+                resultado,
+                re.IGNORECASE
+            )
+
+            if coincidencia:
+                puntaje = int(coincidencia.group(1))
+                puntajes.append(puntaje)
+                print(f"Puntaje obtenido: {puntaje}/100")
+            else:
+                print("No se pudo identificar el puntaje.")
+
+        if puntajes:
+            promedio = sum(puntajes) / len(puntajes)
+
+            print(f"\nPuntajes obtenidos: {puntajes}")
+            print(f"PROMEDIO: {promedio:.2f}/100")
+
+            archivo_salida = resultados_dir / f"{caso}.md"
+
+            with open(archivo_salida, "w", encoding="utf-8") as archivo:
+                archivo.write(f"# Calibración del caso {caso}\n\n")
+                archivo.write(f"Puntajes obtenidos: {puntajes}\n\n")
+                archivo.write(f"Promedio: {promedio:.2f}/100\n\n")
+
+                for numero, resultado in enumerate(resultados, start=1):
+                    archivo.write(
+                        f"\n\n# Ejecución {numero}\n\n{resultado}\n"
+                    )
+
+            print(f"\nResultado guardado en: {archivo_salida}")
