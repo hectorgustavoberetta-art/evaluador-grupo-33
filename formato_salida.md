@@ -10,6 +10,20 @@ El agente deberá presentar cada evaluación utilizando la siguiente estructura.
 - Puntaje total: XX/100
 - Nivel alcanzado: Excelente / Intermedio / Deficiente
 
+## Control de fraude
+
+- Estado: SIN INDICIOS DE FRAUDE / POSIBLE FRAUDE / FRAUDE DETECTADO
+- Evidencia detectada:
+- Justificación:
+
+Si el estado es FRAUDE DETECTADO:
+- Calificación final: 1
+- No continuar con la evaluación ordinaria por criterios.
+
+Si el estado es POSIBLE FRAUDE:
+- Mantener la alerta visible.
+- Continuar con la evaluación normal mediante la rúbrica.
+
 ## Evaluación por criterios
 
 Para cada criterio de la rúbrica indicar:
