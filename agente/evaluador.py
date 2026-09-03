@@ -98,7 +98,7 @@ TRABAJO A EVALUAR:
 
 if __name__ == "__main__":
 
-    trabajo_prueba = REPO_DIR / "casos" / "intermedio"
+    trabajo_prueba = REPO_DIR / "casos" / "deficiente"
 
     resultado = evaluar_trabajo(trabajo_prueba)
 
