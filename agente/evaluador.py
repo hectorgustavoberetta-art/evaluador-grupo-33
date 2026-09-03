@@ -111,7 +111,7 @@ if __name__ == "__main__":
         print(f"EVALUANDO CASO: {caso.upper()}")
         print(f"{'=' * 60}\n")
 
-        ruta_caso = REPO_DIR / "casos" / caso
+        ruta_caso = REPO_DIR / "casos" / caso / "trabajo.md"
 
         resultados = []
         puntajes = []
