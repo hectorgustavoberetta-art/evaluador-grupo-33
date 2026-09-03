@@ -23,7 +23,26 @@ def leer_archivo(ruta):
     with open(ruta, "r", encoding="utf-8") as archivo:
         return archivo.read()
 
+def leer_entrega(ruta):
+    ruta = Path(ruta)
 
+    if ruta.is_file():
+        return leer_archivo(ruta)
+
+    extensiones_validas = {".md", ".txt", ".py", ".json"}
+
+    partes = []
+
+    for archivo in sorted(ruta.rglob("*")):
+        if archivo.is_file() and archivo.suffix.lower() in extensiones_validas:
+            contenido = leer_archivo(archivo)
+
+            partes.append(
+                f"\n\n===== ARCHIVO: {archivo.relative_to(ruta)} =====\n\n"
+                f"{contenido}"
+            )
+
+    return "".join(partes)
 # ---------------------------------------------------------
 # CARGAR INSTRUCCIONES DEL AGENTE
 # ---------------------------------------------------------
@@ -39,7 +58,7 @@ formato_salida = leer_archivo(REPO_DIR / "formato_salida.md")
 
 def evaluar_trabajo(ruta_trabajo):
 
-    trabajo = leer_archivo(ruta_trabajo)
+    trabajo = leer_entrega(ruta_trabajo)
     fecha_evaluacion = datetime.now(ZoneInfo("America/Santiago")).strftime("%d/%m/%Y")
 
     instrucciones = f"""
@@ -79,7 +98,7 @@ TRABAJO A EVALUAR:
 
 if __name__ == "__main__":
 
-    trabajo_prueba = REPO_DIR / "casos" / "intermedio" / "trabajo.md"
+    trabajo_prueba = REPO_DIR / "casos" / "excelente"
 
     resultado = evaluar_trabajo(trabajo_prueba)
 
