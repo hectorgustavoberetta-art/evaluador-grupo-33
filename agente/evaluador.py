@@ -98,9 +98,16 @@ TRABAJO A EVALUAR:
 
 if __name__ == "__main__":
 
-    trabajo_prueba = REPO_DIR / "casos" / "deficiente"
+    casos = ["deficiente", "intermedio", "excelente"]
 
-    resultado = evaluar_trabajo(trabajo_prueba)
+    for caso in casos:
 
-    print("\n--- RESULTADO DE LA EVALUACIÓN ---\n")
-    print(resultado)
+        print(f"\n{'=' * 60}")
+        print(f"EVALUANDO CASO: {caso.upper()}")
+        print(f"{'=' * 60}\n")
+
+        ruta_caso = REPO_DIR / "casos" / caso
+
+        resultado = evaluar_trabajo(ruta_caso)
+
+        print(resultado)
