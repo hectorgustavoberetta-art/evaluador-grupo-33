@@ -63,9 +63,9 @@ Resultados obtenidos:
 
 | Caso | Ejecución 1 | Ejecución 2 | Ejecución 3 | Promedio |
 |---|---:|---:|---:|---:|
-| Deficiente | 32 | 28 | 30 | 30,00/100 |
-| Intermedio | 71 | 73 | 71 | 71,67/100 |
-| Excelente | 92 | 90 | 82 | 88,00/100 |
+| Deficiente | 43 | 42 | 41 | 42,00/100 |
+| Intermedio | 68 | 75 | 68 | 70,33/100 |
+| Excelente | 87 | 87 | 89 | 87,67/100 |
 
 Los resultados muestran una separación clara entre los tres casos de calibración. Las ejecuciones repetidas permiten además observar la variabilidad propia de la evaluación y analizar la consistencia del agente.
 

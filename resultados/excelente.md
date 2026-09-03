@@ -1,8 +1,8 @@
 # Calibración del caso excelente
 
-Puntajes obtenidos: [92, 90, 82]
+Puntajes obtenidos: [87, 87, 89]
 
-Promedio: 88.00/100
+Promedio: 87.67/100
 
 
 
@@ -13,8 +13,8 @@ Promedio: 88.00/100
 - Fecha de evaluación: 03/09/2026
 
 ## Resultado
-- Puntaje total: 92/100
-- Nivel alcanzado: Excelente
+- Puntaje total: 87/100
+- Nivel alcanzado: Intermedio
 
 ## Evaluación por criterios
 
@@ -22,64 +22,70 @@ Promedio: 88.00/100
 - Criterio: Cumplimiento de la consigna
 - Puntaje obtenido: 24/25
 - Puntaje máximo: 25
-- Evidencia encontrada: El trabajo desarrolla el objetivo, la arquitectura, la metodología de evaluación, el uso estricto de la rúbrica, la trazabilidad, la consistencia, la integración mediante API, la seguridad, la implementación, las pruebas, la reproducibilidad, las limitaciones y el formato de salida. También describe los componentes `system_prompt.md`, `rubrica.md`, `formato_salida.md` y `evaluador.py`.
-- Justificación: La presentación aborda de forma amplia y sistemática los requisitos esperables para el diseño de un agente evaluador. Además, incluye pruebas de calibración y resultados concretos. No se asigna el máximo porque en la entrega proporcionada no se encuentran los archivos de implementación y configuración mencionados, por lo que no es posible comprobar completamente todos los requisitos técnicos declarados.
+- Evidencia encontrada: El trabajo presenta el objetivo del agente, su arquitectura, metodología de evaluación, uso de la rúbrica, trazabilidad, consistencia, integración mediante API, seguridad de credenciales, implementación, calibración, reproducibilidad, limitaciones y formato de salida.
+- Justificación: La propuesta aborda de manera amplia los componentes necesarios para diseñar un agente evaluador objetivo, consistente y trazable. También contempla la ejecución mediante la API de OpenAI, la protección de credenciales y el uso de casos de calibración. No obstante, la entrega expone principalmente el diseño y describe archivos como `evaluador.py`, `requirements.txt`, `system_prompt.md`, `rubrica.md` y `formato_salida.md`, pero no incluye su contenido ni resultados concretos de ejecución. Esta omisión menor impide verificar el cumplimiento completo de la implementación declarada.
 
 ### Criterio 2
 - Criterio: Calidad y profundidad del contenido
-- Puntaje obtenido: 24/25
+- Puntaje obtenido: 22/25
 - Puntaje máximo: 25
-- Evidencia encontrada: El trabajo explica una metodología de ocho etapas, la relación «criterio → evidencia → justificación → puntaje», la necesidad de evaluar cada criterio de forma independiente, el manejo de credenciales mediante `OPENAI_API_KEY`, el consumo de tokens, la calibración con tres casos y las limitaciones propias de los modelos de lenguaje.
-- Justificación: El contenido es completo, pertinente y demuestra una comprensión sólida tanto de la evaluación académica como de la integración técnica con una API. La inclusión de seguridad, reproducibilidad, calibración y limitaciones aporta profundidad. Podría profundizarse aún más mediante detalles técnicos de configuración, tratamiento de errores, parámetros del modelo y mecanismos para medir la consistencia entre múltiples ejecuciones.
+- Evidencia encontrada: Se desarrollan conceptos relevantes como la evaluación independiente de criterios, la relación “criterio → evidencia → justificación → puntaje”, los factores que influyen en el consumo de tokens, la seguridad de la clave mediante `OPENAI_API_KEY`, la reproducibilidad y las limitaciones propias de los modelos de lenguaje.
+- Justificación: El contenido es pertinente, completo en sus dimensiones principales y demuestra una comprensión sólida del problema. Resulta especialmente valiosa la consideración de trazabilidad, calibración, seguridad y reproducibilidad. Sin embargo, algunos aspectos técnicos podrían profundizarse: configuración concreta de la Responses API, selección del modelo, parámetros utilizados, validación de archivos, tratamiento de errores, control de respuestas incompletas y criterios para medir la consistencia entre ejecuciones.
 
 ### Criterio 3
 - Criterio: Fundamentación y evidencia
-- Puntaje obtenido: 18/20
+- Puntaje obtenido: 15/20
 - Puntaje máximo: 20
-- Evidencia encontrada: Se informan resultados de una primera ronda de calibración —38/100 para el caso deficiente, 57/100 para el intermedio y 81/100 para la versión inicial del excelente— y se explicita que se mantuvo la misma rúbrica. También se presentan cinco criterios de aceptación y se indica el comando utilizado: `python agente/evaluador.py`.
-- Justificación: Las decisiones metodológicas están justificadas y se aportan resultados cuantitativos que respaldan preliminarmente el funcionamiento del agente. Sin embargo, no se incluyen las salidas completas de las evaluaciones, registros de ejecución, solicitudes y respuestas de la API, ni resultados de varias repeticiones. Por ello, parte de la evidencia técnica se encuentra declarada, pero no puede verificarse directamente con los archivos entregados.
+- Evidencia encontrada: El trabajo fundamenta decisiones como el uso exclusivo de una rúbrica, la separación de los componentes en archivos, el empleo de variables de entorno para proteger la clave, la utilización de tres casos de calibración y la necesidad de documentar dependencias para favorecer la reproducibilidad.
+- Justificación: Las decisiones metodológicas están explicadas y vinculadas con objetivos concretos como reducir la arbitrariedad, proteger credenciales y permitir la revisión de las evaluaciones. Sin embargo, no se aportan evidencias empíricas que permitan comprobar varias afirmaciones: no se presentan fragmentos del código, salidas generadas, resultados numéricos de los casos de calibración, registros de ejecución ni comparación entre múltiples evaluaciones. Por lo tanto, la fundamentación conceptual es adecuada, pero la evidencia de implementación y validación es limitada.
 
 ### Criterio 4
 - Criterio: Estructura, claridad y coherencia
 - Puntaje obtenido: 15/15
 - Puntaje máximo: 15
-- Evidencia encontrada: El documento está organizado en dieciséis secciones numeradas, utiliza títulos descriptivos, listas ordenadas, nombres de archivos en formato de código y una secuencia que avanza desde el objetivo y la arquitectura hasta la implementación, las pruebas, las limitaciones y la conclusión.
-- Justificación: La estructura es clara, ordenada y coherente. La información puede seguirse con facilidad y existe correspondencia entre el objetivo inicial, la metodología propuesta, las pruebas informadas y la conclusión. No se observan problemas relevantes de redacción u organización.
+- Evidencia encontrada: El trabajo está organizado en quince secciones numeradas, desde la introducción hasta la conclusión. Emplea listas para describir objetivos, componentes, etapas metodológicas, acciones de implementación y pasos de reproducción.
+- Justificación: La estructura es clara, ordenada y fácil de seguir. Existe coherencia entre el objetivo inicial, la arquitectura propuesta, la metodología, la implementación y la conclusión. El vocabulario es preciso y los conceptos centrales se mantienen consistentemente a lo largo del documento.
 
 ### Criterio 5
 - Criterio: Uso adecuado de herramientas, metodología y documentación
 - Puntaje obtenido: 11/15
 - Puntaje máximo: 15
-- Evidencia encontrada: Se documenta el uso de Python, el SDK oficial de OpenAI, la Responses API, Git, GitHub Codespaces, variables de entorno, `requirements.txt` y el comando de ejecución. También se describe una metodología de evaluación y calibración.
-- Justificación: El uso propuesto de herramientas y la metodología son adecuados, y la documentación conceptual permite comprender el flujo general. No obstante, la entrega disponible solamente contiene `README.md` y `trabajo.md`; no incluye `evaluador.py`, `requirements.txt`, los prompts mencionados, ejemplos completos de salida ni documentación técnica verificable. Esta ausencia impide reproducir efectivamente la implementación y comprobar el uso correcto de las herramientas.
+- Evidencia encontrada: Se describe el uso de Python, el SDK oficial de OpenAI, la Responses API, Git, GitHub Codespaces, variables de entorno, secretos del repositorio y un archivo `requirements.txt`. También se propone una metodología de ocho etapas y un procedimiento de reproducción mediante `python agente/evaluador.py`.
+- Justificación: Las herramientas y la metodología seleccionadas son adecuadas para el propósito del proyecto, y la documentación conceptual permite comprender el flujo general de funcionamiento. No obstante, no se incluyen los archivos técnicos mencionados, instrucciones de instalación detalladas, versiones de dependencias, manejo de excepciones, ejemplo de configuración ni evidencia de una ejecución exitosa. Tampoco se documentan resultados efectivos de calibración. En consecuencia, el uso descrito es apropiado, pero la documentación verificable de la implementación resulta incompleta.
 
 ## Fortalezas
-- Presenta una metodología explícita y alineada con la evaluación basada en rúbricas.
-- Establece una relación trazable entre criterio, evidencia, justificación y puntaje.
-- Separa claramente la rúbrica, las instrucciones, el formato de salida y el programa ejecutor.
-- Considera la seguridad de la credencial mediante `OPENAI_API_KEY`.
-- Incluye calibración con casos de diferente calidad y resultados cuantitativos.
-- Reconoce limitaciones del modelo y evita presentar la automatización como sustituto absoluto del juicio docente.
-- Mantiene una estructura clara, coherente y fácil de seguir.
+
+- Define con claridad el objetivo y las responsabilidades del agente evaluador.
+- Establece una relación explícita y trazable entre criterio, evidencia, justificación y puntaje.
+- Propone una arquitectura modular que separa instrucciones, rúbrica, formato de salida y código.
+- Considera adecuadamente la seguridad de la clave de API mediante variables de entorno.
+- Incluye aspectos relevantes de reproducibilidad, control de costos y consumo de tokens.
+- Reconoce las limitaciones de los modelos de lenguaje y preserva la intervención docente.
+- Presenta una organización clara, coherente y fácil de revisar.
 
 ## Aspectos a mejorar
-- Faltan los archivos técnicos mencionados en el documento, especialmente `evaluador.py` y `requirements.txt`.
-- Los resultados de calibración no están acompañados por las evaluaciones completas que permitan verificar sus puntajes y justificaciones.
-- No se documentan parámetros relevantes de la API, como modelo utilizado, configuración de generación o estrategia de control de variabilidad.
-- No se presentan pruebas de manejo de errores, por ejemplo ante archivos inexistentes, credenciales ausentes o respuestas inválidas.
-- La reproducibilidad está explicada conceptualmente, pero no puede comprobarse con los materiales suministrados.
+
+- Falta incorporar el contenido de los archivos técnicos mencionados, especialmente `evaluador.py` y `requirements.txt`.
+- No se presentan resultados concretos de los tres casos de calibración.
+- No hay evidencia de ejecuciones reales ni ejemplos de respuestas producidas por el agente.
+- La integración con la Responses API se describe de forma general, sin detallar parámetros, modelo utilizado o procesamiento de la respuesta.
+- No se documenta el manejo de errores, como archivos inexistentes, ausencia de la variable de entorno, fallas de red o respuestas inválidas.
+- No se define una métrica concreta para determinar si el agente mantiene consistencia entre distintas ejecuciones.
 
 ## Recomendaciones
-- Adjuntar `evaluador.py`, `requirements.txt`, `system_prompt.md`, `rubrica.md` y `formato_salida.md` junto con la entrega.
-- Incorporar las salidas completas de los tres casos de calibración, mostrando evidencia, justificación y puntaje por criterio.
-- Registrar el modelo y los parámetros utilizados en cada prueba para facilitar su reproducción.
-- Ejecutar cada caso varias veces y comparar los puntajes obtenidos para medir la consistencia del agente.
-- Agregar pruebas para credenciales ausentes, errores de lectura, límites de tokens y fallos de la API.
-- Incluir un archivo de resultados o registro de ejecución con fecha, configuración, entrada y salida de cada prueba.
-- Proporcionar instrucciones de instalación con versiones específicas de Python y de las dependencias.
+
+1. Adjuntar el código completo de `evaluador.py` y los restantes archivos que conforman la arquitectura.
+2. Incorporar un ejemplo reproducible de ejecución, incluyendo comando utilizado, entrada y salida obtenida.
+3. Presentar una tabla con los puntajes reales de los casos deficiente, intermedio y excelente, verificando el orden esperado.
+4. Ejecutar cada caso varias veces y comparar los puntajes para medir la variabilidad del agente.
+5. Documentar el modelo, los parámetros de generación y la forma de recuperar y validar la respuesta de la API.
+6. Incorporar manejo de excepciones y mensajes claros para errores de configuración, lectura de archivos y comunicación con la API.
+7. Especificar versiones de Python y dependencias en `requirements.txt`, junto con instrucciones completas de instalación.
+8. Añadir pruebas automatizadas que verifiquen el cálculo del total, los puntajes máximos y la presencia de todas las secciones obligatorias.
 
 ## Conclusión
-El trabajo presenta un diseño sólido, profundo y bien estructurado de un agente evaluador basado en rúbricas. Se destacan la trazabilidad, la calibración, la seguridad de credenciales y la consideración de las limitaciones del sistema. Alcanza un nivel excelente, aunque la ausencia de los archivos de implementación y de evidencias completas de ejecución limita la verificación técnica y la reproducibilidad efectiva de lo documentado.
+
+El trabajo presenta un diseño sólido, claro y metodológicamente pertinente para un agente evaluador académico. Se destacan la trazabilidad, la arquitectura modular, la seguridad de credenciales y la consideración de la reproducibilidad. Sin embargo, la ausencia de código, resultados de ejecución y datos efectivos de calibración limita la verificación de la implementación y de su consistencia real. Por ello, alcanza un nivel **Intermedio**, cercano al nivel superior, pero requiere mayor evidencia técnica y experimental.
 
 
 # Ejecución 2
@@ -89,74 +95,86 @@ El trabajo presenta un diseño sólido, profundo y bien estructurado de un agent
 - Fecha de evaluación: 03/09/2026
 
 ## Resultado
-- Puntaje total: 90/100
-- Nivel alcanzado: Excelente
+- Puntaje total: 87/100
+- Nivel alcanzado: Intermedio
 
 ## Evaluación por criterios
 
 ### Criterio 1
+
 - Criterio: Cumplimiento de la consigna
 - Puntaje obtenido: 23/25
 - Puntaje máximo: 25
-- Evidencia encontrada: El trabajo presenta el objetivo del agente, su arquitectura, la metodología de evaluación, el uso estricto de la rúbrica, la trazabilidad, la integración mediante API, la seguridad de credenciales, la implementación, las pruebas, la reproducibilidad, las limitaciones y el formato de salida. También describe tres casos de calibración y sus resultados.
-- Justificación: La entrega aborda de manera amplia y pertinente los componentes esperables de un agente evaluador. Explica el funcionamiento general y contempla evaluación por criterios, justificación de puntajes, consistencia y generación de devoluciones estructuradas. No se otorga el puntaje máximo porque entre los archivos presentados no se incluyen los componentes técnicos mencionados —como `evaluador.py`, `system_prompt.md`, `rubrica.md`, `formato_salida.md` y `requirements.txt`—, por lo que no puede comprobarse íntegramente el cumplimiento de la implementación descripta.
+- Evidencia encontrada: El trabajo desarrolla el objetivo, la arquitectura, la metodología de evaluación, el uso de la rúbrica, la trazabilidad, la consistencia, la integración mediante API, la seguridad de credenciales, las pruebas, la reproducibilidad, las limitaciones y el formato de salida. También identifica los archivos `system_prompt.md`, `rubrica.md`, `formato_salida.md` y `evaluador.py`.
+- Justificación: La propuesta aborda de manera amplia y pertinente el diseño de un agente evaluador. Incluye los principales componentes funcionales y técnicos esperables. No obstante, la entrega presenta principalmente una descripción del sistema: no incorpora el contenido efectivo de `evaluador.py`, los archivos mencionados ni resultados concretos de ejecución. Esta ausencia impide verificar el cumplimiento completo de la implementación descripta.
 
 ### Criterio 2
+
 - Criterio: Calidad y profundidad del contenido
 - Puntaje obtenido: 23/25
 - Puntaje máximo: 25
-- Evidencia encontrada: Las secciones 3 a 16 desarrollan la arquitectura, la metodología de ocho etapas, la relación «criterio → evidencia → justificación → puntaje», el uso de la Responses API, el manejo de `OPENAI_API_KEY`, el consumo de tokens, la calibración y las limitaciones de los modelos de lenguaje.
-- Justificación: El contenido es completo, pertinente y demuestra una comprensión sólida del problema. Se explican tanto los aspectos conceptuales de la evaluación como elementos técnicos, operativos y de seguridad. También se reconoce la variabilidad del modelo y la necesidad de supervisión docente. La profundidad podría mejorarse mediante detalles técnicos adicionales, como la configuración del modelo, parámetros de ejecución, tratamiento de errores y procedimiento exacto para seleccionar los trabajos.
+- Evidencia encontrada: Se explica una metodología de ocho etapas, la relación de trazabilidad “criterio → evidencia → justificación → puntaje”, la calibración mediante tres niveles de trabajos, el uso de la Responses API, la protección de `OPENAI_API_KEY`, el consumo de tokens, la reproducibilidad y las limitaciones propias de los modelos de lenguaje.
+- Justificación: El contenido es completo, pertinente y demuestra una comprensión sólida tanto del proceso de evaluación como de sus implicancias técnicas. Se destaca la consideración de consistencia, seguridad, costos, calibración y supervisión docente. La profundidad podría incrementarse mediante detalles técnicos sobre la construcción de la solicitud, parámetros del modelo, manejo de errores, validación de la salida y almacenamiento de resultados.
 
 ### Criterio 3
+
 - Criterio: Fundamentación y evidencia
-- Puntaje obtenido: 17/20
+- Puntaje obtenido: 15/20
 - Puntaje máximo: 20
-- Evidencia encontrada: Se informan resultados concretos de calibración —38/100 para el caso deficiente, 57/100 para el intermedio y 81/100 para la versión inicial del excelente— y se explicita que respetan el orden esperado. También se indica el comando utilizado, `python agente/evaluador.py`, y la verificación del uso de `OPENAI_API_KEY`.
-- Justificación: Las decisiones de diseño se fundamentan adecuadamente y el trabajo aporta resultados cuantitativos de pruebas. Además, define criterios de aceptación para la calibración. Sin embargo, la evidencia es principalmente declarativa: no se adjuntan salidas completas de las ejecuciones, registros, capturas, archivos de prueba ni comparaciones detalladas por criterio. Por eso, los resultados informados no pueden verificarse independientemente con los archivos entregados.
+- Evidencia encontrada: El trabajo fundamenta decisiones como el uso de una rúbrica explícita para reducir la arbitrariedad, la inclusión de evidencia para asegurar trazabilidad, la utilización de variables de entorno para evitar la exposición de credenciales y los casos de calibración para comprobar la discriminación entre niveles.
+- Justificación: Existe una fundamentación adecuada y coherente de las decisiones de diseño. Sin embargo, gran parte de la evidencia es declarativa: se afirma que el programa lee archivos, utiliza la API, protege la clave y ejecuta casos de calibración, pero no se presentan fragmentos de código, registros de ejecución, salidas obtenidas, puntajes de los casos ni comparaciones que demuestren esas afirmaciones. Por ello, la fundamentación no alcanza el nivel máximo de evidencia verificable.
 
 ### Criterio 4
+
 - Criterio: Estructura, claridad y coherencia
 - Puntaje obtenido: 15/15
 - Puntaje máximo: 15
-- Evidencia encontrada: El documento está organizado en dieciséis secciones numeradas, con títulos descriptivos, listas ordenadas, enumeraciones de procesos y una progresión lógica desde la introducción hasta las pruebas y la conclusión.
-- Justificación: La estructura es clara, ordenada y fácil de seguir. Existe coherencia entre el objetivo, la arquitectura, la metodología, la implementación y la calibración. La terminología se utiliza de forma consistente y las listas facilitan la comprensión de los procedimientos. No se observan problemas relevantes de organización o claridad.
+- Evidencia encontrada: El documento está organizado en quince secciones numeradas, con títulos descriptivos, enumeraciones de pasos, listas de componentes y una conclusión consistente con los objetivos iniciales.
+- Justificación: La estructura es clara, ordenada y fácil de seguir. Existe una progresión coherente desde el propósito general hasta la arquitectura, implementación, pruebas, reproducibilidad y limitaciones. La terminología se utiliza de manera consistente y no se observan contradicciones relevantes.
 
 ### Criterio 5
+
 - Criterio: Uso adecuado de herramientas, metodología y documentación
-- Puntaje obtenido: 12/15
+- Puntaje obtenido: 11/15
 - Puntaje máximo: 15
-- Evidencia encontrada: Se describe el uso de Python, el SDK oficial de OpenAI, la Responses API, Git, GitHub Codespaces, variables de entorno y archivos separados para instrucciones, rúbrica y formato. También se proporciona una secuencia de reproducción y el comando de ejecución.
-- Justificación: La metodología propuesta es adecuada y la documentación explica las herramientas, la organización del proyecto, la seguridad de la credencial y los pasos generales de ejecución. No obstante, el uso efectivo de dichas herramientas no puede comprobarse completamente porque no se entregaron el código fuente, el archivo de dependencias ni los demás archivos técnicos mencionados. La documentación tampoco incluye versiones, instrucciones exactas de instalación ni mecanismos de manejo de errores.
+- Evidencia encontrada: Se documentan el uso de Python, el SDK oficial de OpenAI, la Responses API, Git, GitHub Codespaces, secretos del repositorio, la variable `OPENAI_API_KEY`, `requirements.txt` y el comando `python agente/evaluador.py`. También se describe una metodología de evaluación y calibración.
+- Justificación: Las herramientas y la metodología propuestas son adecuadas para el objetivo y se incluyen instrucciones generales de reproducción. No obstante, la documentación es incompleta para comprobar el funcionamiento real: no se presenta el código fuente, el contenido de `requirements.txt`, la estructura completa del repositorio, las versiones de dependencias, el tratamiento de excepciones ni evidencias de las pruebas ejecutadas. En consecuencia, el uso técnico resulta correctamente planteado, pero no completamente demostrado.
 
 ## Fortalezas
-- Presenta una metodología de evaluación explícita, ordenada y orientada a reducir la arbitrariedad.
-- Establece claramente la relación entre criterio, evidencia, justificación y puntaje.
-- Contempla consistencia, trazabilidad, reproducibilidad y revisión humana.
-- Describe medidas adecuadas para proteger la clave de la API.
-- Incluye resultados cuantitativos y criterios de aceptación para la calibración.
-- Reconoce limitaciones reales del uso de modelos de lenguaje.
-- Mantiene una estructura clara y coherente en todo el documento.
+
+- Presenta una metodología de evaluación explícita y ordenada.
+- Define claramente la relación entre criterio, evidencia, justificación y puntaje.
+- Considera la consistencia entre distintas evaluaciones y propone casos de calibración.
+- Incluye medidas adecuadas para proteger la clave de la API.
+- Contempla el consumo de tokens y la necesidad de evitar redundancias.
+- Incorpora instrucciones básicas de reproducibilidad.
+- Reconoce de forma pertinente las limitaciones de los modelos de lenguaje y la importancia de la supervisión docente.
+- Mantiene una estructura clara y una redacción coherente.
 
 ## Aspectos a mejorar
-- Faltan los archivos técnicos necesarios para verificar la implementación descripta.
-- Los resultados de calibración no están acompañados por las salidas completas de cada evaluación.
-- No se especifican el modelo utilizado, sus parámetros ni las versiones de las dependencias.
-- No se documenta el manejo de errores de API, archivos inexistentes, credenciales faltantes o respuestas incompletas.
-- La reproducibilidad se describe conceptualmente, pero no puede comprobarse solo con los archivos entregados.
-- No se presenta un análisis detallado de las diferencias de puntaje por criterio entre los tres casos.
+
+- Falta incluir el código de `evaluador.py` o fragmentos suficientes para comprobar la implementación.
+- No se presentan resultados reales de los tres casos de calibración.
+- No se demuestra empíricamente que se cumpla la relación “Deficiente < Intermedio < Excelente”.
+- No se documentan el modelo utilizado, sus parámetros de configuración ni las versiones de las dependencias.
+- Falta explicar el manejo de errores de API, archivos inexistentes, credenciales ausentes y respuestas con formato incorrecto.
+- No se especifica cómo se valida automáticamente que los puntajes no superen los máximos y que la suma total sea correcta.
+- Las afirmaciones técnicas se apoyan principalmente en descripciones, sin registros, capturas, pruebas o salidas verificables.
 
 ## Recomendaciones
-1. Adjuntar `evaluador.py`, `system_prompt.md`, `rubrica.md`, `formato_salida.md` y `requirements.txt`.
-2. Incorporar las salidas completas de las pruebas de calibración, organizadas por caso y por criterio.
-3. Registrar el modelo, los parámetros de generación, la versión del SDK y la fecha de cada ejecución.
-4. Agregar instrucciones exactas de instalación y un ejemplo completo de ejecución desde un entorno limpio.
-5. Documentar el tratamiento de errores, incluyendo ausencia de credenciales, límites de la API y archivos inválidos.
-6. Comparar los tres casos mediante una tabla con los puntajes obtenidos en cada criterio y la evidencia que explica las diferencias.
-7. Incorporar pruebas automatizadas que validen el formato de salida, los puntajes máximos y la suma del resultado total.
+
+1. Incorporar el código completo de `evaluador.py` o anexarlo mediante un enlace verificable al repositorio.
+2. Presentar una tabla con los puntajes obtenidos por cada caso de calibración, desglosados por criterio.
+3. Incluir ejemplos reales de entrada y salida que permitan verificar el respeto por el formato obligatorio.
+4. Documentar el modelo, los parámetros de generación, las versiones de Python y del SDK, y el contenido de `requirements.txt`.
+5. Agregar validaciones programáticas para controlar puntajes máximos, suma total, nivel alcanzado y presencia de todas las secciones requeridas.
+6. Implementar y documentar el manejo de excepciones, límites de uso, reintentos y respuestas incompletas de la API.
+7. Registrar métricas de las pruebas, como consistencia de puntajes, cumplimiento del formato y consumo de tokens.
+8. Explicar con precisión cómo se determina e incorpora la zona horaria utilizada para la fecha de evaluación.
 
 ## Conclusión
-El trabajo presenta un diseño sólido, claro y bien fundamentado de un agente evaluador. Se destacan la metodología estructurada, la trazabilidad, la calibración y la consideración de seguridad y reproducibilidad. Alcanza un nivel excelente, aunque la ausencia de los archivos de implementación y de evidencias completas de ejecución impide verificar plenamente varios de los resultados técnicos declarados.
+
+El trabajo presenta un diseño sólido, claro y bien organizado de un agente evaluador, con especial atención a la trazabilidad, consistencia, seguridad y reproducibilidad. Demuestra una comprensión amplia del problema y propone herramientas apropiadas. Sin embargo, la falta de código, resultados de calibración y evidencias de ejecución impide verificar completamente la implementación y limita la fundamentación técnica. Por estas razones, alcanza un nivel **Intermedio** con 87/100 puntos.
 
 
 # Ejecución 3
@@ -166,79 +184,71 @@ El trabajo presenta un diseño sólido, claro y bien fundamentado de un agente e
 - Fecha de evaluación: 03/09/2026
 
 ## Resultado
-- Puntaje total: 82/100
+- Puntaje total: 89/100
 - Nivel alcanzado: Intermedio
 
 ## Evaluación por criterios
 
 ### Criterio 1
-
 - Criterio: Cumplimiento de la consigna
-- Puntaje obtenido: 20/25
+- Puntaje obtenido: 24
 - Puntaje máximo: 25
-- Evidencia encontrada: El trabajo presenta el objetivo, la arquitectura, la metodología de evaluación, el uso de la rúbrica, la trazabilidad, la integración mediante API, la seguridad de credenciales, las pruebas, la reproducibilidad, las limitaciones y el formato de salida. También identifica los componentes `system_prompt.md`, `rubrica.md`, `formato_salida.md`, `evaluador.py` y `requirements.txt`.
-- Justificación: La documentación cubre ampliamente el diseño del agente y los requisitos que el propio trabajo identifica. Sin embargo, entre los archivos presentados no se incluyen el código de `evaluador.py`, el archivo de dependencias ni los demás componentes técnicos mencionados. Por lo tanto, la implementación y el cumplimiento integral de los requisitos técnicos no pueden verificarse directamente. Esto constituye una omisión relevante, aunque el desarrollo documental cumple con la mayor parte de lo esperado.
+- Evidencia encontrada: El trabajo desarrolla el objetivo, la arquitectura, la metodología de evaluación, el uso de la rúbrica, la trazabilidad, la consistencia, la integración mediante API, la seguridad de credenciales, las pruebas, la reproducibilidad, las limitaciones y el formato de salida.
+- Justificación: La propuesta aborda de manera amplia y coherente el diseño de un agente evaluador. También contempla los requisitos centrales de objetividad, consistencia y trazabilidad. No se otorga el puntaje máximo porque la entrega describe la implementación, pero no incluye los archivos o artefactos mencionados —como `evaluador.py`, `requirements.txt` y los casos de calibración— que permitirían comprobar completamente su cumplimiento.
 
 ### Criterio 2
-
 - Criterio: Calidad y profundidad del contenido
-- Puntaje obtenido: 23/25
+- Puntaje obtenido: 23
 - Puntaje máximo: 25
-- Evidencia encontrada: El trabajo desarrolla una arquitectura de cuatro componentes, una metodología de ocho etapas, mecanismos de trazabilidad, criterios de consistencia, integración con la Responses API, manejo de `OPENAI_API_KEY`, control del consumo de tokens, calibración con tres casos, reproducibilidad y limitaciones del uso de modelos de lenguaje.
-- Justificación: El contenido es pertinente, amplio y demuestra una comprensión sólida del problema. Se consideran tanto aspectos metodológicos como técnicos y operativos. La inclusión de limitaciones y criterios de aceptación de la calibración aporta profundidad. No alcanza el puntaje máximo porque algunos componentes se explican de manera conceptual y no se profundiza en detalles técnicos como manejo de errores, configuración del modelo, validación automática de la salida o parámetros de ejecución.
+- Evidencia encontrada: Se explican los cuatro componentes de la arquitectura, una metodología de ocho etapas, la relación «criterio → evidencia → justificación → puntaje», el uso de tres casos de calibración, la seguridad mediante `OPENAI_API_KEY`, el consumo de tokens y las limitaciones de los modelos de lenguaje.
+- Justificación: El contenido es pertinente, completo y demuestra una comprensión sólida del problema. Se destacan la consideración de la reproducibilidad y el reconocimiento de que el agente no debe sustituir el juicio docente en situaciones ambiguas. Sin embargo, algunos componentes técnicos podrían desarrollarse con mayor profundidad, especialmente la construcción de la solicitud a la API, el tratamiento de errores, la configuración del modelo y los mecanismos para medir la consistencia.
 
 ### Criterio 3
-
 - Criterio: Fundamentación y evidencia
-- Puntaje obtenido: 15/20
+- Puntaje obtenido: 16
 - Puntaje máximo: 20
-- Evidencia encontrada: Se informan resultados numéricos de calibración —38/100 para el caso deficiente, 57/100 para el intermedio y 81/100 para la versión inicial del caso excelente— y se explica que respetan la relación esperada. También se indica el comando de ejecución, los archivos cargados y la utilización de la variable de entorno `OPENAI_API_KEY`.
-- Justificación: Las decisiones de diseño están justificadas y se aportan resultados concretos como evidencia preliminar. No obstante, no se incluyen las salidas completas de las evaluaciones, registros de ejecución, capturas, archivos de prueba ni resultados por criterio que permitan verificar de forma independiente los puntajes informados. La fundamentación es adecuada, pero la evidencia técnica presentada resulta incompleta.
+- Evidencia encontrada: El trabajo fundamenta sus decisiones mediante explicaciones sobre el uso exclusivo de la rúbrica, la separación de criterios, la necesidad de localizar evidencia, la calibración con tres niveles y el resguardo de la clave mediante una variable de entorno.
+- Justificación: Existe una fundamentación conceptual adecuada y las decisiones de diseño se relacionan con los objetivos de objetividad, trazabilidad y reproducibilidad. No obstante, varias afirmaciones sobre la implementación y las pruebas no están acompañadas por evidencia verificable, como fragmentos de código, resultados de ejecución, puntajes obtenidos en los casos de calibración, registros de pruebas o ejemplos completos de salida.
 
 ### Criterio 4
-
 - Criterio: Estructura, claridad y coherencia
-- Puntaje obtenido: 15/15
+- Puntaje obtenido: 15
 - Puntaje máximo: 15
-- Evidencia encontrada: El documento está organizado en dieciséis secciones numeradas, utiliza títulos descriptivos, listas, secuencias de pasos y relaciones explícitas como “criterio → evidencia → justificación → puntaje”. La conclusión recupera de manera coherente los objetivos y componentes desarrollados.
-- Justificación: La estructura es clara, ordenada y fácil de seguir. Existe una progresión coherente desde el objetivo y la arquitectura hasta la implementación, las pruebas, las limitaciones y la conclusión. La redacción permite comprender el funcionamiento propuesto sin dificultades significativas.
+- Evidencia encontrada: El documento está organizado en quince secciones numeradas, utiliza listas para describir objetivos, etapas, componentes y procedimientos, y mantiene una progresión lógica desde la introducción hasta la conclusión.
+- Justificación: La estructura es clara, ordenada y fácil de seguir. Los conceptos se presentan de manera coherente y la terminología se mantiene estable a lo largo del trabajo. La conclusión recupera adecuadamente los elementos desarrollados.
 
 ### Criterio 5
-
 - Criterio: Uso adecuado de herramientas, metodología y documentación
-- Puntaje obtenido: 9/15
+- Puntaje obtenido: 11
 - Puntaje máximo: 15
-- Evidencia encontrada: Se documentan el uso de Python, el SDK oficial de OpenAI, la Responses API, Git, GitHub Codespaces, variables de entorno, archivos separados para instrucciones y rúbrica, y el comando `python agente/evaluador.py`. También se describe una metodología de evaluación y calibración.
-- Justificación: La metodología está bien definida y las herramientas seleccionadas son pertinentes. Sin embargo, su utilización efectiva no puede comprobarse porque no se adjuntan `evaluador.py`, `requirements.txt`, los prompts, los casos de calibración completos ni evidencia reproducible de las ejecuciones. La documentación describe cómo debería funcionar el sistema, pero no proporciona todos los artefactos necesarios para revisar o reproducir técnicamente la implementación.
+- Evidencia encontrada: Se documenta el uso de Python, el SDK oficial de OpenAI, la Responses API, Git, GitHub Codespaces, variables de entorno y `requirements.txt`. También se detallan el procedimiento de evaluación, los pasos de ejecución y una estrategia de calibración.
+- Justificación: Las herramientas y la metodología seleccionadas son apropiadas y están explicadas de manera suficiente a nivel de diseño. Sin embargo, no se incluyen el código fuente, las dependencias concretas, la estructura real del repositorio, instrucciones técnicas detalladas, manejo de excepciones ni resultados de las pruebas. Por ello, el uso efectivo de las herramientas y la reproducibilidad no pueden verificarse completamente.
 
 ## Fortalezas
-
-- Presenta una metodología de evaluación explícita, secuencial y alineada con el uso de una rúbrica.
-- Establece una relación clara entre criterio, evidencia, justificación y puntaje.
-- Considera la consistencia entre evaluaciones y propone casos de calibración con distintos niveles de desempeño.
-- Incluye medidas adecuadas para proteger la clave de API mediante `OPENAI_API_KEY`.
-- Reconoce las limitaciones y la variabilidad propias de los modelos de lenguaje.
-- Posee una organización documental clara y una redacción coherente.
-- Informa resultados cuantitativos preliminares de las pruebas realizadas.
+- Presenta una arquitectura modular con responsabilidades claramente diferenciadas.
+- Define un procedimiento sistemático para relacionar criterios, evidencia, justificación y puntaje.
+- Considera la consistencia mediante casos de calibración con diferentes niveles de calidad.
+- Incluye medidas adecuadas para proteger la clave de la API.
+- Contempla reproducibilidad, consumo de tokens y documentación de dependencias.
+- Reconoce las limitaciones de los modelos de lenguaje y preserva la intervención docente.
+- Mantiene una redacción clara y una estructura coherente.
 
 ## Aspectos a mejorar
-
-- Faltan los artefactos técnicos mencionados en el documento, especialmente `evaluador.py`, `requirements.txt`, `system_prompt.md`, `rubrica.md` y `formato_salida.md`.
-- Los resultados de calibración se presentan de forma resumida, sin las devoluciones completas ni el desglose de puntajes por criterio.
-- No se documentan el modelo utilizado, sus parámetros, el manejo de errores de la API ni la validación del formato de respuesta.
-- La reproducibilidad se afirma, pero no puede comprobarse únicamente con los archivos entregados.
-- No se aportan pruebas automatizadas o mecanismos objetivos para detectar incumplimientos del formato de salida.
+- Falta evidencia directa de la implementación técnica descrita.
+- No se presentan los resultados concretos de los tres casos de calibración.
+- No se documentan parámetros relevantes de la API, como modelo utilizado, configuración o tratamiento de errores.
+- La reproducibilidad se explica, pero no puede verificarse sin el código, las dependencias y la estructura del repositorio.
+- No se definen métricas o tolerancias para determinar cuándo las evaluaciones son suficientemente consistentes.
+- No se incluye un ejemplo completo de entrada y salida que demuestre la trazabilidad en funcionamiento.
 
 ## Recomendaciones
-
-1. Adjuntar el código completo de `evaluador.py` y todos los archivos requeridos para la ejecución.
-2. Incluir `requirements.txt` con versiones específicas de las dependencias.
-3. Incorporar las salidas completas de los tres casos de calibración, con puntajes y justificaciones por criterio.
-4. Registrar el modelo, los parámetros de generación y la fecha o versión de cada ejecución.
-5. Añadir manejo de errores para credenciales ausentes, archivos inexistentes, fallas de conexión y respuestas inválidas de la API.
-6. Implementar una validación automática que compruebe la presencia de todas las secciones obligatorias y los límites de puntaje.
-7. Incorporar instrucciones de instalación y ejecución verificables desde un entorno limpio.
+- Incorporar el contenido de `evaluador.py` o anexar un enlace verificable al repositorio.
+- Incluir `requirements.txt` con versiones específicas de las dependencias.
+- Presentar una tabla con los puntajes obtenidos por los casos deficiente, intermedio y excelente, incluyendo varias ejecuciones si se busca analizar variabilidad.
+- Agregar un ejemplo completo que muestre el trabajo ingresado, la evidencia detectada, la justificación y el puntaje resultante.
+- Documentar el modelo y los parámetros empleados, así como el manejo de errores de autenticación, archivos faltantes, límites de tasa y respuestas incompletas.
+- Definir criterios cuantitativos de calibración, por ejemplo, rangos esperados y variación máxima aceptable entre ejecuciones.
+- Incorporar instrucciones técnicas completas para instalar, configurar y ejecutar el proyecto desde un entorno limpio.
 
 ## Conclusión
-
-El trabajo presenta un diseño sólido, bien estructurado y metodológicamente consistente para un agente evaluador. Su principal limitación es la falta de los componentes técnicos y de las evidencias completas necesarias para verificar la implementación, las pruebas y la reproducibilidad declaradas. Por ello, alcanza un nivel **Intermedio**, con un desarrollo conceptual destacado pero con documentación técnica comprobable aún incompleta.
+El trabajo presenta un diseño sólido, claro y ampliamente desarrollado de un agente evaluador basado en rúbricas. Sus principales fortalezas son la trazabilidad, la metodología estructurada, la seguridad de credenciales y la consideración de la reproducibilidad. No alcanza el nivel excelente porque varias afirmaciones técnicas y de calibración se presentan de forma descriptiva, sin código, resultados de pruebas u otros artefactos que permitan verificarlas.
