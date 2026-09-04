@@ -1,16 +1,18 @@
-# Caso excelente
+# Documentación del trabajo
 
-Este caso representa un trabajo que cumple de manera excelente con los criterios establecidos en la rúbrica.
+Este repositorio contiene la documentación y los archivos correspondientes al trabajo presentado.
 
-## Características
+## Contenido
 
-- Cumple completamente con la consigna.
-- Presenta una estructura clara y ordenada.
-- Fundamenta adecuadamente sus decisiones.
-- Utiliza correctamente las herramientas solicitadas.
-- Presenta evidencias suficientes y verificables.
-- La documentación permite comprender y reproducir el trabajo.
+- Desarrollo completo de la propuesta.
+- Descripción de la estructura y funcionamiento.
+- Fundamentación de las decisiones adoptadas.
+- Herramientas utilizadas durante el desarrollo.
+- Evidencias necesarias para comprender el trabajo.
+- Información suficiente para revisar y reproducir la propuesta.
 
-## Resultado esperado
+## Organización
 
-El agente evaluador debería asignar a este trabajo una calificación alta, justificando la evaluación de acuerdo con los criterios definidos en la rúbrica.
+El desarrollo principal se encuentra en `trabajo.md`.
+
+Este archivo complementa la entrega y describe de manera general la organización del repositorio.
