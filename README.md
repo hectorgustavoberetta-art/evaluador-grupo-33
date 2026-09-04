@@ -29,17 +29,44 @@ El sistema lee los archivos de una entrega, analiza las evidencias disponibles, 
 
 ## Funcionamiento del agente
 
-El agente utiliza la API de OpenAI para analizar las entregas.
+El agente utiliza la API de OpenAI para analizar las entregas y dispone de dos modos de funcionamiento: calibración y evaluación de trabajos reales.
 
-El proceso de evaluación es el siguiente:
+### Modo calibración
 
-1. Lee los archivos que componen la entrega.
-2. Carga el system prompt del agente.
-3. Carga la rúbrica de evaluación.
-4. Aplica cada criterio de la rúbrica al trabajo presentado.
-5. Identifica evidencias que fundamentan cada puntaje.
-6. Genera una evaluación estructurada según el formato de salida definido.
-7. Realiza ejecuciones repetidas sobre los casos de calibración para analizar la consistencia de los resultados.
+Permite comprobar la consistencia del agente utilizando los tres casos preparados específicamente para este propósito: deficiente, intermedio y excelente.
+
+En este modo, el agente:
+
+1. Lee únicamente el archivo `trabajo.md` de cada caso de calibración.
+2. Carga el system prompt, la rúbrica y el formato de salida.
+3. Evalúa cada caso aplicando los mismos criterios.
+4. Realiza tres ejecuciones independientes por caso.
+5. Registra los puntajes obtenidos y calcula el promedio.
+6. Guarda los resultados en la carpeta `resultados/`.
+
+Para ejecutar la calibración:
+
+`python agente/evaluador.py --modo calibracion`
+
+### Modo evaluación
+
+Permite evaluar uno o varios trabajos reales utilizando el mismo agente y la misma rúbrica.
+
+Los trabajos que se desean evaluar deben colocarse dentro de la carpeta `trabajos_a_evaluar/`. Cada archivo o carpeta ubicado allí es tratado como una entrega independiente.
+
+En este modo, el agente:
+
+1. Detecta automáticamente los trabajos disponibles.
+2. Lee los archivos que componen cada entrega.
+3. Carga el system prompt, la rúbrica y el formato de salida.
+4. Realiza el control de fraude antes de aplicar la evaluación ordinaria.
+5. Aplica los criterios de la rúbrica y fundamenta cada puntaje con evidencia.
+6. Genera una evaluación estructurada para cada trabajo.
+7. Guarda cada resultado por separado en la carpeta `evaluaciones/`.
+
+Para ejecutar la evaluación de trabajos reales:
+
+`python agente/evaluador.py --modo evaluacion`
 
 
 ## API y seguridad
