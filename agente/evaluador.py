@@ -162,7 +162,7 @@ if __name__ == "__main__":
         print(f"EVALUANDO CASO: {caso.upper()}")
         print(f"{'=' * 60}\n")
 
-        ruta_caso = REPO_DIR / "casos" / caso / "trabajo.md"
+        ruta_caso = REPO_DIR / "casos" / caso
 
         resultados = []
         puntajes = []
@@ -175,7 +175,7 @@ if __name__ == "__main__":
             resultados.append(resultado)
 
             coincidencia = re.search(
-                r"Puntaje total.*?(\d+)\s*/\s*100",
+                r"(?:NOTA FINAL|Puntaje total).*?(\d+)\s*/\s*100",
                 resultado,
                 re.IGNORECASE
             )
