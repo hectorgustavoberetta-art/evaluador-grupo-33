@@ -20,8 +20,9 @@ El sistema lee los archivos de una entrega, analiza las evidencias disponibles, 
 ## Estructura del repositorio
 
 - `agente/`: contiene el código del evaluador y su system prompt.
-- `casos/`: contiene los tres casos utilizados para calibración (deficiente, intermedio y excelente) y los casos específicos para probar el control de fraude (fraude y posible fraude).
+- `casos/`: contiene los tres casos requeridos por la consigna (`excelente`, `flojo` y `tramposo`) y casos adicionales utilizados durante la calibración y las pruebas (`deficiente`, `intermedio`, `fraude` y `posible_fraude`).
 - `resultados/`: contiene los resultados obtenidos en las ejecuciones de calibración.
+- `calibracion.md`: documenta los resultados de calibración, el criterio humano, los desacuerdos detectados, los ajustes realizados y las conclusiones del proceso.
 - `rubrica.md`: contiene la rúbrica ejecutable utilizada por el agente.
 - `formato_salida.md`: define la estructura de la devolución.
 - `requirements.txt`: contiene las dependencias necesarias para ejecutar el proyecto.
