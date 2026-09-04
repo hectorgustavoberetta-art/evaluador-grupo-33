@@ -36,3 +36,11 @@ El resultado podría ser, por ejemplo:
 ## Conclusión
 
 La inteligencia artificial puede ayudar a los profesores porque permite corregir trabajos más rápidamente.
+
+## Costos
+
+El uso de inteligencia artificial puede generar costos asociados al consumo de tokens. Se intentará utilizar un modelo que no resulte demasiado costoso.
+
+## Riesgos y supervisión
+
+El sistema puede cometer errores, por lo que sería conveniente que una persona revise algunos resultados antes de utilizarlos.
