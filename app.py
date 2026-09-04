@@ -160,11 +160,11 @@ if boton_evaluar:
             resultado = evaluar_trabajo(ruta_temporal)
 
         st.success(f"Evaluación completada: {archivo.name}")
-        st.markdown(resultado)
+        st.markdown(resultado["texto"])
 
         st.download_button(
             label=f"Descargar evaluación de {archivo.name}",
-            data=resultado,
+            data=resultado["texto"],
             file_name=f"{archivo.name}_evaluacion.md",
             mime="text/markdown",
             key=f"descarga_{archivo.name}"

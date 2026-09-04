@@ -56,6 +56,7 @@ def leer_entrega(ruta):
 system_prompt = leer_archivo(BASE_DIR / "system_prompt.md")
 rubrica = leer_archivo(REPO_DIR / "rubrica.md")
 formato_salida = leer_archivo(REPO_DIR / "formato_salida.md")
+user_prompt = leer_archivo(REPO_DIR / "prompts" / "user_prompt.md")
 
 
 # ---------------------------------------------------------
@@ -78,6 +79,8 @@ FORMATO DE SALIDA:
 """
 
     entrada = f"""
+{user_prompt}
+
 Evaluá el siguiente trabajo aplicando estrictamente
 la rúbrica y el formato de salida indicados.
 
@@ -95,7 +98,13 @@ TRABAJO A EVALUAR:
         input=entrada
     )
 
-    return respuesta.output_text
+    return {
+        "texto": respuesta.output_text,
+        "modelo": respuesta.model,
+        "input_tokens": respuesta.usage.input_tokens,
+        "output_tokens": respuesta.usage.output_tokens,
+        "total_tokens": respuesta.usage.total_tokens,
+    }
 
 
 # ---------------------------------------------------------
@@ -144,7 +153,7 @@ if __name__ == "__main__":
             archivo_salida = evaluaciones_dir / nombre_salida
 
             with open(archivo_salida, "w", encoding="utf-8") as archivo:
-                archivo.write(resultado)
+                archivo.write(resultado["texto"])
 
             print(f"Resultado guardado en: {archivo_salida}")
 
@@ -173,10 +182,11 @@ if __name__ == "__main__":
 
             resultado = evaluar_trabajo(ruta_caso)
             resultados.append(resultado)
+            texto_resultado = resultado["texto"]
 
             coincidencia = re.search(
                 r"(?:NOTA FINAL|Puntaje total).*?(\d+)\s*/\s*100",
-                resultado,
+                texto_resultado,
                 re.IGNORECASE
             )
 
@@ -202,7 +212,12 @@ if __name__ == "__main__":
 
                 for numero, resultado in enumerate(resultados, start=1):
                     archivo.write(
-                        f"\n\n# Ejecución {numero}\n\n{resultado}\n"
+                        f"\n\n# Ejecución {numero}\n\n"
+                        f"Modelo: {resultado['modelo']}\n"
+                        f"Tokens de entrada: {resultado['input_tokens']}\n"
+                        f"Tokens de salida: {resultado['output_tokens']}\n"
+                        f"Tokens totales: {resultado['total_tokens']}\n\n"
+                        f"{resultado['texto']}\n"
                     )
 
             print(f"\nResultado guardado en: {archivo_salida}")
