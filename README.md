@@ -20,7 +20,7 @@ El sistema lee los archivos de una entrega, analiza las evidencias disponibles, 
 ## Estructura del repositorio
 
 - `agente/`: contiene el código del evaluador y su system prompt.
-- `casos/`: contiene los tres casos utilizados para calibración: deficiente, intermedio y excelente.
+- `casos/`: contiene los tres casos utilizados para calibración (deficiente, intermedio y excelente) y los casos específicos para probar el control de fraude (fraude y posible fraude).
 - `resultados/`: contiene los resultados obtenidos en las ejecuciones de calibración.
 - `rubrica.md`: contiene la rúbrica ejecutable utilizada por el agente.
 - `formato_salida.md`: define la estructura de la devolución.
@@ -110,7 +110,7 @@ pip install -r requirements.txt
 Configurar la variable de entorno `OPENAI_API_KEY` y ejecutar:
 
 ```bash
-python agente/evaluador.py
+python agente/evaluador.py --modo calibracion
 ```
 
 El agente evaluará los tres casos de calibración en tres ejecuciones independientes y guardará los resultados en la carpeta `resultados/`.
