@@ -1,5 +1,6 @@
 import os
 import re
+import argparse
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -98,6 +99,52 @@ TRABAJO A EVALUAR:
 # ---------------------------------------------------------
 
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(
+        description="Agente evaluador de trabajos académicos"
+    )
+
+    parser.add_argument(
+        "--modo",
+        choices=["calibracion", "evaluacion"],
+        default="calibracion",
+        help="Selecciona calibracion o evaluacion de trabajos reales"
+    )
+
+    args = parser.parse_args()
+
+    print(f"Modo seleccionado: {args.modo}")
+
+    if args.modo == "evaluacion":
+        print("Modo de evaluación de trabajos reales activado.")
+
+        trabajos_dir = REPO_DIR / "trabajos_a_evaluar"
+
+        trabajos = [
+            elemento
+            for elemento in sorted(trabajos_dir.iterdir())
+            if elemento.name != ".gitkeep"
+        ]
+
+        print(f"Trabajos encontrados: {len(trabajos)}")
+
+        evaluaciones_dir = REPO_DIR / "evaluaciones"
+        evaluaciones_dir.mkdir(exist_ok=True)
+
+        for trabajo in trabajos:
+            print(f"\nEvaluando: {trabajo.name}")
+
+            resultado = evaluar_trabajo(trabajo)
+
+            nombre_salida = f"{trabajo.stem}_evaluacion.md"
+            archivo_salida = evaluaciones_dir / nombre_salida
+
+            with open(archivo_salida, "w", encoding="utf-8") as archivo:
+                archivo.write(resultado)
+
+            print(f"Resultado guardado en: {archivo_salida}")
+
+        raise SystemExit
 
     casos = ["deficiente", "intermedio", "excelente"]
     repeticiones = 3
