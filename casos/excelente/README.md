@@ -1,18 +1,32 @@
-# Documentación del trabajo
+# Sistema agéntico de evaluación académica
 
-Este repositorio contiene la documentación y los archivos correspondientes al trabajo presentado.
+## Objetivo
 
-## Contenido
+Este proyecto implementa un agente capaz de evaluar trabajos académicos mediante una rúbrica estructurada y evidencia verificable presente en el repositorio.
 
-- Desarrollo completo de la propuesta.
-- Descripción de la estructura y funcionamiento.
-- Fundamentación de las decisiones adoptadas.
-- Herramientas utilizadas durante el desarrollo.
-- Evidencias necesarias para comprender el trabajo.
-- Información suficiente para revisar y reproducir la propuesta.
+## Componentes
 
-## Organización
+- `agente/`: implementación técnica del evaluador.
+- `prompts/`: system prompt y user prompt utilizados por el sistema.
+- `corridas/`: tres ejecuciones documentadas con entrada, salida y fecha.
+- `DECISIONES.md`: historial de iteraciones, problemas y decisiones del proyecto.
+- `ANALISIS_ECONOMICO.md`: metodología para analizar tokens, costos y elección del modelo.
+- `GOBIERNO_RIESGO.md`: permisos, riesgos, fallas posibles y supervisión humana.
+- `rubrica.md`: rúbrica utilizada por el agente.
+- `formato_salida.md`: estructura de la evaluación.
+- `requirements.txt`: dependencias del proyecto.
+- `trabajo.md`: desarrollo general de la propuesta.
 
-El desarrollo principal se encuentra en `trabajo.md`.
+## Funcionamiento
 
-Este archivo complementa la entrega y describe de manera general la organización del repositorio.
+El agente recibe un trabajo, analiza la evidencia disponible, aplica la rúbrica y genera una devolución estructurada con puntajes, evidencia y justificación.
+
+La integración con la API utiliza la variable de entorno `OPENAI_API_KEY`, evitando almacenar credenciales en el código.
+
+## Reproducibilidad
+
+El repositorio conserva los prompts, la implementación, las decisiones de diseño y tres corridas documentadas para permitir la revisión del funcionamiento del sistema.
+
+## Supervisión
+
+El agente propone la evaluación, pero la decisión académica definitiva requiere validación humana.
