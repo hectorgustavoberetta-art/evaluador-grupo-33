@@ -132,3 +132,11 @@ Para iniciar la interfaz web:
 ```bash
 streamlit run app.py
 ```
+
+## Aplicación web pública
+
+La interfaz web del agente evaluador se encuentra disponible en:
+
+https://evaluador-grupo-33-ahs2yhamgmghk5vivjdbc5.streamlit.app
+
+Desde allí es posible cargar uno o varios trabajos, ejecutar la evaluación y descargar los resultados sin necesidad de utilizar la terminal.
