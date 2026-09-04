@@ -25,6 +25,7 @@ El sistema lee los archivos de una entrega, analiza las evidencias disponibles, 
 - `rubrica.md`: contiene la rúbrica ejecutable utilizada por el agente.
 - `formato_salida.md`: define la estructura de la devolución.
 - `requirements.txt`: contiene las dependencias necesarias para ejecutar el proyecto.
+- `app.py`: contiene la interfaz web desarrollada con Streamlit, que permite cargar, evaluar y descargar uno o varios trabajos desde el navegador.
 
 
 ## Funcionamiento del agente
@@ -114,3 +115,20 @@ python agente/evaluador.py --modo calibracion
 ```
 
 El agente evaluará los tres casos de calibración en tres ejecuciones independientes y guardará los resultados en la carpeta `resultados/`.
+## Interfaz web
+
+El proyecto incluye una interfaz web desarrollada con Streamlit para facilitar el uso del agente evaluador sin necesidad de operar directamente desde la terminal.
+
+La interfaz permite:
+
+1. Cargar uno o varios trabajos académicos.
+2. Evaluar cada trabajo de manera independiente.
+3. Aplicar automáticamente el control de fraude y la rúbrica ejecutable.
+4. Visualizar en pantalla el puntaje, nivel alcanzado, evidencias, fortalezas, aspectos a mejorar y recomendaciones.
+5. Descargar individualmente el resultado de cada evaluación.
+
+Para iniciar la interfaz web:
+
+```bash
+streamlit run app.py
+```
