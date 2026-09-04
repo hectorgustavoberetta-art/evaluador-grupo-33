@@ -56,7 +56,7 @@ col_titulo, col_logo = st.columns([4, 1])
 
 with col_titulo:
     st.title("Agente Evaluador - Grupo 33")
-    st.subheader("MBA UCEMA · Programación de y con Agentes de IA")
+    st.subheader("MBA UCEMA · Creación de Agentes de IA")
     st.write(
         "Esta aplicación permite cargar uno o varios trabajos académicos, "
         "evaluarlos mediante una rúbrica ejecutable y generar una devolución "
@@ -131,7 +131,7 @@ with col_info:
         <h3>ℹ️ Nota</h3>
         <p>
         Esta herramienta fue desarrollada como trabajo parcial de la materia
-        Programación de y con Agentes de IA · MBA UCEMA 2026.
+        Creación de Agentes de IA · MBA UCEMA 2026.
         </p>
         </div>
         """,
