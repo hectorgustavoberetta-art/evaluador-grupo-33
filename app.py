@@ -7,8 +7,25 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("Agente Evaluador - Grupo 33")
-st.subheader("MBA UCEMA · Programación de y con Agentes de IA")
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #f2f2f2;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+col_titulo, col_logo = st.columns([4, 1])
+
+with col_titulo:
+    st.title("Agente Evaluador - Grupo 33")
+    st.subheader("MBA UCEMA · Programación de y con Agentes de IA")
+
+with col_logo:
+    st.image("assets/Logo_UCEMA.png", width=180)
 
 st.markdown(
     """
