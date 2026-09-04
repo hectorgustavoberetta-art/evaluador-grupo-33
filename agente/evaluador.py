@@ -22,8 +22,12 @@ REPO_DIR = BASE_DIR.parent
 # ---------------------------------------------------------
 
 def leer_archivo(ruta):
-    with open(ruta, "r", encoding="utf-8") as archivo:
-        return archivo.read()
+    try:
+        with open(ruta, "r", encoding="utf-8") as archivo:
+            return archivo.read()
+    except UnicodeDecodeError:
+        with open(ruta, "r", encoding="cp1252") as archivo:
+            return archivo.read()
 
 def leer_entrega(ruta):
     ruta = Path(ruta)
