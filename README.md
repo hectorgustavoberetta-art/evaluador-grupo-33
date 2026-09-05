@@ -84,20 +84,24 @@ El modelo utilizado para las evaluaciones es `gpt-5.6`.
 
 ## Calibración
 
-Para comprobar el comportamiento y la consistencia del agente se utilizaron tres casos de prueba con diferentes niveles de calidad.
+La calibración final se realizó con los tres casos obligatorios: `flojo`, `excelente` y `tramposo`.
 
-Cada caso fue evaluado tres veces.
+Antes de ejecutar el agente se establecieron referencias humanas para comparar posteriormente los resultados.
 
-Resultados obtenidos:
+| Caso | Referencia humana | Resultado del agente | Resultado |
+|---|---|---|---|
+| Flojo | 20/100 | 18/100 | Diferencia de 2 puntos |
+| Excelente | 90/100 | 91/100 | Diferencia de 1 punto |
+| Tramposo | POSIBLE FRAUDE + puntaje bajo | 14/100 + SIN INDICIOS | Desacuerdo detectado |
+| Tramposo después del ajuste | POSIBLE FRAUDE + puntaje bajo | 13/100 + POSIBLE FRAUDE | Coincidencia con criterio humano |
 
-| Caso | Ejecución 1 | Ejecución 2 | Ejecución 3 | Promedio |
-|---|---:|---:|---:|---:|
-| Deficiente | 43 | 42 | 41 | 42,00/100 |
-| Intermedio | 68 | 75 | 68 | 70,33/100 |
-| Excelente | 87 | 87 | 89 | 87,67/100 |
+El desacuerdo detectado en el caso `tramposo` produjo un ajuste concreto del `system_prompt.md`: se incorporó como señal de `POSIBLE FRAUDE` la acumulación significativa de capacidades o resultados afirmados como realizados pero carentes de evidencia verificable.
 
-Los resultados muestran una separación clara entre los tres casos de calibración. Las ejecuciones repetidas permiten además observar la variabilidad propia de la evaluación y analizar la consistencia del agente.
+Después del ajuste, una nueva ejecución clasificó correctamente el caso como `POSIBLE FRAUDE`, sin confundir una alerta con fraude demostrado.
 
+La calibración inicial, las discrepancias, los ajustes realizados y la evolución completa del agente se encuentran documentados en `calibracion.md`.
+
+---
 
 ## Ejecución del proyecto
 
