@@ -2,11 +2,15 @@
 
 ## 1. Objetivo
 
-La calibración tuvo como objetivo comprobar que el agente evaluador pudiera distinguir trabajos de diferente calidad y asignar calificaciones coherentes con el criterio humano del grupo.
+La calibración tuvo como objetivo comprobar que el agente evaluador pudiera distinguir trabajos de diferente calidad, asignar calificaciones coherentes con el criterio humano y detectar situaciones que requirieran una alerta por posible manipulación.
 
-Se utilizaron tres casos de prueba: deficiente, intermedio y excelente. Cada caso fue evaluado tres veces para observar la estabilidad de los resultados.
+El proceso se realizó de manera iterativa. Se conservaron los resultados de una calibración inicial y posteriormente se efectuó una calibración final utilizando los tres casos exigidos para el parcial: `flojo`, `excelente` y `tramposo`.
 
-## 2. Resultados obtenidos
+---
+
+## 2. Calibración inicial
+
+En una etapa anterior se utilizaron los casos `deficiente`, `intermedio` y `excelente`, evaluados tres veces cada uno.
 
 | Caso | Ejecución 1 | Ejecución 2 | Ejecución 3 | Promedio |
 |---|---:|---:|---:|---:|
@@ -14,59 +18,109 @@ Se utilizaron tres casos de prueba: deficiente, intermedio y excelente. Cada cas
 | Intermedio | 68 | 75 | 68 | 70,33 |
 | Excelente | 87 | 87 | 89 | 87,67 |
 
-Los resultados conservaron en todas las pruebas el orden esperado:
+Esta etapa permitió comprobar inicialmente que el agente podía diferenciar niveles de calidad y también permitió detectar problemas relacionados con la evidencia verificable, el formato de salida, la lectura de repositorios y el control de fraude.
 
-**Deficiente < Intermedio < Excelente**
+Los resultados históricos se conservan como evidencia del proceso de evolución del proyecto.
 
-## 3. Criterio humano del grupo
+---
 
-Antes de analizar los resultados del agente, el criterio del grupo fue que:
+## 3. Ajustes realizados durante el desarrollo
 
-- El caso deficiente debía obtener una calificación baja por presentar una metodología superficial, escasa fundamentación y falta de trazabilidad.
-- El caso intermedio debía obtener una calificación media por desarrollar adecuadamente los conceptos principales, aunque sin evidencia técnica suficiente.
-- El caso excelente debía obtener una calificación alta por presentar mayor profundidad, una arquitectura clara, trazabilidad, seguridad, reproducibilidad y una metodología más completa.
+A partir de las distintas pruebas se realizaron, entre otros, los siguientes ajustes:
 
-El orden producido por el agente coincidió con este criterio humano.
+- obligación de justificar los puntajes mediante evidencia concreta;
+- utilización de una salida estructurada y consistente;
+- lectura recursiva de entregas organizadas como repositorios;
+- compatibilidad con archivos UTF-8 y Windows cp1252;
+- alineación de la evaluación con las cinco dimensiones oficiales;
+- incorporación de los estados `SIN INDICIOS DE FRAUDE`, `POSIBLE FRAUDE` y `FRAUDE DETECTADO`;
+- eliminación de indicaciones que pudieran influir artificialmente sobre la nota esperada;
+- incorporación de artefactos técnicos y corridas reales;
+- registro del modelo y consumo real de tokens;
+- incorporación de análisis económico y documentación de gobierno y riesgo.
 
-## 4. Desacuerdos y hallazgos
+---
 
-La calibración permitió identificar diferencias y aspectos a mejorar.
+## 4. Calibración final con criterio humano previo
 
-En el caso deficiente, los resultados fueron estables: 43, 42 y 41 puntos. El agente identificó correctamente la falta de aplicación estricta de la rúbrica, la ausencia de evidencia y el uso de criterios personales no regulados.
+Para evitar ajustar las notas humanas después de conocer la respuesta del agente, se estableció previamente una referencia humana para los tres casos obligatorios.
 
-En el caso intermedio se observó una variación mayor: 68, 75 y 68 puntos. El agente reconoció correctamente que el trabajo presentaba una propuesta conceptualmente adecuada, pero carecía de código, resultados de ejecución y evidencia suficiente para demostrar una solución completamente funcional.
+### Caso flojo
 
-En el caso excelente se obtuvieron 87, 87 y 89 puntos. Aunque el grupo esperaba una calificación alta, el agente no otorgó el nivel máximo porque el caso describía archivos técnicos, pruebas y calibraciones que no estaban incorporados físicamente en la entrega utilizada en esa etapa.
+Referencia humana previa: **20/100**.
 
-Este último resultado fue especialmente útil porque permitió detectar que una descripción de una implementación no debe ser considerada equivalente a evidencia verificable de su existencia.
+El caso presenta una propuesta conceptual básica, pero carece de una implementación completa, herramienta real demostrada, tres corridas reproducibles, análisis económico cuantificado y documentación suficiente de gobierno y riesgo.
 
-## 5. Ajustes realizados
+Resultado del agente: **18/100**.
 
-A partir de las pruebas se realizaron ajustes progresivos en el agente y en los casos de calibración:
+Diferencia respecto del criterio humano: **2 puntos**.
 
-- Se reforzó la obligación de justificar los puntajes mediante evidencia concreta.
-- Se estructuró la salida para mantener el mismo formato entre evaluaciones.
-- Se incorporó un control específico de fraude y manipulación de las instrucciones.
-- Se diferenciaron los estados SIN INDICIOS DE FRAUDE, POSIBLE FRAUDE y FRAUDE DETECTADO.
-- Se mejoró la lectura de entregas para admitir archivos y estructuras de carpetas completas.
-- Se incorporó compatibilidad de lectura UTF-8 y Windows cp1252.
-- Se eliminó del README del caso excelente una indicación sobre la calificación esperada, porque podía interpretarse como un intento de influir sobre el evaluador.
-- Se incorporaron al caso excelente artefactos técnicos reales para que las afirmaciones de implementación puedan ser verificadas.
+El agente identificó correctamente las principales carencias del trabajo y lo clasificó como `SIN INDICIOS DE FRAUDE`.
 
-## 6. Comprobación sobre una entrega organizada como repositorio
+### Caso excelente
 
-Como prueba adicional, el agente fue ejecutado sobre una carpeta que contenía varios archivos pertenecientes a una misma entrega.
+Referencia humana previa: **90/100**.
 
-El sistema recorrió la estructura, reunió los archivos admitidos, realizó el control de fraude, aplicó la rúbrica y generó automáticamente un archivo de evaluación.
+El caso contiene implementación técnica, prompts, integración mediante API, lectura de repositorios, tres corridas reales, registro de tokens, análisis económico, documentación del proceso y gobierno y riesgo.
 
-La prueba permitió comprobar que el agente no se limita a evaluar un único archivo aislado, sino que puede analizar una entrega organizada como repositorio.
+Resultado del agente: **91/100**.
+
+Diferencia respecto del criterio humano: **1 punto**.
+
+El agente reconoció correctamente la calidad general del sistema y también identificó oportunidades concretas de mejora en reproducibilidad y documentación.
+
+### Caso tramposo
+
+El criterio humano previo fue clasificarlo como **POSIBLE FRAUDE**, acompañado de un puntaje bajo, debido a la acumulación de afirmaciones relevantes no respaldadas por evidencia verificable.
+
+Entre esas afirmaciones se encontraban la utilización de una API real, múltiples pruebas reales, precisión superior al 98 %, costos extremadamente bajos y controles completos de seguridad, sin artefactos suficientes que permitieran comprobarlas.
+
+En la primera ejecución el agente otorgó **14/100**, pero clasificó el caso como `SIN INDICIOS DE FRAUDE`.
+
+El puntaje fue coherente con el criterio humano, pero se detectó un desacuerdo en el control de fraude.
+
+---
+
+## 5. Desacuerdo detectado y ajuste del corrector
+
+El análisis del caso `tramposo` mostró que el agente trataba correctamente las afirmaciones sin evidencia como faltantes de respaldo y reducía los puntajes correspondientes, pero no consideraba que una acumulación significativa de esas afirmaciones pudiera justificar una alerta.
+
+Se modificó el `system_prompt.md` para establecer que un patrón reiterado de capacidades, resultados, métricas, herramientas, costos o controles presentados como demostrados, pero sin evidencia verificable, debe ser considerado como posible indicio de fraude.
+
+También se estableció expresamente que una ausencia aislada de evidencia no constituye por sí sola posible fraude.
+
+Después del ajuste se ejecutó nuevamente el caso `tramposo`.
+
+Resultado posterior:
+
+- Estado: **POSIBLE FRAUDE**.
+- Nota: **13/100**.
+- El agente continuó correctamente con la evaluación ordinaria.
+- No declaró `FRAUDE DETECTADO`, porque no existía evidencia suficiente para afirmar una falsificación deliberada.
+
+El resultado posterior coincidió con el criterio humano establecido previamente.
+
+---
+
+## 6. Comparación final
+
+| Caso | Referencia humana previa | Resultado del agente | Resultado de calibración |
+|---|---|---|---|
+| Flojo | 20/100 | 18/100 | Diferencia de 2 puntos |
+| Excelente | 90/100 | 91/100 | Diferencia de 1 punto |
+| Tramposo | POSIBLE FRAUDE + puntaje bajo | Inicial: 14/100 + SIN INDICIOS | Se detectó desacuerdo |
+| Tramposo después del ajuste | POSIBLE FRAUDE + puntaje bajo | 13/100 + POSIBLE FRAUDE | Coincidencia con criterio humano |
+
+---
 
 ## 7. Conclusión
 
-La calibración demostró que el agente distingue de manera consistente trabajos de diferente calidad y mantiene el orden esperado entre los tres niveles de prueba.
+La calibración final mostró una alta proximidad entre el criterio humano previo y las calificaciones producidas por el agente en los casos `flojo` y `excelente`.
 
-Las diferencias encontradas durante las ejecuciones fueron utilizadas para mejorar tanto las instrucciones del corrector como la calidad de los casos de prueba.
+El caso `tramposo` permitió identificar un desacuerdo real que no había sido previsto adecuadamente en las instrucciones del corrector. Ese hallazgo produjo una modificación concreta del `system_prompt.md` y una nueva ejecución posterior.
 
-El proceso también permitió detectar problemas que una calibración basada únicamente en resultados esperados podría haber ocultado, especialmente la diferencia entre afirmar que un artefacto existe y proporcionar evidencia verificable de ese artefacto.
+La segunda evaluación del caso `tramposo` confirmó que el ajuste permitió detectar correctamente una situación de `POSIBLE FRAUDE` sin convertir automáticamente una sospecha en fraude demostrado.
 
-Los resultados completos de las ejecuciones se conservan en la carpeta `resultados/`.
+De esta manera, la calibración no se utilizó únicamente para mostrar resultados esperados, sino como un proceso de comparación entre criterio humano y comportamiento del agente, identificación de desacuerdos, modificación del corrector y comprobación posterior del efecto del cambio.
+
+El historial de commits y los resultados conservados permiten reconstruir la evolución del agente y las decisiones adoptadas durante su desarrollo.
