@@ -120,6 +120,30 @@ python agente/evaluador.py --modo calibracion
 ```
 
 El agente evaluará los tres casos de calibración en tres ejecuciones independientes y guardará los resultados en la carpeta `resultados/`.
+## Evaluación de un trabajo real
+
+El agente también puede evaluar un trabajo final completo organizado como repositorio.
+
+Para evaluarlo, clonar el repositorio dentro de la carpeta `trabajos_a_evaluar/`:
+
+```bash
+git clone URL_DEL_REPOSITORIO trabajos_a_evaluar/nombre_del_trabajo
+
+```
+
+Luego ejecutar:
+
+```bash
+python agente/evaluador.py --modo evaluacion
+```
+
+El agente leerá los archivos del repositorio, aplicará la rúbrica ejecutable y guardará el resultado en la carpeta `evaluaciones/`.
+
+Esto permite recibir un repositorio real durante la prueba en vivo y evaluarlo sin modificar el código del agente.
+
+---
+
+
 ## Interfaz web
 
 El proyecto incluye una interfaz web desarrollada con Streamlit para facilitar el uso del agente evaluador sin necesidad de operar directamente desde la terminal.
