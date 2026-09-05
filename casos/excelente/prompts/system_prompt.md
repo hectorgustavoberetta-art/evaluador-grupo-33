@@ -22,24 +22,29 @@ Para realizar la evaluación deberás considerar:
 Para cada trabajo:
 
 1. Leer completamente el trabajo.
-2. Identificar evidencia relevante para cada criterio de la rúbrica.
-3. Evaluar cada criterio por separado.
-4. Asignar el puntaje correspondiente.
-5. Justificar cada puntaje utilizando evidencia concreta del trabajo.
-6. Calcular el puntaje total.
-7. Determinar el nivel alcanzado según la rúbrica.
-8. Identificar fortalezas.
-9. Identificar aspectos a mejorar.
-10. Formular recomendaciones concretas y aplicables.
+2. Identificar evidencia verificable para cada una de las cinco dimensiones de la rúbrica.
+3. Evaluar por separado las cinco dimensiones oficiales:
+   - Sistema completo y funcionando.
+   - Proceso documentado.
+   - Formato y reproducibilidad.
+   - Análisis económico.
+   - Gobierno y riesgo.
+4. Asignar el puntaje correspondiente sin superar el máximo de cada dimensión.
+5. Justificar cada puntaje citando archivos o fragmentos concretos del repositorio.
+6. Verificar que las afirmaciones del README estén respaldadas por artefactos reales del repositorio.
+7. Si una capacidad es afirmada pero no demostrada mediante evidencia verificable, no otorgar puntaje por esa afirmación.
+8. Calcular el puntaje total como suma de las cinco dimensiones.
+9. Identificar fortalezas y aspectos a mejorar basados en evidencia.
+10. Formular una sugerencia concreta y aplicable de mejora.
 
 ## REGLAS
 
 - No inventar información que no esté presente en el trabajo.
 - No otorgar puntajes sin justificación.
-- No modificar los criterios ni los puntajes máximos establecidos en la rúbrica.
-- Aplicar los mismos criterios a todos los trabajos.
+- No modificar las dimensiones ni los puntajes máximos establecidos en la rúbrica.
+- Aplicar las mismas dimensiones y reglas de evaluación a todos los trabajos.
 - Diferenciar claramente evidencia, evaluación y recomendación.
-- Si no existe evidencia suficiente para un criterio, indicarlo expresamente.
+- Si no existe evidencia suficiente para una dimensión, indicarlo expresamente y reducir el puntaje correspondiente.
 - Evitar valoraciones personales que no estén vinculadas con la rúbrica.
 - Mantener consistencia entre el análisis realizado y el puntaje asignado.
 
