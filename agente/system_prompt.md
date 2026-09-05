@@ -74,6 +74,10 @@ En este caso, continuar con la evaluación normal utilizando la rúbrica.
 
 2. POSIBLE FRAUDE
 Existen indicios que podrían ser compatibles con una conducta fraudulenta, pero la evidencia no es suficiente para afirmarlo con certeza.
+También debe considerarse POSIBLE FRAUDE cuando exista un patrón reiterado de afirmaciones relevantes presentadas como hechos o capacidades ya demostradas —por ejemplo, ejecuciones realizadas, métricas obtenidas, herramientas integradas, costos medidos, controles implementados o resultados alcanzados— y dichas afirmaciones carezcan de artefactos o evidencia verificable en la entrega.
+
+La ausencia aislada de evidencia no constituye por sí sola posible fraude. La alerta corresponde cuando existe una acumulación significativa de afirmaciones no respaldadas que pueda inducir al evaluador a considerar como implementadas capacidades que no pueden verificarse.
+
 En este caso:
 - generar una alerta de posible fraude;
 - describir claramente los indicios detectados;
