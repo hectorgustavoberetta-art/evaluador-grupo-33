@@ -44,7 +44,10 @@ En este modo, el agente:
 3. Evalúa cada caso aplicando los mismos criterios.
 4. Realiza tres ejecuciones independientes por caso.
 5. Registra los puntajes obtenidos y calcula el promedio.
-6. Guarda los resultados en la carpeta `resultados/`.
+6. Guarda los resultados resumidos en la carpeta `resultados/`.
+7. Guarda cada corrida completa —fecha, entrada, salida y tokens— en `corridas/`.
+
+Los archivos de `corridas/` deben conservarse y subirse al repositorio como evidencia de las ejecuciones reales.
 
 Para ejecutar la calibración:
 
