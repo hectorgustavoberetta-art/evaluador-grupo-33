@@ -2,176 +2,878 @@ import streamlit as st
 import tempfile
 from agente.evaluador import evaluar_trabajo
 
+
+# =========================================================
+# CONFIGURACIÓN GENERAL
+# =========================================================
+
 st.set_page_config(
     page_title="Agente Evaluador - Grupo 33",
     page_icon="🎓",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
-# ---------------------------------------------------------
+
+# =========================================================
 # ESTILO VISUAL
-# ---------------------------------------------------------
+# =========================================================
 
 st.markdown(
     """
     <style>
+
+    /* -------------------------------------------------
+       CONFIGURACIÓN GENERAL
+    ------------------------------------------------- */
+
     .stApp {
-        background-color: #f2f2f2;
+        background-color: #f5f6f8;
     }
 
-    div.stButton > button[kind="primary"] {
+    .block-container {
+        padding-top: 1.3rem;
+        padding-bottom: 3rem;
+        max-width: 1450px;
+    }
+
+    h1, h2, h3 {
+        color: #26364a;
+    }
+
+
+    /* -------------------------------------------------
+       CABECERA UCEMA
+    ------------------------------------------------- */
+
+    .ucema-header {
+        background: linear-gradient(
+            135deg,
+            #8b0029 0%,
+            #a90032 55%,
+            #780024 100%
+        );
+
+        border-radius: 16px;
+        padding: 26px 34px;
+        margin-bottom: 24px;
+
+        box-shadow:
+            0 7px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .ucema-header h1 {
+        color: white !important;
+        margin: 0;
+        font-size: 2.05rem;
+        font-weight: 750;
+    }
+
+    .ucema-header h2 {
+        color: #f6dce4 !important;
+        font-size: 1.05rem;
+        margin-top: 6px;
+        margin-bottom: 0;
+        font-weight: 450;
+    }
+
+    .ucema-header p {
+        color: #ffffff;
+        margin-top: 15px;
+        margin-bottom: 0;
+        max-width: 850px;
+        line-height: 1.5;
+    }
+
+
+    /* -------------------------------------------------
+       PASOS
+    ------------------------------------------------- */
+
+    .steps {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 8px 0 30px 0;
+        gap: 12px;
+    }
+
+    .step {
+        background-color: white;
+        border: 1px solid #dedfe3;
+        border-radius: 30px;
+        padding: 10px 22px;
+        color: #42526e;
+        font-weight: 600;
+        font-size: 0.95rem;
+
+        box-shadow:
+            0 3px 8px rgba(0,0,0,0.05);
+    }
+
+    .step-number {
         background-color: #a90032;
-        border-color: #a90032;
         color: white;
+        border-radius: 50%;
+        width: 26px;
+        height: 26px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px;
+        font-size: 0.85rem;
+    }
+
+    .step-arrow {
+        color: #a7a7a7;
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+
+
+    /* -------------------------------------------------
+       TARJETAS
+    ------------------------------------------------- */
+
+    .card {
+        background-color: white;
+        border-radius: 16px;
+        border: 1px solid #e1e4e8;
+        padding: 24px 26px;
+        margin-bottom: 18px;
+
+        box-shadow:
+            0 4px 12px rgba(0, 0, 0, 0.045);
+    }
+
+    .card-title {
+        font-size: 1.25rem;
         font-weight: 700;
+        color: #26364a;
+        margin-bottom: 10px;
+    }
+
+    .card-subtitle {
+        color: #6b778c;
+        line-height: 1.5;
+        margin-bottom: 8px;
+    }
+
+
+    /* -------------------------------------------------
+       ÁREA DE CARGA
+    ------------------------------------------------- */
+
+    [data-testid="stFileUploader"] {
+        background-color: white;
+        border-radius: 14px;
+        border: 1px solid #dfe2e6;
+        padding: 14px;
+    }
+
+    [data-testid="stFileUploaderDropzone"] {
+        background-color: #fafafa;
+        border: 2px dashed #c8cdd4;
+        border-radius: 12px;
+        padding-top: 28px;
+        padding-bottom: 28px;
+    }
+
+
+    /* -------------------------------------------------
+       BOTONES
+    ------------------------------------------------- */
+
+    div.stButton > button[kind="primary"] {
+
+        background: linear-gradient(
+            135deg,
+            #a90032,
+            #840027
+        );
+
+        border: none;
+        color: white;
+
+        font-weight: 700;
+
+        min-height: 48px;
+
+        border-radius: 9px;
+
+        box-shadow:
+            0 4px 10px rgba(169, 0, 50, 0.20);
     }
 
     div.stButton > button[kind="primary"]:hover {
-        background-color: #8c002a;
-        border-color: #8c002a;
+
+        background:
+            #780024;
+
+        color: white;
+
+        border: none;
     }
 
-    .panel {
+    div.stDownloadButton > button {
+
+        border-radius: 9px;
+
+        min-height: 45px;
+
+        font-weight: 600;
+    }
+
+
+    /* -------------------------------------------------
+       PANEL INFORMATIVO DERECHO
+    ------------------------------------------------- */
+
+    .info-card {
+
         background-color: white;
-        padding: 22px 26px;
-        border-radius: 12px;
-        border: 1px solid #e2e2e2;
+
+        border-radius: 16px;
+
+        padding: 24px 26px;
+
+        border:
+            1px solid #e1e4e8;
+
+        margin-bottom: 18px;
+
+        box-shadow:
+            0 4px 12px
+            rgba(0,0,0,0.045);
+    }
+
+    .info-card h3 {
+
+        color: #26364a;
+
+        margin-top: 0;
+
         margin-bottom: 16px;
     }
 
-    .panel h3 {
-        margin-top: 0;
-        color: #172b4d;
+    .info-item {
+
+        margin-bottom: 11px;
+
+        color: #42526e;
+
+        line-height: 1.45;
     }
+
+    .check {
+
+        color: #27864a;
+
+        font-weight: bold;
+
+        margin-right: 8px;
+    }
+
+
+    /* -------------------------------------------------
+       RESULTADOS
+    ------------------------------------------------- */
+
+    .result-header {
+
+        background-color: white;
+
+        border-radius: 16px;
+
+        padding: 24px 28px;
+
+        margin-top: 15px;
+
+        margin-bottom: 18px;
+
+        border:
+            1px solid #e1e4e8;
+
+        border-left:
+            6px solid #a90032;
+
+        box-shadow:
+            0 4px 12px
+            rgba(0,0,0,0.05);
+    }
+
+    .result-header h2 {
+
+        margin: 0;
+
+        color: #26364a;
+    }
+
+    .result-header p {
+
+        margin-top: 8px;
+
+        margin-bottom: 0;
+
+        color: #6b778c;
+    }
+
+
+    /* -------------------------------------------------
+       TARJETAS DE ESTADO
+    ------------------------------------------------- */
+
+    .success-card {
+
+        background-color: #eef8f1;
+
+        border:
+            1px solid #b9dec4;
+
+        border-left:
+            6px solid #2e8b57;
+
+        border-radius: 12px;
+
+        padding: 18px 22px;
+
+        margin-bottom: 14px;
+    }
+
+    .warning-card {
+
+        background-color: #fff8e7;
+
+        border:
+            1px solid #ecd79d;
+
+        border-left:
+            6px solid #d89d20;
+
+        border-radius: 12px;
+
+        padding: 18px 22px;
+
+        margin-bottom: 14px;
+    }
+
+    .fraud-card {
+
+        background-color: #faeeee;
+
+        border:
+            1px solid #dfb5b5;
+
+        border-left:
+            6px solid #9d1f2f;
+
+        border-radius: 12px;
+
+        padding: 18px 22px;
+
+        margin-bottom: 14px;
+    }
+
+    .status-title {
+
+        font-weight: 750;
+
+        font-size: 1.02rem;
+
+        margin-bottom: 4px;
+    }
+
+
+    /* -------------------------------------------------
+       RESULTADO COMPLETO
+    ------------------------------------------------- */
+
+    .evaluation-container {
+
+        background-color: white;
+
+        padding: 28px 32px;
+
+        border-radius: 16px;
+
+        border:
+            1px solid #e1e4e8;
+
+        box-shadow:
+            0 4px 12px
+            rgba(0,0,0,0.045);
+
+        margin-bottom: 18px;
+    }
+
+
+    /* -------------------------------------------------
+       SIDEBAR
+    ------------------------------------------------- */
+
+    [data-testid="stSidebar"] {
+
+        background-color: #ffffff;
+
+        border-right:
+            1px solid #e1e4e8;
+    }
+
+    [data-testid="stSidebar"] h2 {
+
+        color: #a90032;
+    }
+
+    .sidebar-title {
+
+        font-size: 1.25rem;
+
+        font-weight: 750;
+
+        color: #a90032;
+
+        margin-bottom: 5px;
+    }
+
+    .sidebar-subtitle {
+
+        color: #7a869a;
+
+        font-size: 0.87rem;
+
+        margin-bottom: 24px;
+    }
+
+    .menu-item {
+
+        background-color: #f7f7f8;
+
+        padding:
+            11px 14px;
+
+        margin-bottom:
+            8px;
+
+        border-radius:
+            9px;
+
+        font-weight:
+            550;
+
+        color:
+            #344563;
+    }
+
+    .menu-active {
+
+        background-color:
+            #f7e9ee;
+
+        border-left:
+            4px solid #a90032;
+
+        color:
+            #850027;
+    }
+
+
+    /* -------------------------------------------------
+       PIE
+    ------------------------------------------------- */
+
+    .footer {
+
+        text-align:
+            center;
+
+        color:
+            #8993a4;
+
+        margin-top:
+            40px;
+
+        padding-top:
+            20px;
+
+        border-top:
+            1px solid #e1e4e8;
+
+        font-size:
+            0.85rem;
+    }
+
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# ---------------------------------------------------------
-# ENCABEZADO
-# ---------------------------------------------------------
 
-col_titulo, col_logo = st.columns([4, 1])
+# =========================================================
+# MENÚ LATERAL
+# =========================================================
 
-with col_titulo:
-    st.title("Agente Evaluador - Grupo 33")
-    st.subheader("MBA UCEMA · Creación de Agentes de IA")
-    st.write(
-        "Esta aplicación permite cargar uno o varios trabajos académicos, "
-        "evaluarlos mediante una rúbrica ejecutable y generar una devolución "
-        "objetiva, consistente y trazable."
-    )
-
-with col_logo:
-    st.image("assets/Logo_UCEMA.png", width=180)
-
-st.divider()
-
-# ---------------------------------------------------------
-# ÁREA PRINCIPAL
-# ---------------------------------------------------------
-
-col_principal, col_info = st.columns([1.7, 1], gap="large")
-
-with col_principal:
-
-    st.header("📄 1. Cargar trabajos")
-
-    archivos = st.file_uploader(
-        "Seleccioná uno o varios trabajos para evaluar",
-        type=["md", "txt", "py", "json"],
-        accept_multiple_files=True
-    )
-
-    if archivos:
-        st.success(f"Trabajos cargados: {len(archivos)}")
-
-        for archivo in archivos:
-            st.write(f"• {archivo.name}")
-
-    st.divider()
-
-    st.header("⚙️ 2. Evaluar")
-
-    st.info(
-        "El agente realizará primero el control de fraude y luego aplicará "
-        "la rúbrica académica correspondiente."
-    )
-
-    boton_evaluar = st.button(
-        "▶ Evaluar trabajos",
-        type="primary",
-        disabled=not archivos,
-        use_container_width=True
-    )
-
-with col_info:
+with st.sidebar:
 
     st.markdown(
         """
-        <div class="panel">
-        <h3>🎯 ¿Qué hace este agente?</h3>
-        <p>✓ Aplica una rúbrica ejecutable.</p>
-        <p>✓ Evalúa múltiples trabajos.</p>
-        <p>✓ Realiza control de posibles casos de fraude.</p>
-        <p>✓ Genera devoluciones detalladas y recomendaciones de mejora.</p>
-        <p>✓ Permite descargar individualmente cada evaluación.</p>
+        <div class="sidebar-title">
+        🎓 Agente Evaluador
         </div>
 
-        <div class="panel">
-        <h3>👥 Integrantes – Grupo 33</h3>
-        <p>Héctor Gustavo Beretta</p>
-        <p>Eliana Androszczuk</p>
-        <p>Diego Gonzalez</p>
-        <p>Agustin Poselski</p>
-        </div>
-
-        <div class="panel">
-        <h3>ℹ️ Nota</h3>
-        <p>
-        Esta herramienta fue desarrollada como trabajo parcial de la materia
-        Creación de Agentes de IA · MBA UCEMA 2026.
-        </p>
+        <div class="sidebar-subtitle">
+        Grupo 33 · MBA UCEMA
         </div>
         """,
         unsafe_allow_html=True
     )
 
-# ---------------------------------------------------------
+    st.markdown(
+        """
+        <div class="menu-item menu-active">
+        🏠 Inicio
+        </div>
+
+        <div class="menu-item">
+        📄 Cargar trabajos
+        </div>
+
+        <div class="menu-item">
+        📊 Resultados
+        </div>
+
+        <div class="menu-item">
+        👥 Grupo 33
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.divider()
+
+    st.markdown("### 👥 Integrantes")
+
+    st.write("Héctor Gustavo Beretta")
+    st.write("Eliana Androszczuk")
+    st.write("Diego Gonzalez")
+    st.write("Agustin Poselski")
+
+    st.divider()
+
+    st.caption(
+        "MBA UCEMA · 2026"
+    )
+
+
+# =========================================================
+# CABECERA
+# =========================================================
+
+col_header, col_logo = st.columns(
+    [5, 1],
+    vertical_alignment="center"
+)
+
+with col_header:
+
+    st.markdown(
+        '<div class="ucema-header">'
+        '<h1>AGENTE EVALUADOR - GRUPO 33</h1>'
+        '<h2>MBA UCEMA · Creación de Agentes de IA</h2>'
+        '<p>Evaluación automática, objetiva y trazable de trabajos académicos mediante una rúbrica ejecutable.</p>'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
+with col_logo:
+
+    st.image(
+        "assets/Logo_UCEMA.png",
+        use_container_width=True
+    )
+
+
+# =========================================================
+# PASOS VISUALES
+# =========================================================
+
+st.markdown(
+    '<div class="steps">'
+    '<div class="step"><span class="step-number">1</span>Cargar trabajo</div>'
+    '<div class="step-arrow">→</div>'
+    '<div class="step"><span class="step-number">2</span>Evaluar</div>'
+    '<div class="step-arrow">→</div>'
+    '<div class="step"><span class="step-number">3</span>Resultados</div>'
+    '</div>',
+    unsafe_allow_html=True
+)
+
+# =========================================================
+# ÁREA PRINCIPAL
+# =========================================================
+
+col_principal, col_info = st.columns(
+    [1.8, 1],
+    gap="large"
+)
+
+
+# =========================================================
+# COLUMNA PRINCIPAL
+# =========================================================
+
+with col_principal:
+
+    st.markdown(
+        '<div class="card">'
+        '<div class="card-title">📄 Cargar trabajo</div>'
+        '<div class="card-subtitle">'
+        'Seleccioná uno o varios archivos correspondientes al trabajo que querés evaluar.'
+        '</div>'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
+    archivos = st.file_uploader(
+        "Arrastrá los archivos aquí o presioná Examinar",
+        type=[
+            "md",
+            "txt",
+            "py",
+            "json"
+        ],
+        accept_multiple_files=True
+    )
+
+
+    if archivos:
+
+        st.success(
+            f"✓ {len(archivos)} archivo(s) cargado(s) correctamente."
+        )
+
+        for archivo in archivos:
+
+            st.write(
+                f"📄 {archivo.name}"
+            )
+
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+
+    st.markdown(
+        '<div class="card">'
+        '<div class="card-title">⚙️ Ejecutar evaluación</div>'
+        '<div class="card-subtitle">'
+        'El agente realizará el control de posibles manipulaciones y posteriormente aplicará la rúbrica académica.'
+        '</div>'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
+
+    boton_evaluar = st.button(
+        "▶  Evaluar trabajos",
+        type="primary",
+        disabled=not archivos,
+        use_container_width=True
+    )
+
+
+# =========================================================
+# COLUMNA DERECHA
+# =========================================================
+
+with col_info:
+
+        st.markdown(
+        '<div class="info-card">'
+        '<h3>🎯 ¿Qué hace este agente?</h3>'
+        '<div class="info-item"><span class="check">✓</span> Aplica una rúbrica ejecutable.</div>'
+        '<div class="info-item"><span class="check">✓</span> Evalúa múltiples trabajos.</div>'
+        '<div class="info-item"><span class="check">✓</span> Controla posibles intentos de manipulación.</div>'
+        '<div class="info-item"><span class="check">✓</span> Genera devoluciones detalladas.</div>'
+        '<div class="info-item"><span class="check">✓</span> Identifica oportunidades concretas de mejora.</div>'
+        '<div class="info-item"><span class="check">✓</span> Permite descargar cada evaluación.</div>'
+        '</div>'
+        '<div class="info-card">'
+        '<h3>🔎 Evaluación trazable</h3>'
+        '<div class="info-item">El agente analiza las evidencias disponibles en el trabajo y fundamenta la evaluación obtenida.</div>'
+        '</div>'
+        '<div class="info-card">'
+        '<h3>ℹ️ Trabajo académico</h3>'
+        '<div class="info-item">Aplicación desarrollada por el Grupo 33 como trabajo parcial del MBA UCEMA 2026.</div>'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
+
+# =========================================================
 # RESULTADOS
-# ---------------------------------------------------------
+# =========================================================
 
 if boton_evaluar:
-    st.divider()
-    st.header("Resultados de la evaluación")
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    st.markdown(
+        '<div class="result-header">'
+        '<h2>📊 Resultados de la evaluación</h2>'
+        '<p>A continuación se presenta la devolución generada por el Agente Evaluador.</p>'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
 
     for archivo in archivos:
-        st.subheader(f"Evaluación de: {archivo.name}")
+
+        st.markdown(
+            f'<div class="card">'
+            f'<div class="card-title">📄 {archivo.name}</div>'
+            f'<div class="card-subtitle">Trabajo seleccionado para evaluación.</div>'
+            f'</div>',
+            unsafe_allow_html=True
+        )
+
 
         with tempfile.NamedTemporaryFile(
             delete=False,
             suffix=f"_{archivo.name}"
         ) as temporal:
-            temporal.write(archivo.getvalue())
-            ruta_temporal = temporal.name
 
-        with st.spinner(f"Evaluando {archivo.name}..."):
-            resultado = evaluar_trabajo(ruta_temporal)
+            temporal.write(
+                archivo.getvalue()
+            )
 
-        st.success(f"Evaluación completada: {archivo.name}")
-        st.markdown(resultado["texto"])
+            ruta_temporal = (
+                temporal.name
+            )
 
-        st.download_button(
-            label=f"Descargar evaluación de {archivo.name}",
-            data=resultado["texto"],
-            file_name=f"{archivo.name}_evaluacion.md",
-            mime="text/markdown",
-            key=f"descarga_{archivo.name}"
+
+        with st.spinner(
+            f"Evaluando {archivo.name}..."
+        ):
+
+            resultado = evaluar_trabajo(
+                ruta_temporal
+            )
+
+
+        st.success(
+            f"✓ Evaluación completada: {archivo.name}"
         )
 
-        st.divider()
 
-st.caption(
-    "Agente Evaluador · Grupo 33 · MBA UCEMA · 2026"
+        # ---------------------------------------------
+        # TARJETAS VISUALES DE RESULTADO
+        # ---------------------------------------------
+
+        col_fortaleza, col_mejora, col_fraude = st.columns(3)
+
+
+        with col_fortaleza:
+            st.markdown(
+                '<div class="success-card">'
+                '<div class="status-title">✓ Fortalezas</div>'
+                'Aspectos correctamente resueltos por el trabajo evaluado.'
+                '</div>',
+                unsafe_allow_html=True
+            )
+
+        with col_mejora:
+            st.markdown(
+                '<div class="warning-card">'
+                '<div class="status-title">⚠ Aspectos a mejorar</div>'
+                'Oportunidades de mejora identificadas por el evaluador.'
+                '</div>',
+                unsafe_allow_html=True
+            )
+
+        with col_fraude:
+            st.markdown(
+                '<div class="fraud-card">'
+                '<div class="status-title">🔎 Control de fraude</div>'
+                'Verificación de posibles intentos de manipulación del evaluador.'
+                '</div>',
+                unsafe_allow_html=True
+            )
+
+
+        # ---------------------------------------------
+        # EVALUACIÓN COMPLETA
+        # ---------------------------------------------
+
+        with st.container(
+            border=True
+        ):
+
+            st.markdown(
+                "### 📋 Evaluación completa"
+            )
+
+            st.markdown(
+                resultado["texto"]
+            )
+
+
+        # ---------------------------------------------
+        # BOTONES INFERIORES
+        # ---------------------------------------------
+
+        col_descargar, col_nuevo = st.columns(
+            [1, 1]
+        )
+
+
+        with col_descargar:
+
+            st.download_button(
+
+                label=
+                "⬇ Descargar evaluación",
+
+                data=
+                resultado["texto"],
+
+                file_name=
+                f"{archivo.name}_evaluacion.md",
+
+                mime=
+                "text/markdown",
+
+                key=
+                f"descarga_{archivo.name}",
+
+                use_container_width=True
+            )
+
+
+        with col_nuevo:
+
+            if st.button(
+                "↻ Evaluar otro trabajo",
+                key=f"nuevo_{archivo.name}",
+                use_container_width=True
+            ):
+
+                st.rerun()
+
+
+        st.markdown("<br>", unsafe_allow_html=True)
+
+
+# =========================================================
+# PIE
+# =========================================================
+
+st.markdown(
+    """
+    <div class="footer">
+
+    Agente Evaluador · Grupo 33 ·
+    MBA UCEMA · 2026
+
+    </div>
+    """,
+    unsafe_allow_html=True
 )
