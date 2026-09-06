@@ -1,7 +1,45 @@
-import streamlit as st
-import tempfile
+import io
 import re
+import tempfile
+import zipfile
+from pathlib import Path
+
+import streamlit as st
+
 from agente.evaluador import evaluar_trabajo
+
+
+MAX_ZIP_BYTES = 50 * 1024 * 1024
+
+
+def extraer_zip_seguro(datos, destino):
+    if len(datos) > MAX_ZIP_BYTES:
+        raise ValueError("El ZIP supera el límite permitido de 50 MB.")
+
+    destino = Path(destino).resolve()
+    destino.mkdir(parents=True, exist_ok=True)
+
+    with zipfile.ZipFile(io.BytesIO(datos)) as archivo_zip:
+        for miembro in archivo_zip.infolist():
+            ruta_destino = (destino / miembro.filename).resolve()
+
+            if ruta_destino != destino and destino not in ruta_destino.parents:
+                raise ValueError("El ZIP contiene una ruta no válida.")
+
+            # Rechaza enlaces simbólicos para evitar escribir fuera del directorio temporal.
+            tipo_unix = (miembro.external_attr >> 16) & 0o170000
+            if tipo_unix == 0o120000:
+                raise ValueError("El ZIP contiene un enlace simbólico no permitido.")
+
+            if miembro.is_dir():
+                ruta_destino.mkdir(parents=True, exist_ok=True)
+                continue
+
+            ruta_destino.parent.mkdir(parents=True, exist_ok=True)
+            with archivo_zip.open(miembro) as origen, open(ruta_destino, "wb") as salida:
+                salida.write(origen.read())
+
+    return destino
 
 
 # =========================================================
@@ -628,7 +666,7 @@ with col_principal:
         '<div class="card">'
         '<div class="card-title">📄 Cargar trabajo</div>'
         '<div class="card-subtitle">'
-        'Seleccioná uno o varios archivos correspondientes al trabajo que querés evaluar.'
+        'Subí un ZIP por repositorio para conservar toda su estructura, o archivos individuales para una prueba rápida.'
         '</div>'
         '</div>',
         unsafe_allow_html=True
@@ -637,6 +675,7 @@ with col_principal:
     archivos = st.file_uploader(
         "Arrastrá los archivos aquí o presioná Examinar",
         type=[
+            "zip",
             "md",
             "txt",
             "py",
@@ -654,9 +693,8 @@ with col_principal:
 
         for archivo in archivos:
 
-            st.write(
-                f"📄 {archivo.name}"
-            )
+            etiqueta = "repositorio ZIP" if archivo.name.lower().endswith(".zip") else "archivo individual"
+            st.write(f"📦 {archivo.name} ({etiqueta})")
 
 
     st.markdown("<br>", unsafe_allow_html=True)
@@ -737,27 +775,27 @@ if boton_evaluar:
         )
 
 
-        with tempfile.NamedTemporaryFile(
-            delete=False,
-            suffix=f"_{archivo.name}"
-        ) as temporal:
+        with tempfile.TemporaryDirectory() as directorio_temporal:
+            try:
+                if archivo.name.lower().endswith(".zip"):
+                    ruta_trabajo = extraer_zip_seguro(
+                        archivo.getvalue(),
+                        Path(directorio_temporal) / "repositorio"
+                    )
+                    descripcion_trabajo = "repositorio completo"
+                else:
+                    ruta_trabajo = Path(directorio_temporal) / Path(archivo.name).name
+                    ruta_trabajo.write_bytes(archivo.getvalue())
+                    descripcion_trabajo = "archivo individual"
 
-            temporal.write(
-                archivo.getvalue()
-            )
+                with st.spinner(
+                    f"Evaluando {archivo.name} ({descripcion_trabajo})..."
+                ):
+                    resultado = evaluar_trabajo(ruta_trabajo)
 
-            ruta_temporal = (
-                temporal.name
-            )
-
-
-        with st.spinner(
-            f"Evaluando {archivo.name}..."
-        ):
-
-            resultado = evaluar_trabajo(
-                ruta_temporal
-            )
+            except (ValueError, zipfile.BadZipFile) as error:
+                st.error(f"No se pudo procesar {archivo.name}: {error}")
+                continue
                 # ============================================================
         # DATOS PARA EL DASHBOARD VISUAL
         # Solo interpreta el texto generado por el evaluador.
