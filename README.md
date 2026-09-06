@@ -21,7 +21,8 @@ El sistema lee los archivos de una entrega, analiza las evidencias disponibles, 
 
 - `agente/`: contiene el código del evaluador y su system prompt.
 - `casos/`: contiene los tres casos requeridos por la consigna (`excelente`, `flojo` y `tramposo`) y casos adicionales utilizados durante la calibración y las pruebas (`deficiente`, `intermedio`, `fraude` y `posible_fraude`).
-- `resultados/`: contiene los resultados obtenidos en las ejecuciones de calibración.
+- `resultados/`: contiene los resultados resumidos obtenidos en las ejecuciones de calibración.
+- `corridas/`: contiene cada ejecución completa con fecha, entrada, salida y tokens.
 - `calibracion.md`: documenta los resultados de calibración, el criterio humano, los desacuerdos detectados, los ajustes realizados y las conclusiones del proceso.
 - `rubrica.md`: contiene la rúbrica ejecutable utilizada por el agente.
 - `formato_salida.md`: define la estructura de la devolución.
