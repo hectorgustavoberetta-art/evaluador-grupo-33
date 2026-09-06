@@ -1,5 +1,7 @@
+resultado = eval
 import streamlit as st
 import tempfile
+import re
 from agente.evaluador import evaluar_trabajo
 
 
@@ -757,19 +759,57 @@ if boton_evaluar:
             resultado = evaluar_trabajo(
                 ruta_temporal
             )
+                # ============================================================
+        # DATOS PARA EL DASHBOARD VISUAL
+        # Solo interpreta el texto generado por el evaluador.
+        # No modifica la evaluación ni recalcula puntajes.
+        # ============================================================
 
+        texto_resultado = resultado["texto"]
 
+        # Extraer nota final
+        match_nota = re.search(
+            r"NOTA FINAL:\s*(\d+)\s*/\s*100",
+            texto_resultado,
+            re.IGNORECASE
+        )
+
+        nota_final = int(match_nota.group(1)) if match_nota else 0
+
+        # Extraer puntajes de las cinco dimensiones
+        dimensiones_dashboard = [
+            ("Sistema completo y funcionando", 30),
+            ("Proceso documentado", 25),
+            ("Formato y reproducibilidad", 15),
+            ("Análisis económico", 15),
+            ("Gobierno y riesgo", 15),
+        ]
+
+        puntajes_dashboard = []
+
+        for nombre_dimension, maximo in dimensiones_dashboard:
+            patron = rf"\|\s*{re.escape(nombre_dimension)}\s*\|\s*(\d+)\s*/\s*{maximo}\s*\|"
+            coincidencia = re.search(
+                patron,
+                texto_resultado,
+                re.IGNORECASE
+            )
+
+            puntaje = int(coincidencia.group(1)) if coincidencia else 0
+
+            puntajes_dashboard.append(
+                (nombre_dimension, puntaje, maximo)
+            )
+            
         st.success(
             f"✓ Evaluación completada: {archivo.name}"
         )
-
 
         # ---------------------------------------------
         # TARJETAS VISUALES DE RESULTADO
         # ---------------------------------------------
 
         col_fortaleza, col_mejora, col_fraude = st.columns(3)
-
 
         with col_fortaleza:
             st.markdown(
@@ -798,7 +838,7 @@ if boton_evaluar:
                 unsafe_allow_html=True
             )
 
-
+    
         # ---------------------------------------------
         # EVALUACIÓN COMPLETA
         # ---------------------------------------------
