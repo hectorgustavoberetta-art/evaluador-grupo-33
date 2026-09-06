@@ -1,5 +1,16 @@
 # Sistema agéntico de evaluación académica
 
+## Nota de calibración
+
+Este caso es uno de los tres casos sintéticos obligatorios utilizados para calibrar el agente evaluador (junto con `flojo` y `tramposo`). Representa una entrega de alta calidad, con evidencia verificable completa en las cinco dimensiones de la rúbrica:
+
+- `agente/evaluador.py` y `prompts/` (system y user prompt reales).
+- Tres corridas completas y reproducibles en `corridas/`, cada una con entrada, salida y metadatos.
+- `ANALISIS_ECONOMICO.md` y `GOBIERNO_RIESGO.md` desarrollados en profundidad.
+- `DECISIONES.md` que documenta iteraciones reales, no solo el resultado final.
+
+El propósito de este caso es comprobar que el agente evaluador reconozca y puntúe correctamente un trabajo sólido cuando las afirmaciones están respaldadas por artefactos verificables. La referencia humana previa fue 90/100; el agente asignó 91/100 (diferencia de 1 punto). Ver `calibracion.md` en la raíz del repositorio para el detalle completo del proceso y los resultados.
+
 ## Objetivo
 
 Este proyecto implementa un agente capaz de evaluar trabajos académicos mediante una rúbrica estructurada y evidencia verificable presente en el repositorio.
