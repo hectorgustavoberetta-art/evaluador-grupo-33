@@ -49,6 +49,41 @@ def leer_entrega(ruta):
             )
 
     return "".join(partes)
+
+
+def guardar_corrida(corridas_dir, caso, numero, ruta_caso, resultado):
+    corridas_dir.mkdir(exist_ok=True)
+
+    momento = datetime.now(
+        ZoneInfo("America/Santiago")
+    ).isoformat(timespec="seconds")
+
+    entrada = leer_entrega(ruta_caso)
+    archivo_corrida = corridas_dir / f"{caso}_corrida_{numero}.md"
+
+    contenido = f"""# Corrida de calibración
+
+- Caso: {caso}
+- Ejecución: {numero}
+- Fecha y hora: {momento}
+- Modelo: {resultado["modelo"]}
+- Tokens de entrada: {resultado["input_tokens"]}
+- Tokens de salida: {resultado["output_tokens"]}
+- Tokens totales: {resultado["total_tokens"]}
+
+## Entrada
+
+{entrada}
+
+## Salida del agente
+
+{resultado["texto"]}
+"""
+
+    archivo_corrida.write_text(
+        contenido,
+        encoding="utf-8"
+    )
 # ---------------------------------------------------------
 # CARGAR INSTRUCCIONES DEL AGENTE
 # ---------------------------------------------------------
@@ -165,6 +200,9 @@ if __name__ == "__main__":
     resultados_dir = REPO_DIR / "resultados"
     resultados_dir.mkdir(exist_ok=True)
 
+    corridas_dir = REPO_DIR / "corridas"
+    corridas_dir.mkdir(exist_ok=True)
+
     for caso in casos:
 
         print(f"\n{'=' * 60}")
@@ -182,6 +220,15 @@ if __name__ == "__main__":
 
             resultado = evaluar_trabajo(ruta_caso)
             resultados.append(resultado)
+
+            guardar_corrida(
+                corridas_dir,
+                caso,
+                numero,
+                ruta_caso,
+                resultado
+            )
+
             texto_resultado = resultado["texto"]
 
             coincidencia = re.search(
