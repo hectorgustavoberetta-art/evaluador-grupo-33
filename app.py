@@ -1,4 +1,3 @@
-resultado = eval
 import streamlit as st
 import tempfile
 import re
