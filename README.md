@@ -151,10 +151,20 @@ El proyecto incluye una interfaz web desarrollada con Streamlit para facilitar e
 La interfaz permite:
 
 1. Cargar uno o varios trabajos académicos.
-2. Evaluar cada trabajo de manera independiente.
-3. Aplicar automáticamente el control de fraude y la rúbrica ejecutable.
-4. Visualizar en pantalla el puntaje, nivel alcanzado, evidencias, fortalezas, aspectos a mejorar y recomendaciones.
-5. Descargar individualmente el resultado de cada evaluación.
+2. Cargar un repositorio completo mediante un archivo `.zip`, conservando su estructura de carpetas.
+3. Extraer el ZIP de forma segura en un directorio temporal, rechazando rutas que intenten salir del repositorio y enlaces simbólicos.
+4. Evaluar cada repositorio como una única entrega, utilizando todos sus archivos de texto compatibles.
+5. Aplicar automáticamente el control de fraude y la rúbrica ejecutable.
+6. Visualizar en pantalla el puntaje, las evidencias, fortalezas, aspectos a mejorar y recomendaciones.
+7. Descargar individualmente el resultado de cada evaluación.
+
+Para evaluar un repositorio desde la web:
+
+1. En GitHub, abrir el repositorio y elegir **Code → Download ZIP**.
+2. Subir ese archivo `.zip` en la aplicación.
+3. Presionar **Evaluar trabajos**.
+
+El ZIP debe contener el repositorio completo. No es necesario subir sus archivos por separado.
 
 Para iniciar la interfaz web:
 
