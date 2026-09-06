@@ -10,7 +10,7 @@
 
 ## Descripción del proyecto
 
-Este repositorio contiene un agente evaluador desarrollado para el parcial de la materia Programación de y con Agentes de IA del MBA UCEMA.
+Este repositorio contiene un agente evaluador desarrollado para el parcial de la materia Creación de Agentes de IA del MBA UCEMA.
 
 El agente tiene como objetivo evaluar trabajos académicos de manera objetiva, consistente y trazable, utilizando una rúbrica ejecutable como único criterio de evaluación.
 
