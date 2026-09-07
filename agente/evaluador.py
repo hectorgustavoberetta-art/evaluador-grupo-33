@@ -135,6 +135,8 @@ TRABAJO A EVALUAR:
 
     return {
         "texto": respuesta.output_text,
+        "entrada": trabajo,
+        "fecha_evaluacion": fecha_evaluacion,
         "modelo": respuesta.model,
         "input_tokens": respuesta.usage.input_tokens,
         "output_tokens": respuesta.usage.output_tokens,
