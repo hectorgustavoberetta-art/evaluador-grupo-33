@@ -19,7 +19,8 @@ El sistema lee los archivos de una entrega, analiza las evidencias disponibles, 
 
 ## Estructura del repositorio
 
-- `agente/`: contiene el código del evaluador y su system prompt.
+- `agente/`: contiene el código del evaluador.
+- `prompts/`: contiene el system prompt y el user prompt canónicos.
 - `casos/`: contiene los tres casos requeridos por la consigna (`excelente`, `flojo` y `tramposo`) y casos adicionales utilizados durante la calibración y las pruebas (`deficiente`, `intermedio`, `fraude` y `posible_fraude`).
 - `resultados/`: contiene los resultados resumidos obtenidos en las ejecuciones de calibración.
 - `corridas/`: contiene cada ejecución completa con fecha, entrada, salida y tokens.
