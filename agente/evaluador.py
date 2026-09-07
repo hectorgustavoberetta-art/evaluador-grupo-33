@@ -88,7 +88,7 @@ def guardar_corrida(corridas_dir, caso, numero, ruta_caso, resultado):
 # CARGAR INSTRUCCIONES DEL AGENTE
 # ---------------------------------------------------------
 
-system_prompt = leer_archivo(BASE_DIR / "system_prompt.md")
+system_prompt = leer_archivo(REPO_DIR / "prompts" / "system_prompt.md")
 rubrica = leer_archivo(REPO_DIR / "rubrica.md")
 formato_salida = leer_archivo(REPO_DIR / "formato_salida.md")
 user_prompt = leer_archivo(REPO_DIR / "prompts" / "user_prompt.md")
