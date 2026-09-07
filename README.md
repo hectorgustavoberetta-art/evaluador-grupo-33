@@ -27,6 +27,7 @@ El sistema lee los archivos de una entrega, analiza las evidencias disponibles, 
 - `calibracion.md`: documenta los resultados de calibración, el criterio humano, los desacuerdos detectados, los ajustes realizados y las conclusiones del proceso.
 - `rubrica.md`: contiene la rúbrica ejecutable utilizada por el agente.
 - `formato_salida.md`: define la estructura de la devolución.
+- `gobierno_riesgos.md`: documenta permisos, riesgos, fallas y supervisión humana.
 - `requirements.txt`: contiene las dependencias necesarias para ejecutar el proyecto.
 - `app.py`: contiene la interfaz web desarrollada con Streamlit, que permite cargar, evaluar y descargar uno o varios trabajos desde el navegador.
 
