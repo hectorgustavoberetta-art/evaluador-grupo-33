@@ -44,6 +44,10 @@ Como el uso principal es desde navegador, la interfaz ahora permite descargar la
 
 Se documentaron permisos, riesgos de privacidad, límites de ZIP, fallas posibles, control de fraude y revisión humana en `gobierno_riesgos.md`. Se decidió explicitar que el agente no ejecuta ni modifica el repositorio evaluado y que su resultado es orientativo hasta ser revisado por una persona.
 
+### 10. Análisis económico reproducible
+
+Se agregó `analisis_economico.md` con las fórmulas para calcular costo por corrida, proyección semanal y anual, y comparación con modelos de menor costo. Se decidió no inventar tarifas ni consumos: los valores deben completarse a partir de las corridas reales y las tarifas vigentes.
+
 ## Problemas detectados y estado
 
 - La aplicación web inicialmente aceptaba únicamente archivos sueltos; se resolvió mediante carga de ZIP.
