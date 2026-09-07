@@ -40,6 +40,10 @@ La rúbrica exige una carpeta `prompts/` con `system_prompt.md` y `user_prompt.m
 
 Como el uso principal es desde navegador, la interfaz ahora permite descargar la corrida completa de cada evaluación. El archivo incluye la entrada, salida, fecha, modelo y tokens, para poder conservarlo en `corridas/` como evidencia reproducible.
 
+### 9. Gobierno y supervisión
+
+Se documentaron permisos, riesgos de privacidad, límites de ZIP, fallas posibles, control de fraude y revisión humana en `gobierno_riesgos.md`. Se decidió explicitar que el agente no ejecuta ni modifica el repositorio evaluado y que su resultado es orientativo hasta ser revisado por una persona.
+
 ## Problemas detectados y estado
 
 - La aplicación web inicialmente aceptaba únicamente archivos sueltos; se resolvió mediante carga de ZIP.
