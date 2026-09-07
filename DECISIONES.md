@@ -32,6 +32,10 @@ La extracción rechaza rutas que intenten salir del directorio temporal y enlace
 
 Se incorporó el guardado de cada corrida de calibración en `corridas/`, incluyendo fecha, entrada, salida, modelo y tokens. Los resultados reales deben generarse ejecutando el modo de calibración y conservarse sin editar manualmente.
 
+### 7. Estructura canónica de prompts
+
+La rúbrica exige una carpeta `prompts/` con `system_prompt.md` y `user_prompt.md`. Se creó allí una copia controlada del system prompt y se actualizó el código para leer esa ubicación como fuente canónica. El archivo anterior en `agente/system_prompt.md` se conserva por compatibilidad.
+
 ## Problemas detectados y estado
 
 - La aplicación web inicialmente aceptaba únicamente archivos sueltos; se resolvió mediante carga de ZIP.
