@@ -36,6 +36,10 @@ Se incorporó el guardado de cada corrida de calibración en `corridas/`, incluy
 
 La rúbrica exige una carpeta `prompts/` con `system_prompt.md` y `user_prompt.md`. Se creó allí una copia controlada del system prompt y se actualizó el código para leer esa ubicación como fuente canónica. El archivo anterior en `agente/system_prompt.md` se conserva por compatibilidad.
 
+### 8. Descarga de corridas desde la interfaz
+
+Como el uso principal es desde navegador, la interfaz ahora permite descargar la corrida completa de cada evaluación. El archivo incluye la entrada, salida, fecha, modelo y tokens, para poder conservarlo en `corridas/` como evidencia reproducible.
+
 ## Problemas detectados y estado
 
 - La aplicación web inicialmente aceptaba únicamente archivos sueltos; se resolvió mediante carga de ZIP.
