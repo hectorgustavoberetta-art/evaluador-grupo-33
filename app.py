@@ -42,6 +42,26 @@ def extraer_zip_seguro(datos, destino):
     return destino
 
 
+def construir_corrida(archivo, resultado):
+    return f"""# Corrida de evaluación
+
+- Trabajo: {archivo.name}
+- Fecha: {resultado["fecha_evaluacion"]}
+- Modelo: {resultado["modelo"]}
+- Tokens de entrada: {resultado["input_tokens"]}
+- Tokens de salida: {resultado["output_tokens"]}
+- Tokens totales: {resultado["total_tokens"]}
+
+## Entrada
+
+{resultado["entrada"]}
+
+## Salida del agente
+
+{resultado["texto"]}
+"""
+
+
 # =========================================================
 # CONFIGURACIÓN GENERAL
 # =========================================================
@@ -921,6 +941,15 @@ if boton_evaluar:
                 key=
                 f"descarga_{archivo.name}",
 
+                use_container_width=True
+            )
+
+            st.download_button(
+                label="⬇ Descargar corrida completa",
+                data=construir_corrida(archivo, resultado),
+                file_name=f"{archivo.name}_corrida.md",
+                mime="text/markdown",
+                key=f"corrida_{archivo.name}",
                 use_container_width=True
             )
 
