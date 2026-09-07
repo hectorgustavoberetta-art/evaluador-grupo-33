@@ -28,6 +28,7 @@ El sistema lee los archivos de una entrega, analiza las evidencias disponibles, 
 - `rubrica.md`: contiene la rúbrica ejecutable utilizada por el agente.
 - `formato_salida.md`: define la estructura de la devolución.
 - `gobierno_riesgos.md`: documenta permisos, riesgos, fallas y supervisión humana.
+- `analisis_economico.md`: define mediciones, fórmulas y proyecciones de costo.
 - `requirements.txt`: contiene las dependencias necesarias para ejecutar el proyecto.
 - `app.py`: contiene la interfaz web desarrollada con Streamlit, que permite cargar, evaluar y descargar uno o varios trabajos desde el navegador.
 
