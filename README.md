@@ -162,6 +162,7 @@ La interfaz permite:
 5. Aplicar automáticamente el control de fraude y la rúbrica ejecutable.
 6. Visualizar en pantalla el puntaje, las evidencias, fortalezas, aspectos a mejorar y recomendaciones.
 7. Descargar individualmente el resultado de cada evaluación.
+8. Descargar también la corrida completa con entrada, salida, fecha y tokens para conservarla en `corridas/`.
 
 Para evaluar un repositorio desde la web:
 
