@@ -102,7 +102,23 @@ El resultado posterior coincidió con el criterio humano establecido previamente
 
 ---
 
-## 6. Comparación final
+## 6. Calibración final oficial
+
+Una vez realizados los ajustes, se ejecutaron nuevamente los tres casos obligatorios del parcial. Cada caso fue evaluado en tres ejecuciones independientes.
+
+| Caso | Ejecución 1 | Ejecución 2 | Ejecución 3 | Promedio final |
+|---|---:|---:|---:|---:|
+| Excelente | 92 | 90 | 91 | 91,00 |
+| Flojo | 22 | 18 | 18 | 19,33 |
+| Tramposo | 12 | 12 | 15 | 13,00 |
+
+En las tres ejecuciones del caso `tramposo` el agente mantuvo una calificación baja y activó el control correspondiente de `POSIBLE FRAUDE`, de acuerdo con el criterio establecido durante la calibración.
+
+Estos resultados constituyen la calibración final del agente y complementan las pruebas históricas y los ajustes documentados anteriormente.
+
+---
+
+## 7. Comparación final
 
 | Caso | Referencia humana previa | Resultado del agente | Resultado de calibración |
 |---|---|---|---|
@@ -113,7 +129,7 @@ El resultado posterior coincidió con el criterio humano establecido previamente
 
 ---
 
-## 7. Conclusión
+## 8. Conclusión
 
 La calibración final mostró una alta proximidad entre el criterio humano previo y las calificaciones producidas por el agente en los casos `flojo` y `excelente`.
 
