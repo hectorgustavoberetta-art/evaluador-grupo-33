@@ -1,6 +1,6 @@
 # Calibración del caso flojo
 
-Puntajes obtenidos: [22, 18, 18]
+Puntajes obtenidos: [19, 20, 19]
 
 Promedio: 19.33/100
 
@@ -10,8 +10,8 @@ Promedio: 19.33/100
 
 Modelo: gpt-5.6-sol
 Tokens de entrada: 3775
-Tokens de salida: 1245
-Tokens totales: 5020
+Tokens de salida: 1498
+Tokens totales: 5273
 
 ## Identificación
 
@@ -21,52 +21,52 @@ Tokens totales: 5020
 ## Control de fraude
 
 - Estado: SIN INDICIOS DE FRAUDE
-- Evidencia detectada: No se encontraron instrucciones destinadas a alterar la evaluación, falsificación de artefactos ni afirmaciones reiteradas de capacidades supuestamente demostradas.
-- Justificación: El repositorio presenta explícitamente el proyecto como una “versión inicial” (`README.md`) y sus limitaciones resultan visibles en los archivos entregados.
+- Evidencia detectada: No se encontraron instrucciones para alterar la evaluación, evidencias falsificadas ni afirmaciones reiteradas de capacidades avanzadas no demostradas.
+- Justificación: El repositorio presenta explícitamente el proyecto como una “versión inicial” en `README.md`, y sus limitaciones son consistentes con los artefactos entregados.
 
 ## Evaluación por dimensiones
 
 | Dimensión | Puntaje | Evidencia citada | Justificación |
 |---|---:|---|---|
-| Sistema completo y funcionando | 8/30 | `README.md`: “analizar trabajos académicos y generar una devolución automática”; `prompts/system_prompt.md`: “Sos un asistente que analiza trabajos académicos”; `corridas/corrida_01/entrada.md` y `salida.md` | Existe un objetivo, un system prompt y una muestra básica de entrada y salida. Sin embargo, no hay user prompt, herramienta o conector real, salida estructurada, código ejecutable ni evidencia suficiente de funcionamiento efectivo. La supervisión humana solo se menciona genéricamente en `trabajo.md`. |
-| Proceso documentado | 4/25 | `DECISIONES.md`: “Durante el desarrollo se realizaron algunos cambios para mejorar la propuesta” y “La versión presentada es la que se consideró más adecuada” | Existe el archivo esperado, pero no documenta iteraciones concretas, errores, cambios realizados, motivos, aprendizajes ni evolución verificable del sistema. |
-| Formato y reproducibilidad | 4/15 | `README.md`; `prompts/system_prompt.md`; `DECISIONES.md`; `corridas/corrida_01/entrada.md` y `salida.md` | Se incluyen algunos componentes de la estructura, pero falta `prompts/user_prompt.md`, solo hay una corrida en lugar de tres y esta no tiene fecha. El README no proporciona instrucciones de ejecución ni permite reconstruir el sistema sin ambigüedades. |
-| Análisis económico | 2/15 | `trabajo.md`, sección “Costos”: “El uso de inteligencia artificial puede generar costos asociados al consumo de tokens” | Solo existe una mención genérica a tokens y al uso de un modelo no demasiado costoso. No se identifica el modelo, no se estiman tokens de entrada y salida, costo por corrida ni proyecciones semanales o anuales, y tampoco se compara la adecuación de modelos. |
-| Gobierno y riesgo | 4/15 | `trabajo.md`, sección “Riesgos y supervisión”: “El sistema puede cometer errores” y “sería conveniente que una persona revise algunos resultados” | Se reconoce un riesgo general y la conveniencia de revisión humana. No se especifican datos y recursos utilizados, permisos, fallas previsibles, respuesta ante fallas, nivel de autonomía, decisiones que requieren revisión ni responsable de validar el resultado final. |
+| Sistema completo y funcionando | 7/30 | `README.md`: “utilizar inteligencia artificial para analizar trabajos académicos”; `prompts/system_prompt.md`: “Sos un asistente que analiza trabajos académicos”; `corridas/corrida_01/entrada.md` y `salida.md` | Existe un objetivo, un system prompt y una corrida básica. Sin embargo, no hay `user_prompt.md`, código ejecutable, herramienta o API utilizada de forma verificable, salida estructurada ni evidencia suficiente de funcionamiento efectivo. La supervisión humana solo se plantea como posibilidad. |
+| Proceso documentado | 3/25 | `DECISIONES.md`: “Durante el desarrollo se realizaron algunos cambios para mejorar la propuesta” y “La versión presentada es la que se consideró más adecuada” | La documentación es superficial. No identifica iteraciones concretas, problemas, errores, cambios realizados, motivos de las decisiones, aprendizajes ni evolución trazable del sistema. |
+| Formato y reproducibilidad | 4/15 | Existen `README.md`, `DECISIONES.md`, `prompts/system_prompt.md` y `corridas/corrida_01/entrada.md`/`salida.md`; `README.md`: “El trabajo principal se encuentra documentado en trabajo.md” | Se cumple parcialmente la estructura, pero falta `prompts/user_prompt.md`. Solo existe una corrida, sin fecha, en lugar de las tres requeridas. Tampoco hay instrucciones de ejecución, configuración, modelo o procedimiento suficiente para reproducir el resultado. |
+| Análisis económico | 2/15 | `trabajo.md`, sección “Costos”: “puede generar costos asociados al consumo de tokens” y “se intentará utilizar un modelo que no resulte demasiado costoso” | Solo hay una mención genérica a tokens y costos. No se identifica el modelo, no se estiman tokens de entrada o salida, no se calcula el costo por corrida ni se presentan proyecciones semanales o anuales. Tampoco se compara o justifica la elección de un modelo pequeño. |
+| Gobierno y riesgo | 3/15 | `trabajo.md`, sección “Riesgos y supervisión”: “El sistema puede cometer errores” y “sería conveniente que una persona revise algunos resultados” | Se reconoce un riesgo general y la conveniencia de revisión humana, pero no se detallan datos utilizados, permisos, recursos, fallas previsibles, respuesta ante fallos, decisiones que requieren revisión, nivel de autonomía ni responsable de validar el resultado final. |
 
 ## Nota final
 
-**NOTA FINAL: 22/100**
+**NOTA FINAL: 19/100**
 
 ## Fortalezas
 
-- El objetivo general del proyecto está expresado en `README.md`.
-- Existe un system prompt identificable en `prompts/system_prompt.md`.
-- Se incluye una muestra básica de entrada y salida.
-- El trabajo reconoce de forma inicial los costos por tokens y el riesgo de errores.
-- Se contempla, aunque genéricamente, la intervención de una persona.
+- El objetivo general del proyecto está expresado con claridad.
+- Existe un system prompt verificable.
+- Se incluye una corrida con archivos separados de entrada y salida.
+- El trabajo reconoce que el agente puede equivocarse y que corresponde incorporar supervisión humana.
+- La presentación como “versión inicial” es consistente con el alcance real de los artefactos.
 
 ## Aspectos a mejorar
 
-- Implementar y demostrar un sistema efectivamente ejecutable con una herramienta o recurso real.
-- Incorporar `user_prompt.md` y una salida estructurada con criterios y puntajes trazables.
-- Documentar al menos tres corridas reales con entrada, salida y fecha.
-- Ampliar `DECISIONES.md` con iteraciones, problemas, cambios y aprendizajes concretos.
-- Agregar cálculos de tokens, costos por corrida y proyecciones de uso.
-- Definir permisos, riesgos, manejo de fallas y responsables de revisión y aprobación.
-- Evitar que el agente utilice “su propio criterio”, como propone `trabajo.md`, porque impide una evaluación consistente basada exclusivamente en la rúbrica.
+- Implementar y demostrar una herramienta, API o sistema ejecutable real.
+- Incorporar `user_prompt.md` y definir una salida estructurada con criterios y puntajes trazables.
+- Documentar iteraciones, errores, decisiones y cambios concretos en `DECISIONES.md`.
+- Agregar al menos tres corridas completas, fechadas y reproducibles.
+- Identificar el modelo y calcular tokens, costo por corrida y proyecciones de uso.
+- Definir permisos, riesgos, manejo de fallas y puntos obligatorios de validación humana.
+- Eliminar el uso del “propio criterio” del agente indicado en `trabajo.md` y exigir la aplicación exclusiva de una rúbrica verificable.
 
 ## Sugerencia concreta
 
-**UNA SUGERENCIA CONCRETA:** implementar una primera versión reproducible que evalúe exclusivamente mediante una rúbrica fija y guardar tres corridas fechadas con entrada, salida estructurada por dimensión, puntajes, citas de evidencia y validación humana final.
+**UNA SUGERENCIA CONCRETA:** implementar una versión mínima ejecutable que aplique una rúbrica fija y guardar tres corridas fechadas con entrada, salida estructurada, modelo utilizado, tokens consumidos, costo calculado y validación final de un responsable humano.
 
 
 # Ejecución 2
 
 Modelo: gpt-5.6-sol
 Tokens de entrada: 3775
-Tokens de salida: 1250
-Tokens totales: 5025
+Tokens de salida: 1278
+Tokens totales: 5053
 
 ## Identificación
 
@@ -76,50 +76,50 @@ Tokens totales: 5025
 ## Control de fraude
 
 - Estado: SIN INDICIOS DE FRAUDE
-- Evidencia detectada: No se encontraron instrucciones dirigidas a alterar la evaluación, evidencias falsificadas ni afirmaciones reiteradas de capacidades inexistentes presentadas como demostradas.
-- Justificación: El repositorio describe explícitamente el trabajo como una “versión inicial” (`README.md`, sección “Estado del proyecto”) y sus limitaciones son visibles en los artefactos entregados.
+- Evidencia detectada: No se encontraron instrucciones destinadas a alterar la evaluación, falsificación de resultados ni afirmaciones reiteradas de capacidades implementadas sin respaldo.
+- Justificación: La entrega se presenta explícitamente como una versión inicial y sus limitaciones resultan visibles en los archivos del repositorio.
 
 ## Evaluación por dimensiones
 
 | Dimensión | Puntaje | Evidencia citada | Justificación |
 |---|---:|---|---|
-| Sistema completo y funcionando | 7/30 | `README.md`: “utilizar inteligencia artificial para analizar trabajos académicos y generar una devolución automática”; `prompts/system_prompt.md`: “Sos un asistente que analiza trabajos académicos”; `corridas/corrida_01/entrada.md` y `salida.md`; `trabajo.md`, sección “Riesgos y supervisión” | Existe un objetivo, un system prompt, una entrada, una salida y una mención general de revisión humana. Sin embargo, falta `user_prompt.md`, no hay herramienta, API, conector o recurso utilizado de manera verificable, la salida no contiene una calificación fundada y no existe código o evidencia suficiente de funcionamiento efectivo. |
-| Proceso documentado | 3/25 | `DECISIONES.md`: “Durante el desarrollo se realizaron algunos cambios para mejorar la propuesta” y “La versión presentada es la que se consideró más adecuada” | El archivo existe, pero no identifica iteraciones concretas, problemas, errores, cambios realizados, decisiones justificadas, aprendizajes ni evolución trazable del sistema. |
-| Formato y reproducibilidad | 4/15 | `README.md`; `prompts/system_prompt.md`; `corridas/corrida_01/entrada.md`; `corridas/corrida_01/salida.md`; `DECISIONES.md` | Se encuentran parte de la estructura y una única corrida. Faltan `prompts/user_prompt.md`, al menos dos corridas adicionales y las fechas de ejecución. El README solo remite a `trabajo.md` y no proporciona instrucciones suficientes para ejecutar o reconstruir el sistema. |
-| Análisis económico | 1/15 | `trabajo.md`, sección “Costos”: “El uso de inteligencia artificial puede generar costos asociados al consumo de tokens” | Solo existe una referencia genérica al costo. No se identifica el modelo, no se estiman tokens de entrada o salida, no se calcula el costo por corrida, no hay proyecciones de uso y tampoco se justifica la elección del modelo más pequeño adecuado. |
-| Gobierno y riesgo | 3/15 | `trabajo.md`, sección “Riesgos y supervisión”: “El sistema puede cometer errores” y “sería conveniente que una persona revise algunos resultados” | Se reconoce un riesgo general y se propone una revisión humana eventual. No se documentan datos y recursos utilizados, permisos, fallas específicas, comportamiento ante errores, límites de autonomía, decisiones que exigen revisión ni responsable de validar el resultado final. |
+| Sistema completo y funcionando | 7/30 | `README.md`, sección “Objetivo”; `prompts/system_prompt.md`; `corridas/corrida_01/entrada.md` y `salida.md`; `trabajo.md`, sección “Riesgos y supervisión” | Existe un objetivo, un system prompt y una corrida básica. Sin embargo, falta el user prompt, no hay herramientas o conectores reales, la salida no presenta una estructura de evaluación suficiente y la supervisión humana es vaga. La única corrida no demuestra de manera verificable un funcionamiento efectivo: contiene una entrada genérica y una respuesta sin nota, criterios ni evidencia. |
+| Proceso documentado | 3/25 | `DECISIONES.md`: “Durante el desarrollo se realizaron algunos cambios para mejorar la propuesta” y “La versión presentada es la que se consideró más adecuada” | La documentación afirma que hubo cambios, pero no identifica iteraciones, errores, decisiones concretas, modificaciones de alcance ni aprendizajes. No es posible reconstruir la evolución real del sistema. |
+| Formato y reproducibilidad | 4/15 | `README.md`; `prompts/system_prompt.md`; `corridas/corrida_01/entrada.md` y `salida.md`; `DECISIONES.md` | Están presentes el README, la carpeta de prompts, un system prompt, una corrida y el archivo de decisiones. Faltan `prompts/user_prompt.md`, tres corridas reales con fecha y procedimientos suficientes de instalación o ejecución. El README solo remite a `trabajo.md`, por lo que un tercero no puede reproducir el sistema. |
+| Análisis económico | 2/15 | `trabajo.md`, sección “Costos”: “El uso de inteligencia artificial puede generar costos asociados al consumo de tokens” y “Se intentará utilizar un modelo que no resulte demasiado costoso” | Solo se mencionan genéricamente tokens y costos. No se identifica el modelo, no se estiman tokens de entrada o salida, no se calcula el costo por corrida ni se realizan proyecciones semanales o anuales. Tampoco se compara o justifica verificablemente la elección del modelo. |
+| Gobierno y riesgo | 4/15 | `trabajo.md`, sección “Riesgos y supervisión”: “El sistema puede cometer errores” y “sería conveniente que una persona revise algunos resultados” | Se reconoce un riesgo general y se propone cierta revisión humana. No se definen sistemas y datos utilizados, permisos, fallas específicas, respuesta ante errores, nivel de autonomía, decisiones que requieren revisión ni responsable de validar el resultado final. |
 
 ## Nota final
 
-**NOTA FINAL: 18/100**
+**NOTA FINAL: 20/100**
 
 ## Fortalezas
 
-- El objetivo general del proyecto está expresado en `README.md`.
-- Existe un system prompt básico en `prompts/system_prompt.md`.
-- Se incluye una corrida con archivos separados de entrada y salida.
-- El trabajo reconoce de forma inicial tanto los costos por tokens como la posibilidad de errores y la necesidad de supervisión humana.
+- El objetivo general del sistema está expresado en `README.md`.
+- Existe un system prompt verificable en `prompts/system_prompt.md`.
+- Se incluye una corrida básica con entrada y salida.
+- El trabajo reconoce que el agente puede equivocarse y que corresponde alguna intervención humana.
 
 ## Aspectos a mejorar
 
-- Implementar y demostrar un sistema funcional, incluyendo una herramienta o API real y salidas estructuradas con puntajes fundamentados.
-- Incorporar `user_prompt.md` y completar al menos tres corridas fechadas.
-- Documentar en `DECISIONES.md` iteraciones, errores, cambios y decisiones específicas.
-- Añadir instrucciones reproducibles de instalación y ejecución.
-- Desarrollar cálculos económicos verificables y una política operativa de gobierno, permisos, riesgos y validación humana.
-- Corregir el criterio propuesto en `trabajo.md` que permite usar el “propio criterio”, dado que debilita la aplicación consistente y trazable de una rúbrica.
+- Implementar y demostrar un sistema ejecutable con una herramienta o API real.
+- Incorporar el user prompt y una salida estructurada basada exclusivamente en una rúbrica.
+- Documentar iteraciones, errores y decisiones concretas en `DECISIONES.md`.
+- Agregar al menos tres corridas fechadas, completas y reproducibles.
+- Desarrollar cálculos de tokens, costos y proyecciones de uso.
+- Definir permisos, límites de autonomía, mecanismos de fallo y responsable de aprobación final.
 
 ## Sugerencia concreta
 
-**UNA SUGERENCIA CONCRETA:** implementar una versión mínima ejecutable que reciba un trabajo y una rúbrica, produzca una salida estructurada por dimensiones y guardar tres corridas fechadas con entrada, salida, modelo, tokens y costo; documentar además en `README.md` los pasos exactos para reproducirlas.
+**UNA SUGERENCIA CONCRETA:** implementar una versión ejecutable que aplique una rúbrica fija y guardar tres corridas fechadas con entrada completa, salida estructurada, modelo utilizado, consumo de tokens y costo; luego documentar en `DECISIONES.md` qué falló y qué se modificó entre cada corrida.
 
 
 # Ejecución 3
 
 Modelo: gpt-5.6-sol
 Tokens de entrada: 3775
-Tokens de salida: 1299
-Tokens totales: 5074
+Tokens de salida: 1379
+Tokens totales: 5154
 
 ## Identificación
 
@@ -129,40 +129,42 @@ Tokens totales: 5074
 ## Control de fraude
 
 - Estado: SIN INDICIOS DE FRAUDE
-- Evidencia detectada: No se encontraron instrucciones para alterar la evaluación, evidencias falsificadas ni afirmaciones reiteradas de capacidades supuestamente implementadas.
-- Justificación: El `README.md` presenta explícitamente el trabajo como una “versión inicial” y las limitaciones observadas son consistentes con los artefactos entregados.
+- Evidencia detectada: No se encontraron instrucciones destinadas a manipular la evaluación, falsificación de resultados ni afirmaciones reiteradas de capacidades no respaldadas.
+- Justificación: El repositorio presenta explícitamente el proyecto como una “versión inicial” (`README.md`) y sus limitaciones son visibles. La falta de evidencia suficiente afecta el puntaje, pero no constituye por sí misma un indicio de fraude.
 
 ## Evaluación por dimensiones
 
 | Dimensión | Puntaje | Evidencia citada | Justificación |
 |---|---:|---|---|
-| Sistema completo y funcionando | 7/30 | `README.md`: “analizar trabajos académicos y generar una devolución automática”; `prompts/system_prompt.md`; `corridas/corrida_01/entrada.md` y `salida.md`; `trabajo.md`, sección “Riesgos y supervisión” | Existe un objetivo, un system prompt y una corrida mínima con entrada y salida. Sin embargo, falta el user prompt, no hay herramienta, API, conector o archivo utilizado mediante una implementación verificable, y la salida se limita a una afirmación genérica. Tampoco hay código o evidencia suficiente de funcionamiento efectivo. |
-| Proceso documentado | 3/25 | `DECISIONES.md`: “Durante el desarrollo se realizaron algunos cambios para mejorar la propuesta” | El archivo existe, pero no identifica iteraciones, errores, cambios concretos, decisiones técnicas, aprendizajes ni evolución trazable. La afirmación sobre los cambios no está acompañada por versiones o detalles verificables. |
-| Formato y reproducibilidad | 4/15 | `README.md`; `prompts/system_prompt.md`; `corridas/corrida_01/entrada.md`; `corridas/corrida_01/salida.md`; `DECISIONES.md` | Se incluyen parte de la estructura y una corrida. Falta `prompts/user_prompt.md`, solo existe una ejecución en lugar de tres, la corrida no tiene fecha y el README no proporciona instrucciones suficientes para ejecutar o reconstruir el sistema. |
-| Análisis económico | 1/15 | `trabajo.md`, sección “Costos”: “puede generar costos asociados al consumo de tokens” | Solo hay una mención genérica. No se identifica el modelo, no se estiman tokens de entrada o salida, no se calcula el costo por corrida, no hay proyecciones de uso y no se justifica la elección del modelo más pequeño adecuado. |
-| Gobierno y riesgo | 3/15 | `trabajo.md`, sección “Riesgos y supervisión”: “El sistema puede cometer errores” y “sería conveniente que una persona revise algunos resultados” | Se reconoce un riesgo general y la conveniencia de revisión humana. No se detallan datos y recursos utilizados, permisos, fallas previsibles, respuesta ante fallas, decisiones que requieren revisión, nivel de autonomía ni responsable de validar el resultado final. |
+| Sistema completo y funcionando | 8/30 | `README.md`: “utilizar inteligencia artificial para analizar trabajos académicos y generar una devolución automática”; `prompts/system_prompt.md`; `corridas/corrida_01/entrada.md` y `salida.md`; `trabajo.md`: “sería conveniente que una persona revise algunos resultados” | Existe un objetivo, un system prompt básico, una salida de ejemplo y una mención general de supervisión. Sin embargo, falta `user_prompt.md`, no hay código ejecutable ni herramienta, API, conector o archivo utilizado operativamente. La única corrida tiene una entrada y salida mínimas, sin evidencia suficiente de funcionamiento efectivo ni calificación estructurada. |
+| Proceso documentado | 3/25 | `DECISIONES.md`: “Durante el desarrollo se realizaron algunos cambios para mejorar la propuesta” y “La versión presentada es la que se consideró más adecuada” | Existe el archivo esperado, pero su contenido es superficial. No identifica iteraciones concretas, problemas, errores, cambios realizados, razones de las decisiones, aprendizajes ni evolución verificable del sistema. |
+| Formato y reproducibilidad | 4/15 | `README.md`; `prompts/system_prompt.md`; `corridas/corrida_01/entrada.md`; `corridas/corrida_01/salida.md`; `DECISIONES.md` | El repositorio incluye parte de la estructura requerida, pero falta `prompts/user_prompt.md`, solo existe una corrida en lugar de tres y esa corrida no incluye fecha. El README remite a `trabajo.md`, pero no proporciona instrucciones de ejecución, dependencias ni pasos suficientes para reproducir el sistema. |
+| Análisis económico | 1/15 | `trabajo.md`, sección “Costos”: “El uso de inteligencia artificial puede generar costos asociados al consumo de tokens. Se intentará utilizar un modelo que no resulte demasiado costoso.” | Solo se menciona genéricamente que existen costos por tokens. No se identifica el modelo, no se estiman tokens de entrada o salida, no se calcula el costo por corrida ni se presentan proyecciones semanales o anuales. Tampoco se justifica comparativamente la elección del modelo más pequeño adecuado. |
+| Gobierno y riesgo | 3/15 | `trabajo.md`, sección “Riesgos y supervisión”: “El sistema puede cometer errores” y “sería conveniente que una persona revise algunos resultados” | Se reconoce un riesgo general y se propone una revisión humana imprecisa. No se documentan los datos y recursos utilizados, permisos necesarios, tipos de fallas, respuesta ante fallos, decisiones sujetas a revisión, nivel de autonomía ni responsable de validar o firmar el resultado final. |
 
 ## Nota final
 
-**NOTA FINAL: 18/100**
+**NOTA FINAL: 19/100**
 
 ## Fortalezas
 
-- El objetivo general del sistema está expresado en el `README.md`.
-- Existe un system prompt identificable.
-- Se presenta una corrida con archivos separados de entrada y salida.
-- El trabajo reconoce de manera inicial la posibilidad de errores y la necesidad de supervisión humana.
+- El objetivo general del sistema está expresado claramente en `README.md`.
+- Existe un system prompt verificable en `prompts/system_prompt.md`.
+- Se incluye una corrida con archivos separados de entrada y salida.
+- El trabajo reconoce que el sistema puede equivocarse y que requiere algún grado de revisión humana.
+- El repositorio no presenta como terminado un sistema que describe explícitamente como una versión inicial.
 
 ## Aspectos a mejorar
 
-- Implementar y demostrar el uso real de una herramienta, API o recurso externo.
-- Incorporar el user prompt y una salida estructurada con criterios y puntajes trazables.
-- Documentar iteraciones, errores y decisiones concretas en `DECISIONES.md`.
-- Agregar al menos tres corridas fechadas y reproducibles.
-- Desarrollar cálculos de tokens, costos y proyecciones de uso.
-- Definir permisos, fallas, controles humanos y responsable final de aprobación.
-- Evitar el criterio discrecional propuesto en `trabajo.md` —“también puede utilizar su propio criterio”— y exigir la aplicación trazable de una rúbrica.
+- Implementar y demostrar un sistema realmente ejecutable, incluyendo una herramienta o API utilizada de manera verificable.
+- Incorporar `prompts/user_prompt.md` y definir una salida estructurada con puntajes, evidencia y justificaciones.
+- Documentar en `DECISIONES.md` iteraciones reales, errores, modificaciones y aprendizajes.
+- Agregar al menos tres corridas con entrada, salida y fecha.
+- Incluir instrucciones completas para que un tercero pueda reproducir las ejecuciones.
+- Desarrollar cálculos de tokens, costos por corrida y proyecciones de uso.
+- Definir permisos, riesgos específicos, manejo de fallas, nivel de autonomía y responsable de aprobación final.
+- Eliminar el uso del “propio criterio” del agente previsto en `trabajo.md` y exigir la aplicación trazable de una rúbrica.
 
 ## Sugerencia concreta
 
-**UNA SUGERENCIA CONCRETA:** implementar una versión ejecutable que reciba un trabajo y una rúbrica, genere una salida estructurada por criterios y guardar tres corridas fechadas —con entrada, salida, modelo, tokens y costo— junto con instrucciones exactas de reproducción en el `README.md`.
+**UNA SUGERENCIA CONCRETA:** implementar una primera versión ejecutable que aplique una rúbrica fija y guardar tres pruebas fechadas en `corridas/`, cada una con entrada, salida estructurada por criterios, evidencia citada, modelo utilizado, tokens consumidos y costo calculado.
