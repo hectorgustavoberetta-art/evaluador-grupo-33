@@ -814,11 +814,21 @@ with col_principal:
     unsafe_allow_html=True
     )
 
-    url_github = st.text_input(
-    "🔗 Repositorio público de GitHub",
-    placeholder="https://github.com/usuario/repositorio",
-    help="Pegá la dirección de un repositorio público de GitHub."
+    urls_github_texto = st.text_area(
+        "🔗 Repositorios públicos de GitHub",
+        placeholder=(
+            "https://github.com/usuario/repositorio1\n"
+            "https://github.com/usuario/repositorio2\n"
+            "https://github.com/usuario/repositorio3"
+        ),
+        help="Pegá una URL pública de GitHub por línea."
     )
+
+    urls_github = [
+        url.strip()
+        for url in urls_github_texto.splitlines()
+        if url.strip()
+    ]
 
     if archivos:
 
@@ -849,7 +859,7 @@ with col_principal:
     boton_evaluar = st.button(
         "▶  Evaluar trabajos",
         type="primary",
-        disabled=not archivos and not url_github.strip(),
+        disabled=not archivos and not urls_github,
         use_container_width=True
     )
 
@@ -901,9 +911,11 @@ if boton_evaluar:
 
     trabajos_a_evaluar = list(archivos or [])
 
-    if url_github.strip():
+    for url_github in urls_github:
         try:
-            with st.spinner("Descargando repositorio público desde GitHub..."):
+            with st.spinner(
+                f"Descargando repositorio desde GitHub: {url_github}"
+            ):
                 nombre_repo, datos_repo = descargar_repositorio_github(
                     url_github
                 )
@@ -918,7 +930,7 @@ if boton_evaluar:
 
         except ValueError as error:
             st.error(
-                f"No se pudo cargar el repositorio de GitHub: {error}"
+                f"No se pudo cargar {url_github}: {error}"
             )
 
     for archivo in trabajos_a_evaluar:
