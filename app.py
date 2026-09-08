@@ -1,6 +1,9 @@
 import io
+import json
 import re
 import tempfile
+import urllib.request
+import urllib.parse
 import zipfile
 from pathlib import Path
 
@@ -10,6 +13,108 @@ from agente.evaluador import evaluar_trabajo
 
 
 MAX_ZIP_BYTES = 50 * 1024 * 1024
+
+def descargar_repositorio_github(url):
+    """
+    Descarga un repositorio público de GitHub como archivo ZIP.
+    Devuelve: (nombre_repositorio, datos_zip)
+    """
+
+    url = url.strip()
+
+    parsed = urllib.parse.urlparse(url)
+
+    if parsed.scheme not in ("http", "https") or parsed.netloc.lower() != "github.com":
+        raise ValueError(
+            "La dirección debe corresponder a un repositorio público de GitHub."
+        )
+
+    partes = [p for p in parsed.path.strip("/").split("/") if p]
+
+    if len(partes) < 2:
+        raise ValueError(
+            "La dirección de GitHub no parece corresponder a un repositorio."
+        )
+
+    propietario = partes[0]
+    repositorio = partes[1]
+
+    if repositorio.endswith(".git"):
+        repositorio = repositorio[:-4]
+
+    api_url = (
+        f"https://api.github.com/repos/"
+        f"{propietario}/{repositorio}"
+    )
+
+    request_api = urllib.request.Request(
+        api_url,
+        headers={
+            "User-Agent": "Agente-Evaluador-Grupo-33"
+        }
+    )
+
+    try:
+        with urllib.request.urlopen(request_api, timeout=20) as respuesta:
+            datos_repo = json.loads(
+                respuesta.read().decode("utf-8")
+            )
+
+    except Exception as error:
+        raise ValueError(
+            "No se pudo acceder al repositorio. "
+            "Verificá que exista y sea público."
+        ) from error
+
+    rama = datos_repo.get("default_branch")
+
+    if not rama:
+        raise ValueError(
+            "No se pudo identificar la rama principal del repositorio."
+        )
+
+    rama_codificada = urllib.parse.quote(
+        rama,
+        safe=""
+    )
+
+    zip_url = (
+        f"https://codeload.github.com/"
+        f"{propietario}/{repositorio}/zip/refs/heads/"
+        f"{rama_codificada}"
+    )
+
+    request_zip = urllib.request.Request(
+        zip_url,
+        headers={
+            "User-Agent": "Agente-Evaluador-Grupo-33"
+        }
+    )
+
+    try:
+        with urllib.request.urlopen(request_zip, timeout=30) as respuesta:
+            datos_zip = respuesta.read(
+                MAX_ZIP_BYTES + 1
+            )
+
+    except Exception as error:
+        raise ValueError(
+            "No se pudo descargar el repositorio desde GitHub."
+        ) from error
+
+    if len(datos_zip) > MAX_ZIP_BYTES:
+        raise ValueError(
+            "El repositorio supera el límite permitido de 50 MB."
+        )
+
+    return repositorio, datos_zip
+class ArchivoGitHub:
+    def __init__(self, nombre, datos):
+        self.name = f"{nombre}.zip"
+        self._datos = datos
+
+    def getvalue(self):
+        return self._datos
 
 
 def extraer_zip_seguro(datos, destino):
@@ -703,7 +808,17 @@ with col_principal:
         ],
         accept_multiple_files=True
     )
+    
+    st.markdown(
+    "<div style='text-align:center; margin:12px 0; font-weight:600;'>O</div>",
+    unsafe_allow_html=True
+    )
 
+    url_github = st.text_input(
+    "🔗 Repositorio público de GitHub",
+    placeholder="https://github.com/usuario/repositorio",
+    help="Pegá la dirección de un repositorio público de GitHub."
+    )
 
     if archivos:
 
@@ -734,7 +849,7 @@ with col_principal:
     boton_evaluar = st.button(
         "▶  Evaluar trabajos",
         type="primary",
-        disabled=not archivos,
+        disabled=not archivos and not url_github.strip(),
         use_container_width=True
     )
 
@@ -784,7 +899,29 @@ if boton_evaluar:
     )
 
 
-    for archivo in archivos:
+    trabajos_a_evaluar = list(archivos or [])
+
+    if url_github.strip():
+        try:
+            with st.spinner("Descargando repositorio público desde GitHub..."):
+                nombre_repo, datos_repo = descargar_repositorio_github(
+                    url_github
+                )
+
+            trabajos_a_evaluar.append(
+                ArchivoGitHub(nombre_repo, datos_repo)
+            )
+
+            st.success(
+                f"✓ Repositorio GitHub descargado correctamente: {nombre_repo}"
+            )
+
+        except ValueError as error:
+            st.error(
+                f"No se pudo cargar el repositorio de GitHub: {error}"
+            )
+
+    for archivo in trabajos_a_evaluar:
 
         st.markdown(
             f'<div class="card">'
@@ -794,7 +931,6 @@ if boton_evaluar:
             unsafe_allow_html=True
         )
 
-
         with tempfile.TemporaryDirectory() as directorio_temporal:
             try:
                 if archivo.name.lower().endswith(".zip"):
@@ -803,20 +939,32 @@ if boton_evaluar:
                         Path(directorio_temporal) / "repositorio"
                     )
                     descripcion_trabajo = "repositorio completo"
+
                 else:
-                    ruta_trabajo = Path(directorio_temporal) / Path(archivo.name).name
-                    ruta_trabajo.write_bytes(archivo.getvalue())
+                    ruta_trabajo = (
+                        Path(directorio_temporal)
+                        / Path(archivo.name).name
+                    )
+
+                    ruta_trabajo.write_bytes(
+                        archivo.getvalue()
+                    )
+
                     descripcion_trabajo = "archivo individual"
 
                 with st.spinner(
                     f"Evaluando {archivo.name} ({descripcion_trabajo})..."
                 ):
-                    resultado = evaluar_trabajo(ruta_trabajo)
+                    resultado = evaluar_trabajo(
+                        ruta_trabajo
+                    )
 
             except (ValueError, zipfile.BadZipFile) as error:
-                st.error(f"No se pudo procesar {archivo.name}: {error}")
+                st.error(
+                    f"No se pudo procesar {archivo.name}: {error}"
+                )
                 continue
-                # ============================================================
+        # ============================================================
         # DATOS PARA EL DASHBOARD VISUAL
         # Solo interpreta el texto generado por el evaluador.
         # No modifica la evaluación ni recalcula puntajes.
