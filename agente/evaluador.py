@@ -196,7 +196,7 @@ if __name__ == "__main__":
 
         raise SystemExit
 
-    casos = ["deficiente", "intermedio", "excelente"]
+    casos = ["excelente", "flojo", "tramposo"]
     repeticiones = 3
 
     resultados_dir = REPO_DIR / "resultados"

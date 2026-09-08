@@ -1,254 +1,165 @@
 # Calibración del caso excelente
 
-Puntajes obtenidos: [87, 87, 89]
+Puntajes obtenidos: [92, 90, 91]
 
-Promedio: 87.67/100
+Promedio: 91.00/100
 
 
 
 # Ejecución 1
 
+Modelo: gpt-5.6-sol
+Tokens de entrada: 16894
+Tokens de salida: 1750
+Tokens totales: 18644
+
 ## Identificación
-- Trabajo evaluado: Trabajo práctico — Diseño de un agente evaluador con inteligencia artificial
-- Fecha de evaluación: 03/09/2026
 
-## Resultado
-- Puntaje total: 87/100
-- Nivel alcanzado: Intermedio
+- Trabajo evaluado: Sistema agéntico de evaluación académica
+- Fecha de evaluación: 08/09/2026
 
-## Evaluación por criterios
+## Control de fraude
 
-### Criterio 1
-- Criterio: Cumplimiento de la consigna
-- Puntaje obtenido: 24/25
-- Puntaje máximo: 25
-- Evidencia encontrada: El trabajo presenta el objetivo del agente, su arquitectura, metodología de evaluación, uso de la rúbrica, trazabilidad, consistencia, integración mediante API, seguridad de credenciales, implementación, calibración, reproducibilidad, limitaciones y formato de salida.
-- Justificación: La propuesta aborda de manera amplia los componentes necesarios para diseñar un agente evaluador objetivo, consistente y trazable. También contempla la ejecución mediante la API de OpenAI, la protección de credenciales y el uso de casos de calibración. No obstante, la entrega expone principalmente el diseño y describe archivos como `evaluador.py`, `requirements.txt`, `system_prompt.md`, `rubrica.md` y `formato_salida.md`, pero no incluye su contenido ni resultados concretos de ejecución. Esta omisión menor impide verificar el cumplimiento completo de la implementación declarada.
+- Estado: SIN INDICIOS DE FRAUDE
+- Evidencia detectada: Las referencias a fraude, manipulación y prompt injection aparecen en `DECISIONES.md`, `agente/system_prompt.md`, `prompts/system_prompt.md` y las salidas de `corridas/` como parte del diseño y prueba del mecanismo de control.
+- Justificación: No se encontraron instrucciones dirigidas a alterar esta evaluación ni evidencia concreta de falsificación deliberada. Los contenidos relacionados con fraude están contextualizados como documentación funcional del agente.
 
-### Criterio 2
-- Criterio: Calidad y profundidad del contenido
-- Puntaje obtenido: 22/25
-- Puntaje máximo: 25
-- Evidencia encontrada: Se desarrollan conceptos relevantes como la evaluación independiente de criterios, la relación “criterio → evidencia → justificación → puntaje”, los factores que influyen en el consumo de tokens, la seguridad de la clave mediante `OPENAI_API_KEY`, la reproducibilidad y las limitaciones propias de los modelos de lenguaje.
-- Justificación: El contenido es pertinente, completo en sus dimensiones principales y demuestra una comprensión sólida del problema. Resulta especialmente valiosa la consideración de trazabilidad, calibración, seguridad y reproducibilidad. Sin embargo, algunos aspectos técnicos podrían profundizarse: configuración concreta de la Responses API, selección del modelo, parámetros utilizados, validación de archivos, tratamiento de errores, control de respuestas incompletas y criterios para medir la consistencia entre ejecuciones.
+## Evaluación por dimensiones
 
-### Criterio 3
-- Criterio: Fundamentación y evidencia
-- Puntaje obtenido: 15/20
-- Puntaje máximo: 20
-- Evidencia encontrada: El trabajo fundamenta decisiones como el uso exclusivo de una rúbrica, la separación de los componentes en archivos, el empleo de variables de entorno para proteger la clave, la utilización de tres casos de calibración y la necesidad de documentar dependencias para favorecer la reproducibilidad.
-- Justificación: Las decisiones metodológicas están explicadas y vinculadas con objetivos concretos como reducir la arbitrariedad, proteger credenciales y permitir la revisión de las evaluaciones. Sin embargo, no se aportan evidencias empíricas que permitan comprobar varias afirmaciones: no se presentan fragmentos del código, salidas generadas, resultados numéricos de los casos de calibración, registros de ejecución ni comparación entre múltiples evaluaciones. Por lo tanto, la fundamentación conceptual es adecuada, pero la evidencia de implementación y validación es limitada.
+| Dimensión | Puntaje | Evidencia citada | Justificación |
+|---|---:|---|---|
+| Sistema completo y funcionando | 30/30 | `README.md`, secciones “Objetivo” y “Funcionamiento”; `agente/evaluador.py`, funciones `leer_entrega()` y `evaluar_trabajo()` y llamada a `client.responses.create()`; `prompts/system_prompt.md`; `prompts/user_prompt.md`; `formato_salida.md`; `GOBIERNO_RIESGO.md`, secciones “Supervisión humana” y “Validación final”; `corridas/corrida_01/`, `corridas/corrida_02/` y `corridas/corrida_03/` | Se verifican objetivo, ambos prompts, lectura recursiva de archivos, integración con la API, salida estructurada y supervisión humana. Las tres corridas contienen salidas completas y metadatos con modelo y tokens, aportando evidencia de funcionamiento efectivo. |
+| Proceso documentado | 23/25 | `DECISIONES.md`, iteraciones 1 a 6, con apartados “Problema detectado” y “Decisión”; `agente/evaluador.py`, fallback `cp1252`, lectura recursiva y modos de calibración y evaluación | Se documentan seis iteraciones con problemas, decisiones y evolución, varias de ellas respaldadas por la implementación actual. Faltan fechas, versiones anteriores y resultados comparativos que permitan reconstruir con mayor profundidad cada transición. |
+| Formato y reproducibilidad | 10/15 | `README.md`; `prompts/system_prompt.md`; `prompts/user_prompt.md`; `DECISIONES.md`; `corridas/corrida_01/`, `corridas/corrida_02/` y `corridas/corrida_03/`; `trabajo.md`, sección “Reproducibilidad”; `agente/evaluador.py`, bloque principal | Están presentes la estructura obligatoria y tres corridas con fecha, entrada, salida y metadatos. Sin embargo, cada `entrada.md` solo referencia `casos/excelente` y ese contenido no fue incluido, por lo que no puede reconstruirse la entrada completa. Además, la instrucción `python agente/evaluador.py` activa por defecto calibración, pero no se entregan las carpetas `casos/`, y tampoco se explica de forma suficiente el uso de `--modo evaluacion` y `trabajos_a_evaluar/`. |
+| Análisis económico | 14/15 | `ANALISIS_ECONOMICO.md`, secciones “Mediciones reales”, “Proyección de uso”, “Criterio de selección del modelo” y “Trazabilidad”; `corridas/corrida_01/METADATOS.md`, `corrida_02/METADATOS.md` y `corrida_03/METADATOS.md` | El análisis registra tokens de entrada y salida, modelo utilizado, precios de referencia, fórmula, costo individual y promedio, y proyecciones semanal y anual. También considera el principio del modelo más pequeño adecuado. Se descuenta un punto porque no se aporta una fuente verificable para las tarifas ni una calibración comparativa que respalde concretamente la elección frente a modelos menores. |
+| Gobierno y riesgo | 15/15 | `GOBIERNO_RIESGO.md`, secciones “Sistemas y recursos utilizados”, “Permisos”, “Riesgos identificados”, “Respuesta ante fallas”, “Supervisión humana”, “Nivel de autonomía” y “Validación final” | Se identifican recursos, permisos, protección de credenciales, riesgos, posibles fallas y respuestas previstas. También se definen los casos de revisión humana, el nivel de autonomía y el docente o responsable académico como validador final. |
 
-### Criterio 4
-- Criterio: Estructura, claridad y coherencia
-- Puntaje obtenido: 15/15
-- Puntaje máximo: 15
-- Evidencia encontrada: El trabajo está organizado en quince secciones numeradas, desde la introducción hasta la conclusión. Emplea listas para describir objetivos, componentes, etapas metodológicas, acciones de implementación y pasos de reproducción.
-- Justificación: La estructura es clara, ordenada y fácil de seguir. Existe coherencia entre el objetivo inicial, la arquitectura propuesta, la metodología, la implementación y la conclusión. El vocabulario es preciso y los conceptos centrales se mantienen consistentemente a lo largo del documento.
+## Nota final
 
-### Criterio 5
-- Criterio: Uso adecuado de herramientas, metodología y documentación
-- Puntaje obtenido: 11/15
-- Puntaje máximo: 15
-- Evidencia encontrada: Se describe el uso de Python, el SDK oficial de OpenAI, la Responses API, Git, GitHub Codespaces, variables de entorno, secretos del repositorio y un archivo `requirements.txt`. También se propone una metodología de ocho etapas y un procedimiento de reproducción mediante `python agente/evaluador.py`.
-- Justificación: Las herramientas y la metodología seleccionadas son adecuadas para el propósito del proyecto, y la documentación conceptual permite comprender el flujo general de funcionamiento. No obstante, no se incluyen los archivos técnicos mencionados, instrucciones de instalación detalladas, versiones de dependencias, manejo de excepciones, ejemplo de configuración ni evidencia de una ejecución exitosa. Tampoco se documentan resultados efectivos de calibración. En consecuencia, el uso descrito es apropiado, pero la documentación verificable de la implementación resulta incompleta.
+**NOTA FINAL: 92/100**
 
 ## Fortalezas
 
-- Define con claridad el objetivo y las responsabilidades del agente evaluador.
-- Establece una relación explícita y trazable entre criterio, evidencia, justificación y puntaje.
-- Propone una arquitectura modular que separa instrucciones, rúbrica, formato de salida y código.
-- Considera adecuadamente la seguridad de la clave de API mediante variables de entorno.
-- Incluye aspectos relevantes de reproducibilidad, control de costos y consumo de tokens.
-- Reconoce las limitaciones de los modelos de lenguaje y preserva la intervención docente.
-- Presenta una organización clara, coherente y fácil de revisar.
+- Sistema implementado con lectura recursiva, integración con la API y salidas estructuradas.
+- Tres ejecuciones con fecha, salida completa y mediciones de tokens.
+- Proceso organizado en iteraciones vinculadas con problemas y decisiones concretas.
+- Análisis económico cuantitativo con costos unitarios y proyecciones.
+- Gobierno, riesgos y responsabilidad humana definidos de forma completa.
 
 ## Aspectos a mejorar
 
-- Falta incorporar el contenido de los archivos técnicos mencionados, especialmente `evaluador.py` y `requirements.txt`.
-- No se presentan resultados concretos de los tres casos de calibración.
-- No hay evidencia de ejecuciones reales ni ejemplos de respuestas producidas por el agente.
-- La integración con la Responses API se describe de forma general, sin detallar parámetros, modelo utilizado o procesamiento de la respuesta.
-- No se documenta el manejo de errores, como archivos inexistentes, ausencia de la variable de entorno, fallas de red o respuestas inválidas.
-- No se define una métrica concreta para determinar si el agente mantiene consistencia entre distintas ejecuciones.
+- Las entradas de las corridas no conservan el contenido íntegro de `casos/excelente`.
+- No se incluyen las carpetas requeridas por los modos de calibración y evaluación.
+- Las instrucciones no detallan los comandos, argumentos y estructura de directorios necesarios.
+- El análisis económico no cita la fuente de precios ni presenta una comparación empírica con modelos menores.
+- El historial de decisiones no incluye fechas, artefactos de versiones anteriores o resultados comparativos.
 
-## Recomendaciones
+## Sugerencia concreta
 
-1. Adjuntar el código completo de `evaluador.py` y los restantes archivos que conforman la arquitectura.
-2. Incorporar un ejemplo reproducible de ejecución, incluyendo comando utilizado, entrada y salida obtenida.
-3. Presentar una tabla con los puntajes reales de los casos deficiente, intermedio y excelente, verificando el orden esperado.
-4. Ejecutar cada caso varias veces y comparar los puntajes para medir la variabilidad del agente.
-5. Documentar el modelo, los parámetros de generación y la forma de recuperar y validar la respuesta de la API.
-6. Incorporar manejo de excepciones y mensajes claros para errores de configuración, lectura de archivos y comunicación con la API.
-7. Especificar versiones de Python y dependencias en `requirements.txt`, junto con instrucciones completas de instalación.
-8. Añadir pruebas automatizadas que verifiquen el cálculo del total, los puntajes máximos y la presencia de todas las secciones obligatorias.
-
-## Conclusión
-
-El trabajo presenta un diseño sólido, claro y metodológicamente pertinente para un agente evaluador académico. Se destacan la trazabilidad, la arquitectura modular, la seguridad de credenciales y la consideración de la reproducibilidad. Sin embargo, la ausencia de código, resultados de ejecución y datos efectivos de calibración limita la verificación de la implementación y de su consistencia real. Por ello, alcanza un nivel **Intermedio**, cercano al nivel superior, pero requiere mayor evidencia técnica y experimental.
+**UNA SUGERENCIA CONCRETA:** incorporar en cada carpeta de `corridas/` una copia íntegra e inmutable de la entrada evaluada y documentar en el `README.md` el comando exacto, el modo utilizado, la estructura de carpetas requerida y las variables necesarias para reproducir cada ejecución.
 
 
 # Ejecución 2
 
+Modelo: gpt-5.6-sol
+Tokens de entrada: 16894
+Tokens de salida: 1699
+Tokens totales: 18593
+
 ## Identificación
-- Trabajo evaluado: Trabajo práctico — Diseño de un agente evaluador con inteligencia artificial
-- Fecha de evaluación: 03/09/2026
 
-## Resultado
-- Puntaje total: 87/100
-- Nivel alcanzado: Intermedio
+- Trabajo evaluado: Sistema agéntico de evaluación académica
+- Fecha de evaluación: 08/09/2026
 
-## Evaluación por criterios
+## Control de fraude
 
-### Criterio 1
+- Estado: SIN INDICIOS DE FRAUDE
+- Evidencia detectada: Las referencias a fraude, prompt injection e instrucciones de evaluación aparecen en `DECISIONES.md`, `agente/system_prompt.md`, `prompts/system_prompt.md` y las salidas de `corridas/` como componentes documentados del sistema evaluador.
+- Justificación: No se encontraron instrucciones dirigidas a alterar esta evaluación ni a obtener una calificación determinada. El contenido mencionado forma parte de la implementación y prueba del control de fraude.
 
-- Criterio: Cumplimiento de la consigna
-- Puntaje obtenido: 23/25
-- Puntaje máximo: 25
-- Evidencia encontrada: El trabajo desarrolla el objetivo, la arquitectura, la metodología de evaluación, el uso de la rúbrica, la trazabilidad, la consistencia, la integración mediante API, la seguridad de credenciales, las pruebas, la reproducibilidad, las limitaciones y el formato de salida. También identifica los archivos `system_prompt.md`, `rubrica.md`, `formato_salida.md` y `evaluador.py`.
-- Justificación: La propuesta aborda de manera amplia y pertinente el diseño de un agente evaluador. Incluye los principales componentes funcionales y técnicos esperables. No obstante, la entrega presenta principalmente una descripción del sistema: no incorpora el contenido efectivo de `evaluador.py`, los archivos mencionados ni resultados concretos de ejecución. Esta ausencia impide verificar el cumplimiento completo de la implementación descripta.
+## Evaluación por dimensiones
 
-### Criterio 2
+| Dimensión | Puntaje | Evidencia citada | Justificación |
+|---|---:|---|---|
+| Sistema completo y funcionando | 28/30 | `README.md`, secciones “Objetivo”, “Funcionamiento” y “Supervisión”; `prompts/system_prompt.md`; `prompts/user_prompt.md`; `agente/evaluador.py`, funciones `leer_entrega()` y `evaluar_trabajo()` y llamada a `client.responses.create()`; `formato_salida.md`; `corridas/corrida_01/`, `corridas/corrida_02/` y `corridas/corrida_03/` | Se verifican objetivo, ambos prompts, lectura recursiva de archivos, uso de la API de OpenAI, salida estructurada, supervisión humana y tres salidas acompañadas por metadatos de ejecución. Se descuentan puntos porque las entradas guardadas solo identifican `casos/excelente`, cuyo contenido no fue incluido, por lo que no puede comprobarse integralmente la correspondencia entre cada entrada y su salida. |
+| Proceso documentado | 23/25 | `DECISIONES.md`, iteraciones 1 a 6, con apartados “Problema detectado” y “Decisión”; `agente/evaluador.py`, fallback de codificación `cp1252`, lectura recursiva y modos de ejecución | Se documentan seis iteraciones con problemas, decisiones, cambios de alcance y evolución técnica, varias de ellas respaldadas por el código actual. Faltan fechas, versiones anteriores y resultados comparativos que permitan reconstruir con mayor profundidad cada modificación. |
+| Formato y reproducibilidad | 10/15 | `README.md`; `prompts/system_prompt.md`; `prompts/user_prompt.md`; `DECISIONES.md`; `corridas/corrida_01/`, `corridas/corrida_02/` y `corridas/corrida_03/`; `trabajo.md`, sección “Reproducibilidad”; `agente/evaluador.py`, bloque de ejecución principal | La estructura obligatoria está mayormente presente y existen tres carpetas con entrada, salida, fecha y metadatos. Sin embargo, las entradas no conservan el contenido evaluado y no se incluye `casos/excelente`, por lo que las corridas no pueden reconstruirse. Además, las instrucciones indican `python agente/evaluador.py`, que ejecuta por defecto calibración y requiere carpetas `casos/` no presentes; tampoco se explica el uso de `--modo evaluacion` ni la preparación de `trabajos_a_evaluar/`. |
+| Análisis económico | 14/15 | `ANALISIS_ECONOMICO.md`, secciones “Mediciones reales”, “Proyección de uso”, “Criterio de selección del modelo” y “Trazabilidad”; `corridas/corrida_01/METADATOS.md`, `corridas/corrida_02/METADATOS.md` y `corridas/corrida_03/METADATOS.md` | Se informan tokens de entrada y salida para tres corridas, modelo solicitado y utilizado, tarifas de referencia, fórmula, costo unitario, promedio y proyecciones semanal y anual. También se considera explícitamente el principio de usar el modelo más pequeño adecuado. Se descuenta un punto porque no se presenta una calibración comparativa con modelos menores que respalde empíricamente la elección. |
+| Gobierno y riesgo | 15/15 | `GOBIERNO_RIESGO.md`, secciones “Sistemas y recursos utilizados”, “Permisos”, “Riesgos identificados”, “Respuesta ante fallas”, “Supervisión humana”, “Nivel de autonomía” y “Validación final” | Se identifican recursos, permisos, protección de credenciales, riesgos previsibles, respuestas ante fallas, casos que requieren revisión humana, nivel de autonomía y responsable de validación final. La estrategia de supervisión es concreta y operativa. |
 
-- Criterio: Calidad y profundidad del contenido
-- Puntaje obtenido: 23/25
-- Puntaje máximo: 25
-- Evidencia encontrada: Se explica una metodología de ocho etapas, la relación de trazabilidad “criterio → evidencia → justificación → puntaje”, la calibración mediante tres niveles de trabajos, el uso de la Responses API, la protección de `OPENAI_API_KEY`, el consumo de tokens, la reproducibilidad y las limitaciones propias de los modelos de lenguaje.
-- Justificación: El contenido es completo, pertinente y demuestra una comprensión sólida tanto del proceso de evaluación como de sus implicancias técnicas. Se destaca la consideración de consistencia, seguridad, costos, calibración y supervisión docente. La profundidad podría incrementarse mediante detalles técnicos sobre la construcción de la solicitud, parámetros del modelo, manejo de errores, validación de la salida y almacenamiento de resultados.
+## Nota final
 
-### Criterio 3
-
-- Criterio: Fundamentación y evidencia
-- Puntaje obtenido: 15/20
-- Puntaje máximo: 20
-- Evidencia encontrada: El trabajo fundamenta decisiones como el uso de una rúbrica explícita para reducir la arbitrariedad, la inclusión de evidencia para asegurar trazabilidad, la utilización de variables de entorno para evitar la exposición de credenciales y los casos de calibración para comprobar la discriminación entre niveles.
-- Justificación: Existe una fundamentación adecuada y coherente de las decisiones de diseño. Sin embargo, gran parte de la evidencia es declarativa: se afirma que el programa lee archivos, utiliza la API, protege la clave y ejecuta casos de calibración, pero no se presentan fragmentos de código, registros de ejecución, salidas obtenidas, puntajes de los casos ni comparaciones que demuestren esas afirmaciones. Por ello, la fundamentación no alcanza el nivel máximo de evidencia verificable.
-
-### Criterio 4
-
-- Criterio: Estructura, claridad y coherencia
-- Puntaje obtenido: 15/15
-- Puntaje máximo: 15
-- Evidencia encontrada: El documento está organizado en quince secciones numeradas, con títulos descriptivos, enumeraciones de pasos, listas de componentes y una conclusión consistente con los objetivos iniciales.
-- Justificación: La estructura es clara, ordenada y fácil de seguir. Existe una progresión coherente desde el propósito general hasta la arquitectura, implementación, pruebas, reproducibilidad y limitaciones. La terminología se utiliza de manera consistente y no se observan contradicciones relevantes.
-
-### Criterio 5
-
-- Criterio: Uso adecuado de herramientas, metodología y documentación
-- Puntaje obtenido: 11/15
-- Puntaje máximo: 15
-- Evidencia encontrada: Se documentan el uso de Python, el SDK oficial de OpenAI, la Responses API, Git, GitHub Codespaces, secretos del repositorio, la variable `OPENAI_API_KEY`, `requirements.txt` y el comando `python agente/evaluador.py`. También se describe una metodología de evaluación y calibración.
-- Justificación: Las herramientas y la metodología propuestas son adecuadas para el objetivo y se incluyen instrucciones generales de reproducción. No obstante, la documentación es incompleta para comprobar el funcionamiento real: no se presenta el código fuente, el contenido de `requirements.txt`, la estructura completa del repositorio, las versiones de dependencias, el tratamiento de excepciones ni evidencias de las pruebas ejecutadas. En consecuencia, el uso técnico resulta correctamente planteado, pero no completamente demostrado.
+**NOTA FINAL: 90/100**
 
 ## Fortalezas
 
-- Presenta una metodología de evaluación explícita y ordenada.
-- Define claramente la relación entre criterio, evidencia, justificación y puntaje.
-- Considera la consistencia entre distintas evaluaciones y propone casos de calibración.
-- Incluye medidas adecuadas para proteger la clave de la API.
-- Contempla el consumo de tokens y la necesidad de evitar redundancias.
-- Incorpora instrucciones básicas de reproducibilidad.
-- Reconoce de forma pertinente las limitaciones de los modelos de lenguaje y la importancia de la supervisión docente.
-- Mantiene una estructura clara y una redacción coherente.
+- Implementación técnica verificable de lectura recursiva, manejo alternativo de codificación e integración con la API.
+- Tres salidas estructuradas con fechas y metadatos de modelo y tokens.
+- Proceso de construcción organizado en iteraciones, problemas y decisiones.
+- Análisis económico numérico y trazable a los metadatos de las corridas.
+- Definición completa de permisos, riesgos, fallas, autonomía y validación humana.
 
 ## Aspectos a mejorar
 
-- Falta incluir el código de `evaluador.py` o fragmentos suficientes para comprobar la implementación.
-- No se presentan resultados reales de los tres casos de calibración.
-- No se demuestra empíricamente que se cumpla la relación “Deficiente < Intermedio < Excelente”.
-- No se documentan el modelo utilizado, sus parámetros de configuración ni las versiones de las dependencias.
-- Falta explicar el manejo de errores de API, archivos inexistentes, credenciales ausentes y respuestas con formato incorrecto.
-- No se especifica cómo se valida automáticamente que los puntajes no superen los máximos y que la suma total sea correcta.
-- Las afirmaciones técnicas se apoyan principalmente en descripciones, sin registros, capturas, pruebas o salidas verificables.
+- Las corridas no conservan el contenido completo de las entradas y el caso `casos/excelente` no está disponible.
+- Las instrucciones de ejecución no explican los modos, comandos y carpetas requeridos por el código.
+- El historial no incluye fechas, versiones anteriores ni resultados comparativos de las iteraciones.
+- La elección del modelo no está respaldada por una calibración efectiva frente a modelos más pequeños.
 
-## Recomendaciones
+## Sugerencia concreta
 
-1. Incorporar el código completo de `evaluador.py` o anexarlo mediante un enlace verificable al repositorio.
-2. Presentar una tabla con los puntajes obtenidos por cada caso de calibración, desglosados por criterio.
-3. Incluir ejemplos reales de entrada y salida que permitan verificar el respeto por el formato obligatorio.
-4. Documentar el modelo, los parámetros de generación, las versiones de Python y del SDK, y el contenido de `requirements.txt`.
-5. Agregar validaciones programáticas para controlar puntajes máximos, suma total, nivel alcanzado y presencia de todas las secciones requeridas.
-6. Implementar y documentar el manejo de excepciones, límites de uso, reintentos y respuestas incompletas de la API.
-7. Registrar métricas de las pruebas, como consistencia de puntajes, cumplimiento del formato y consumo de tokens.
-8. Explicar con precisión cómo se determina e incorpora la zona horaria utilizada para la fecha de evaluación.
-
-## Conclusión
-
-El trabajo presenta un diseño sólido, claro y bien organizado de un agente evaluador, con especial atención a la trazabilidad, consistencia, seguridad y reproducibilidad. Demuestra una comprensión amplia del problema y propone herramientas apropiadas. Sin embargo, la falta de código, resultados de calibración y evidencias de ejecución impide verificar completamente la implementación y limita la fundamentación técnica. Por estas razones, alcanza un nivel **Intermedio** con 87/100 puntos.
+**UNA SUGERENCIA CONCRETA:** agregar a cada carpeta de `corridas/` una copia íntegra e inmutable del repositorio de entrada y un archivo con el comando exacto utilizado —incluyendo modo, variables y estructura de carpetas— para que un tercero pueda reconstruir las tres ejecuciones sin depender de archivos ausentes.
 
 
 # Ejecución 3
 
+Modelo: gpt-5.6-sol
+Tokens de entrada: 16894
+Tokens de salida: 2023
+Tokens totales: 18917
+
 ## Identificación
-- Trabajo evaluado: Trabajo práctico — Diseño de un agente evaluador con inteligencia artificial
-- Fecha de evaluación: 03/09/2026
 
-## Resultado
-- Puntaje total: 89/100
-- Nivel alcanzado: Intermedio
+- Trabajo evaluado: Sistema agéntico de evaluación académica
+- Fecha de evaluación: 08/09/2026
 
-## Evaluación por criterios
+## Control de fraude
 
-### Criterio 1
-- Criterio: Cumplimiento de la consigna
-- Puntaje obtenido: 24
-- Puntaje máximo: 25
-- Evidencia encontrada: El trabajo desarrolla el objetivo, la arquitectura, la metodología de evaluación, el uso de la rúbrica, la trazabilidad, la consistencia, la integración mediante API, la seguridad de credenciales, las pruebas, la reproducibilidad, las limitaciones y el formato de salida.
-- Justificación: La propuesta aborda de manera amplia y coherente el diseño de un agente evaluador. También contempla los requisitos centrales de objetividad, consistencia y trazabilidad. No se otorga el puntaje máximo porque la entrega describe la implementación, pero no incluye los archivos o artefactos mencionados —como `evaluador.py`, `requirements.txt` y los casos de calibración— que permitirían comprobar completamente su cumplimiento.
+- Estado: SIN INDICIOS DE FRAUDE
+- Evidencia detectada: No se encontraron instrucciones dirigidas a ignorar la rúbrica, alterar la calificación o manipular esta evaluación. Las referencias a fraude y prompt injection en `DECISIONES.md`, `agente/system_prompt.md` y `prompts/system_prompt.md` corresponden al diseño del mecanismo de control.
+- Justificación: Las capacidades principales declaradas están respaldadas por código, prompts, salidas y metadatos. Las limitaciones de reproducibilidad detectadas no constituyen evidencia concreta de fraude.
 
-### Criterio 2
-- Criterio: Calidad y profundidad del contenido
-- Puntaje obtenido: 23
-- Puntaje máximo: 25
-- Evidencia encontrada: Se explican los cuatro componentes de la arquitectura, una metodología de ocho etapas, la relación «criterio → evidencia → justificación → puntaje», el uso de tres casos de calibración, la seguridad mediante `OPENAI_API_KEY`, el consumo de tokens y las limitaciones de los modelos de lenguaje.
-- Justificación: El contenido es pertinente, completo y demuestra una comprensión sólida del problema. Se destacan la consideración de la reproducibilidad y el reconocimiento de que el agente no debe sustituir el juicio docente en situaciones ambiguas. Sin embargo, algunos componentes técnicos podrían desarrollarse con mayor profundidad, especialmente la construcción de la solicitud a la API, el tratamiento de errores, la configuración del modelo y los mecanismos para medir la consistencia.
+## Evaluación por dimensiones
 
-### Criterio 3
-- Criterio: Fundamentación y evidencia
-- Puntaje obtenido: 16
-- Puntaje máximo: 20
-- Evidencia encontrada: El trabajo fundamenta sus decisiones mediante explicaciones sobre el uso exclusivo de la rúbrica, la separación de criterios, la necesidad de localizar evidencia, la calibración con tres niveles y el resguardo de la clave mediante una variable de entorno.
-- Justificación: Existe una fundamentación conceptual adecuada y las decisiones de diseño se relacionan con los objetivos de objetividad, trazabilidad y reproducibilidad. No obstante, varias afirmaciones sobre la implementación y las pruebas no están acompañadas por evidencia verificable, como fragmentos de código, resultados de ejecución, puntajes obtenidos en los casos de calibración, registros de pruebas o ejemplos completos de salida.
+| Dimensión | Puntaje | Evidencia citada | Justificación |
+|---|---:|---|---|
+| Sistema completo y funcionando | 29/30 | `README.md`, secciones “Objetivo” y “Funcionamiento”; `agente/evaluador.py`, funciones `leer_entrega()` y `evaluar_trabajo()`, y llamada `client.responses.create()`; `agente/system_prompt.md`; `prompts/user_prompt.md`; `formato_salida.md`; `GOBIERNO_RIESGO.md`, secciones “Supervisión humana” y “Validación final”; `corridas/corrida_01/`, `corridas/corrida_02/` y `corridas/corrida_03/` | Se verifican objetivo, ambos prompts, lectura recursiva de archivos, uso de la API de OpenAI, salida estructurada, supervisión humana y tres resultados con modelo y tokens registrados. Se descuenta un punto porque las entradas guardadas solo identifican `casos/excelente`, pero no conservan su contenido, lo que limita la verificación integral de cada ejecución de extremo a extremo. |
+| Proceso documentado | 23/25 | `DECISIONES.md`, iteraciones 1 a 6; `agente/evaluador.py`, lectura recursiva y fallback de codificación `cp1252`; `agente/system_prompt.md`, sección “Control de fraude” | El proceso presenta seis iteraciones con problemas detectados, decisiones y evolución. Varias decisiones tienen respaldo en la implementación actual. Faltan fechas, versiones anteriores y resultados comparativos que permitan reconstruir con mayor profundidad cada cambio. |
+| Formato y reproducibilidad | 10/15 | `README.md`; `prompts/system_prompt.md`; `prompts/user_prompt.md`; `DECISIONES.md`; `corridas/corrida_01/`, `corridas/corrida_02/` y `corridas/corrida_03/`; `trabajo.md`, sección “Reproducibilidad”; `agente/evaluador.py`, bloque principal de ejecución | La estructura obligatoria está mayormente presente y existen tres corridas con fecha, referencia de entrada, salida y metadatos. Sin embargo, no se incluye el contenido de `casos/excelente`, por lo que no pueden reconstruirse exactamente las entradas. Además, las instrucciones indican `python agente/evaluador.py`, que activa calibración por defecto, pero no se entregan las carpetas `casos/`, ni se explica el uso de `--modo evaluacion` y `trabajos_a_evaluar/`. |
+| Análisis económico | 14/15 | `ANALISIS_ECONOMICO.md`, secciones “Mediciones reales”, “Proyección de uso”, “Criterio de selección del modelo” y “Trazabilidad”; `corridas/corrida_01/METADATOS.md`, `corridas/corrida_02/METADATOS.md` y `corridas/corrida_03/METADATOS.md`; `agente/evaluador.py`, `model="gpt-5.6"` | Se identifican modelo, tokens de entrada y salida por corrida, precios de referencia, fórmulas, costo unitario promedio y proyecciones semanal y anual. También se considera expresamente el uso del modelo más pequeño adecuado. Se descuenta un punto porque la elección no está respaldada por una calibración comparativa concreta frente a modelos menores y no se cita una fuente verificable para las tarifas. |
+| Gobierno y riesgo | 15/15 | `GOBIERNO_RIESGO.md`, secciones “Sistemas y recursos utilizados”, “Permisos”, “Riesgos identificados”, “Respuesta ante fallas”, “Supervisión humana”, “Nivel de autonomía” y “Validación final” | Se documentan recursos, permisos, protección de credenciales, riesgos, fallas posibles, respuestas operativas, situaciones que requieren revisión humana, límites de autonomía y responsable de validar la calificación definitiva. |
 
-### Criterio 4
-- Criterio: Estructura, claridad y coherencia
-- Puntaje obtenido: 15
-- Puntaje máximo: 15
-- Evidencia encontrada: El documento está organizado en quince secciones numeradas, utiliza listas para describir objetivos, etapas, componentes y procedimientos, y mantiene una progresión lógica desde la introducción hasta la conclusión.
-- Justificación: La estructura es clara, ordenada y fácil de seguir. Los conceptos se presentan de manera coherente y la terminología se mantiene estable a lo largo del trabajo. La conclusión recupera adecuadamente los elementos desarrollados.
+## Nota final
 
-### Criterio 5
-- Criterio: Uso adecuado de herramientas, metodología y documentación
-- Puntaje obtenido: 11
-- Puntaje máximo: 15
-- Evidencia encontrada: Se documenta el uso de Python, el SDK oficial de OpenAI, la Responses API, Git, GitHub Codespaces, variables de entorno y `requirements.txt`. También se detallan el procedimiento de evaluación, los pasos de ejecución y una estrategia de calibración.
-- Justificación: Las herramientas y la metodología seleccionadas son apropiadas y están explicadas de manera suficiente a nivel de diseño. Sin embargo, no se incluyen el código fuente, las dependencias concretas, la estructura real del repositorio, instrucciones técnicas detalladas, manejo de excepciones ni resultados de las pruebas. Por ello, el uso efectivo de las herramientas y la reproducibilidad no pueden verificarse completamente.
+**NOTA FINAL: 91/100**
 
 ## Fortalezas
-- Presenta una arquitectura modular con responsabilidades claramente diferenciadas.
-- Define un procedimiento sistemático para relacionar criterios, evidencia, justificación y puntaje.
-- Considera la consistencia mediante casos de calibración con diferentes niveles de calidad.
-- Incluye medidas adecuadas para proteger la clave de la API.
-- Contempla reproducibilidad, consumo de tokens y documentación de dependencias.
-- Reconoce las limitaciones de los modelos de lenguaje y preserva la intervención docente.
-- Mantiene una redacción clara y una estructura coherente.
+
+- Implementación verificable de lectura recursiva, manejo alternativo de codificación e integración con la API.
+- Prompts, rúbrica y formato de salida separados y disponibles.
+- Tres corridas con salidas estructuradas, fechas y metadatos de consumo.
+- Historial organizado de iteraciones, problemas y decisiones.
+- Análisis económico numérico y trazable a los metadatos.
+- Gobierno, riesgos y validación humana definidos de forma completa.
 
 ## Aspectos a mejorar
-- Falta evidencia directa de la implementación técnica descrita.
-- No se presentan los resultados concretos de los tres casos de calibración.
-- No se documentan parámetros relevantes de la API, como modelo utilizado, configuración o tratamiento de errores.
-- La reproducibilidad se explica, pero no puede verificarse sin el código, las dependencias y la estructura del repositorio.
-- No se definen métricas o tolerancias para determinar cuándo las evaluaciones son suficientemente consistentes.
-- No se incluye un ejemplo completo de entrada y salida que demuestre la trazabilidad en funcionamiento.
 
-## Recomendaciones
-- Incorporar el contenido de `evaluador.py` o anexar un enlace verificable al repositorio.
-- Incluir `requirements.txt` con versiones específicas de las dependencias.
-- Presentar una tabla con los puntajes obtenidos por los casos deficiente, intermedio y excelente, incluyendo varias ejecuciones si se busca analizar variabilidad.
-- Agregar un ejemplo completo que muestre el trabajo ingresado, la evidencia detectada, la justificación y el puntaje resultante.
-- Documentar el modelo y los parámetros empleados, así como el manejo de errores de autenticación, archivos faltantes, límites de tasa y respuestas incompletas.
-- Definir criterios cuantitativos de calibración, por ejemplo, rangos esperados y variación máxima aceptable entre ejecuciones.
-- Incorporar instrucciones técnicas completas para instalar, configurar y ejecutar el proyecto desde un entorno limpio.
+- Las entradas de las corridas no conservan el contenido completo del repositorio evaluado.
+- No están incluidos los casos de calibración referenciados por las ejecuciones y el código.
+- Las instrucciones no detallan los modos de ejecución ni la estructura de carpetas requerida.
+- La selección del modelo no incluye una comparación empírica con alternativas de menor costo.
+- Las tarifas utilizadas no cuentan con una fuente verificable citada en el repositorio.
 
-## Conclusión
-El trabajo presenta un diseño sólido, claro y ampliamente desarrollado de un agente evaluador basado en rúbricas. Sus principales fortalezas son la trazabilidad, la metodología estructurada, la seguridad de credenciales y la consideración de la reproducibilidad. No alcanza el nivel excelente porque varias afirmaciones técnicas y de calibración se presentan de forma descriptiva, sin código, resultados de pruebas u otros artefactos que permitan verificarlas.
+## Sugerencia concreta
+
+**UNA SUGERENCIA CONCRETA:** agregar a cada carpeta de `corridas/` una copia íntegra de la entrada evaluada y un archivo con el comando exacto de ejecución, incluyendo el modo utilizado y la estructura de carpetas requerida, para que un tercero pueda reconstruir las tres ejecuciones sin ambigüedades.
