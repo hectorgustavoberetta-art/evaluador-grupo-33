@@ -8,6 +8,8 @@ El sistema analiza repositorios académicos y genera una evaluación orientativa
 
 El agente recibe los archivos que el usuario carga, o un archivo ZIP que contiene un repositorio. Para evaluarlo, lee únicamente archivos de texto con extensiones `.md`, `.txt`, `.py` y `.json`.
 
+La aplicación también puede recibir la URL de un repositorio público de GitHub. En ese caso utiliza acceso de red únicamente para consultar información pública del repositorio y descargar su contenido mediante los servicios públicos de GitHub. Esta función no requiere permisos de escritura sobre el repositorio evaluado ni autoriza al agente a modificar, publicar o eliminar contenido en GitHub.
+
 No necesita permisos para modificar el repositorio evaluado, publicar contenido, ejecutar sus programas ni acceder a cuentas externas. La clave de OpenAI se obtiene desde la variable de entorno `OPENAI_API_KEY` y no debe escribirse en el código ni subirse al repositorio.
 
 ## Flujo y límites de seguridad
