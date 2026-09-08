@@ -791,7 +791,7 @@ with col_principal:
         '<div class="card">'
         '<div class="card-title">📄 Cargar trabajo</div>'
         '<div class="card-subtitle">'
-        'Subí un ZIP por repositorio para conservar toda su estructura, o archivos individuales para una prueba rápida.'
+        'Subí un ZIP con el repositorio completo, cargá archivos individuales para una prueba rápida o ingresá la URL de un repositorio público de GitHub.'
         '</div>'
         '</div>',
         unsafe_allow_html=True
