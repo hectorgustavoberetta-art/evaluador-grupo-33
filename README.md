@@ -39,7 +39,7 @@ El agente utiliza la API de OpenAI para analizar las entregas y dispone de dos m
 
 ### Modo calibración
 
-Permite comprobar la consistencia del agente utilizando los tres casos preparados específicamente para este propósito: deficiente, intermedio y excelente.
+Permite comprobar la consistencia del agente utilizando los tres casos obligatorios preparados para este propósito: excelente, flojo y tramposo.
 
 En este modo, el agente:
 
@@ -166,13 +166,12 @@ La interfaz permite:
 7. Descargar individualmente el resultado de cada evaluación.
 8. Descargar también la corrida completa con entrada, salida, fecha y tokens para conservarla en `corridas/`.
 
-Para evaluar un repositorio desde la web:
+Para evaluar uno o varios repositorios desde la web existen dos opciones:
 
-1. En GitHub, abrir el repositorio y elegir **Code → Download ZIP**.
-2. Subir ese archivo `.zip` en la aplicación.
-3. Presionar **Evaluar trabajos**.
+1. Pegar directamente la URL de cada repositorio público de GitHub, una por línea, y presionar **Evaluar trabajos**.
+2. Descargar el repositorio desde GitHub mediante **Code → Download ZIP**, subir el archivo `.zip` a la aplicación y presionar **Evaluar trabajos**.
 
-El ZIP debe contener el repositorio completo. No es necesario subir sus archivos por separado.
+También es posible cargar archivos individuales para realizar una prueba rápida. Cuando se utiliza un ZIP, este debe contener el repositorio completo para conservar su estructura.
 
 Para iniciar la interfaz web:
 
