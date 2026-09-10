@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Esta rúbrica convierte en criterios operativos la rúbrica oficial del Trabajo Final de la materia Programación de y con Agentes de IA · MBA UCEMA · 2026 2T.
+Esta rúbrica convierte en criterios operativos la rúbrica oficial del Trabajo Final de la materia Creación de Agentes de IA · MBA UCEMA · 2026 2T.
 
 El agente debe evaluar únicamente con evidencia verificable presente en el repositorio.
 
