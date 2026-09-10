@@ -1,6 +1,6 @@
 # Caso deficiente
 
-Este caso representa un trabajo que presenta incumplimientos importantes respecto de los criterios establecidos en la rúbrica.
+Este caso representa los trabajos que contienen incumplimientos importantes en relación a los criterios establecidos en la rúbrica.
 
 ## Características
 

@@ -1,3 +1,5 @@
+> **Nota:** esta es una copia del system prompt del evaluador tal como estaba *antes* del ajuste posterior a la calibración del caso `tramposo` (le falta el párrafo sobre acumulación de afirmaciones sin evidencia como indicio de `POSIBLE FRAUDE`). La versión vigente que efectivamente evalúa los trabajos es `agente/system_prompt.md` en la raíz del repositorio.
+
 # System Prompt — Agente Evaluador
 
 ## ROL
